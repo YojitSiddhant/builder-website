@@ -188,7 +188,7 @@ export function HomePage() {
   }, [testimonialPaused]);
 
   return (
-    <div className="-mt-8 overflow-x-clip bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.5),_transparent_40%),linear-gradient(180deg,_#eff6ff_0%,_#ffffff_28%,_#eff6ff_100%)] text-slate-900">
+    <div className="-mt-8 overflow-x-clip bg-white text-slate-900">
       <HeroSection
         activeSlide={heroIndex}
         setActiveSlide={setHeroIndex}
@@ -394,7 +394,7 @@ function HeroSection({
 
 function IntroSection() {
   return (
-    <SectionBand tone="light">
+    <SectionBand>
       <SectionShell eyebrow="Who We Are" title="Crafting Landmarks That Inspire">
         <p className="mx-auto max-w-3xl text-center text-base leading-8 text-slate-600 sm:text-lg">
           We create modern residential and commercial developments with quality construction,
@@ -429,7 +429,7 @@ function IntroSection() {
 
 function FeaturedProjects() {
   return (
-    <SectionBand tone="blue">
+    <SectionBand>
       <SectionShell
         id="projects"
         eyebrow="Portfolio"
@@ -493,7 +493,7 @@ function FeaturedProjects() {
 
 function TrustSection() {
   return (
-    <SectionBand tone="light">
+    <SectionBand>
       <SectionShell eyebrow="Why Us" title="Why Homeowners Trust Us">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {trustFeatures.map((item, index) => (
@@ -523,7 +523,7 @@ function TrustSection() {
 
 function ServicesSection() {
   return (
-    <SectionBand tone="blue">
+    <SectionBand>
       <SectionShell eyebrow="Services" title="What We Build">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {services.map((item, index) => (
@@ -554,7 +554,7 @@ function ServicesSection() {
 
 function ProcessSection() {
   return (
-    <SectionBand tone="light">
+    <SectionBand>
       <SectionShell eyebrow="Process" title="Our Process">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {processSteps.map((step, index) => (
@@ -606,7 +606,7 @@ function TestimonialsSection({
   const testimonial = testimonials[activeIndex];
 
   return (
-    <SectionBand tone="blue">
+    <SectionBand>
       <SectionShell eyebrow="Reviews" title="What Clients Say">
         <div
           className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-10"
@@ -680,39 +680,30 @@ function FinalCta() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none bg-blue-950 text-white"
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none bg-white text-slate-900"
     >
-      <div className="absolute inset-0">
-        <Image
-          src="/home/cta-banner.svg"
-          alt="Dream project background"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(30,64,175,0.86)_0%,_rgba(37,99,235,0.66)_55%,_rgba(255,255,255,0.18)_100%)]" />
-      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(219,234,254,0.55),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fbff_100%)]" />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
           Start your next chapter
         </p>
         <h2
           id="final-cta-title"
-          className="max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl"
+          className="max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl text-slate-900"
         >
           Ready To Build Your Dream Project?
         </h2>
         <div className="flex flex-col gap-4 sm:flex-row">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-semibold text-blue-700 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
+            className="inline-flex items-center justify-center rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
           >
             Book Consultation
           </Link>
           <a
             href="tel:+10000000000"
-            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/15"
+            className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-white px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
           >
             Call Now
           </a>
@@ -723,19 +714,13 @@ function FinalCta() {
 }
 
 function SectionBand({
-  tone,
   children,
 }: {
-  tone: "light" | "blue";
   children: ReactNode;
 }) {
   return (
     <section
-      className={
-        tone === "blue"
-          ? "relative left-1/2 w-screen -translate-x-1/2 bg-[linear-gradient(180deg,_#eff6ff_0%,_#f8fbff_48%,_#eff6ff_100%)]"
-          : "relative left-1/2 w-screen -translate-x-1/2 bg-white"
-      }
+      className="relative left-1/2 w-screen -translate-x-1/2 bg-white"
     >
       <div className="mx-auto w-full px-4 py-24 sm:px-6 lg:px-10 xl:px-16">{children}</div>
     </section>
