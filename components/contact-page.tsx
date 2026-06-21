@@ -251,20 +251,6 @@ export function ContactPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-blue-900/55 to-blue-700/30" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_30%)]" />
-
-            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <div className="max-w-md rounded-[1.75rem] border border-white/20 bg-white/90 p-6 backdrop-blur-sm">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                  Project Consultation
-                </p>
-                <h3 className="mt-3 text-2xl font-semibold text-slate-950">
-                  Let’s map your project with clarity.
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Share your requirements and our team will help you understand the best path forward for your space.
-                </p>
-              </div>
-            </div>
           </motion.div>
 
           <motion.div
@@ -427,20 +413,22 @@ export function ContactPage() {
                 />
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 max-w-md rounded-[1.5rem] border border-white/20 bg-white/95 p-5 shadow-[0_15px_40px_rgba(37,99,235,0.12)] backdrop-blur-sm">
+              <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+                <div className="w-full max-w-lg rounded-[1.5rem] border border-white/20 bg-white/95 p-5 text-center shadow-[0_15px_40px_rgba(37,99,235,0.12)] backdrop-blur-sm">
                 <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                   Builder Headquarters
                 </p>
                 <div className="mt-4 grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
-                  <div>
+                  <div className="space-y-1">
                     <p className="font-semibold text-slate-900">Office timing</p>
                     <p className="mt-1">Mon - Sat, 9:00 AM - 6:00 PM</p>
                   </div>
-                  <div>
+                  <div className="space-y-1">
                     <p className="font-semibold text-slate-900">Quick contact</p>
                     <p className="mt-1">+91 XXXXX XXXXX</p>
                     <p>contact@builder.com</p>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
