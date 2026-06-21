@@ -243,19 +243,19 @@ function HeroSection({
   return (
     <section
       aria-labelledby="home-hero-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-blue-950 text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <div className="relative min-h-[100svh]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={slide.image}
             className="absolute inset-0"
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
           >
             <Image
               src={slide.image}
@@ -273,11 +273,6 @@ function HeroSection({
 
         <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center gap-12 px-4 py-20 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/70 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-700 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-blue-500" />
-              Premium Builder & Realty
-            </div>
-
             <motion.h1
               id="home-hero-title"
               className="mt-8 text-5xl font-semibold leading-[0.92] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-8xl"
@@ -361,9 +356,6 @@ function HeroSection({
         </div>
 
         <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <div className="hidden rounded-full border border-blue-100 bg-white/90 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-blue-600 backdrop-blur md:inline-flex">
-            {slide.title}
-          </div>
           <div className="ml-auto flex items-center gap-3">
             <ArrowButton
               direction="left"
@@ -394,13 +386,7 @@ function HeroSection({
           ))}
         </div>
 
-        <div className="absolute right-6 top-24 hidden rounded-full border border-blue-100 bg-white/90 px-4 py-2 text-xs font-medium uppercase tracking-[0.25em] text-blue-600 backdrop-blur md:block">
-          Pause on hover
-        </div>
-
-        {paused ? (
-          <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
-        ) : null}
+        {paused ? <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" /> : null}
       </div>
     </section>
   );
