@@ -188,7 +188,7 @@ export function HomePage() {
   }, [testimonialPaused]);
 
   return (
-    <div className="-mt-8 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.5),_transparent_40%),linear-gradient(180deg,_#eff6ff_0%,_#ffffff_28%,_#eff6ff_100%)] text-slate-900">
+    <div className="-mt-8 overflow-x-clip bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.5),_transparent_40%),linear-gradient(180deg,_#eff6ff_0%,_#ffffff_28%,_#eff6ff_100%)] text-slate-900">
       <HeroSection
         activeSlide={heroIndex}
         setActiveSlide={setHeroIndex}
@@ -733,8 +733,8 @@ function SectionBand({
     <section
       className={
         tone === "blue"
-          ? "w-full bg-[linear-gradient(180deg,_#eff6ff_0%,_#f8fbff_48%,_#eff6ff_100%)]"
-          : "w-full bg-white"
+          ? "relative left-1/2 w-screen -translate-x-1/2 bg-[linear-gradient(180deg,_#eff6ff_0%,_#f8fbff_48%,_#eff6ff_100%)]"
+          : "relative left-1/2 w-screen -translate-x-1/2 bg-white"
       }
     >
       <div className="mx-auto w-full px-4 py-24 sm:px-6 lg:px-10 xl:px-16">{children}</div>
