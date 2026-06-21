@@ -1,0 +1,35 @@
+<svg width="1400" height="1050" viewBox="0 0 1400 1050" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1050" fill="url(#paint0_linear_1_2)"/>
+  <rect y="720" width="1400" height="330" fill="url(#paint1_linear_1_2)"/>
+  <rect x="240" y="188" width="260" height="540" rx="30" fill="#E7D7BF"/>
+  <rect x="528" y="116" width="370" height="612" rx="36" fill="#F6EFE3"/>
+  <rect x="936" y="260" width="226" height="468" rx="28" fill="#CDB89A"/>
+  <g opacity="0.4" stroke="#7E6A4A" stroke-width="8">
+    <path d="M294 256H446"/>
+    <path d="M294 342H446"/>
+    <path d="M294 428H446"/>
+    <path d="M294 514H446"/>
+    <path d="M294 600H446"/>
+    <path d="M584 196H840"/>
+    <path d="M584 284H840"/>
+    <path d="M584 372H840"/>
+    <path d="M584 460H840"/>
+    <path d="M584 548H840"/>
+    <path d="M986 314H1094"/>
+    <path d="M986 396H1094"/>
+    <path d="M986 478H1094"/>
+    <path d="M986 560H1094"/>
+  </g>
+  <circle cx="1088" cy="178" r="124" fill="#FFEBC5" opacity="0.9"/>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="0" y1="0" x2="1400" y2="1050" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#243142"/>
+      <stop offset="0.48" stop-color="#556A7F"/>
+      <stop offset="1" stop-color="#8C9EAA"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_1_2" x1="700" y1="720" x2="700" y2="1050" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9A8260"/>
+      <stop offset="1" stop-color="#7E6447"/>
+    </linearGradient>
+  </defs>
+</svg>
