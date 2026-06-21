@@ -300,7 +300,7 @@ function HeroSection({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
 
         <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center gap-12 px-4 py-20 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <motion.h1
               id="home-hero-title"
               className="mt-8 text-5xl font-semibold leading-[0.92] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-8xl"
@@ -313,7 +313,7 @@ function HeroSection({
             </motion.h1>
 
             <motion.p
-              className="mt-7 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
+              className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -322,7 +322,7 @@ function HeroSection({
             </motion.p>
 
             <motion.div
-              className="mt-10 flex flex-col gap-4 sm:flex-row"
+              className="mt-10 flex flex-col justify-center gap-4 sm:flex-row"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
@@ -355,10 +355,6 @@ function HeroSection({
                     {slide.eyebrow}
                   </p>
                   <p className="mt-2 text-2xl font-semibold text-slate-900">{slide.cardTitle}</p>
-                </div>
-                <div className="rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-right">
-                  <p className="text-xs uppercase tracking-[0.28em] text-blue-500">{slide.cardLabel}</p>
-                  <p className="text-sm font-medium text-slate-900">{slide.title}</p>
                 </div>
               </div>
 
