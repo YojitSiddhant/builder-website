@@ -406,7 +406,7 @@ function CategoryFilter({
 function MasonryGallery({
   items,
 }: {
-  items: (typeof galleryImages)[number][];
+  items: ReadonlyArray<(typeof galleryImages)[number]>;
 }) {
   return (
     <SectionWrap>
