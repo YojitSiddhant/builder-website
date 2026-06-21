@@ -204,7 +204,7 @@ export function ContactPage() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
                   whileHover={{ y: -6 }}
-                  className="group rounded-[1.75rem] border border-blue-100 bg-blue-50/60 p-6 shadow-[0_14px_35px_rgba(37,99,235,0.08)] transition-shadow hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)]"
+                  className="group rounded-[1.75rem] border border-blue-100 bg-white p-6 shadow-[0_14px_35px_rgba(37,99,235,0.08)] transition-shadow hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)]"
                 >
                   <motion.div
                     whileHover={{ rotate: 6, scale: 1.05 }}
@@ -232,7 +232,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-blue-50/40 px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
       >
         <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <motion.div
@@ -354,7 +354,7 @@ export function ContactPage() {
                 placeholder="Share your project vision, location, size, or any specific requirements."
               />
 
-              <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-blue-50/40 p-4 text-sm text-slate-700">
+              <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
                 <input
                   type="checkbox"
                   name="consent"
@@ -377,7 +377,7 @@ export function ContactPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-medium text-blue-700"
+                    className="rounded-2xl border border-blue-100 bg-white px-4 py-3 text-sm font-medium text-blue-700"
                   >
                     Thanks for reaching out. Our team will contact you soon.
                   </motion.div>
@@ -445,7 +445,7 @@ export function ContactPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-blue-100 bg-blue-50/40 p-6 shadow-[0_20px_60px_rgba(37,99,235,0.08)] sm:p-8">
+            <div className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(37,99,235,0.08)] sm:p-8">
               <h3 className="text-2xl font-semibold text-slate-950">
                 We’re easy to reach.
               </h3>
@@ -477,7 +477,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-blue-50/40 px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
       >
         <div className="mx-auto w-full max-w-4xl">
           <div className="text-center">
@@ -509,7 +509,7 @@ export function ContactPage() {
                     </span>
                     <span
                       className={[
-                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600 transition-transform duration-300",
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-blue-600 transition-transform duration-300",
                         isOpen ? "rotate-45" : "rotate-0",
                       ].join(" ")}
                     >
