@@ -188,7 +188,7 @@ export function HomePage() {
   }, [testimonialPaused]);
 
   return (
-    <div className="overflow-x-clip -mt-8 bg-[radial-gradient(circle_at_top,_rgba(198,167,123,0.14),_transparent_38%),linear-gradient(180deg,_#fbfaf7_0%,_#f6f1ea_38%,_#ffffff_100%)] text-slate-900">
+    <div className="-mt-8 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.45),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f4f8ff_42%,_#ffffff_100%)] text-slate-900">
       <HeroSection
         activeSlide={heroIndex}
         setActiveSlide={setHeroIndex}
@@ -229,7 +229,7 @@ function HeroSection({
   return (
     <section
       aria-labelledby="home-hero-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-950 text-white shadow-[0_35px_90px_rgba(15,23,42,0.18)]"
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-white text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -254,13 +254,13 @@ function HeroSection({
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(7,11,20,0.88)_0%,_rgba(7,11,20,0.58)_45%,_rgba(7,11,20,0.34)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.2),_transparent_36%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(16,72,162,0.78)_0%,_rgba(37,99,235,0.4)_45%,_rgba(255,255,255,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
 
         <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center gap-12 px-4 py-20 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-amber-100 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-amber-300" />
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/70 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-700 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-blue-500" />
               Premium Builder & Realty
             </div>
 
@@ -272,11 +272,11 @@ function HeroSection({
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               BUILDING TOMORROW,
-              <span className="block text-amber-200">DELIVERING TRUST</span>
+              <span className="block text-blue-100">DELIVERING TRUST</span>
             </motion.h1>
 
             <motion.p
-              className="mt-7 max-w-2xl text-lg leading-8 text-slate-100/85 sm:text-xl"
+              className="mt-7 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -292,13 +292,13 @@ function HeroSection({
             >
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full bg-amber-300 px-7 py-4 text-sm font-semibold text-slate-950 shadow-lg shadow-amber-900/20 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-amber-200"
+                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-900/15 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
               >
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/15"
+                className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/90 px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
               >
                 Contact Us
               </Link>
@@ -307,21 +307,21 @@ function HeroSection({
 
           <div className="flex items-end justify-start lg:justify-end">
             <motion.div
-              className="w-full max-w-md rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-8"
+              className="w-full max-w-md rounded-[2rem] border border-blue-100 bg-white/95 p-6 shadow-2xl shadow-blue-900/10 backdrop-blur-xl sm:p-8"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-200/90">
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
                     Experience
                   </p>
-                  <p className="mt-2 text-2xl font-semibold text-white">Building with confidence</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900">Building with confidence</p>
                 </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-right">
-                  <p className="text-xs uppercase tracking-[0.28em] text-slate-200/80">Live</p>
-                  <p className="text-sm font-medium text-white">{slide.eyebrow}</p>
+                <div className="rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-right">
+                  <p className="text-xs uppercase tracking-[0.28em] text-blue-500">Live</p>
+                  <p className="text-sm font-medium text-slate-900">{slide.eyebrow}</p>
                 </div>
               </div>
 
@@ -333,11 +333,11 @@ function HeroSection({
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-white/10 bg-slate-950/30 px-5 py-4"
+                    className="rounded-2xl border border-blue-100 bg-white px-5 py-4 shadow-sm"
                   >
                     <div className="flex items-end justify-between gap-4">
-                      <p className="text-3xl font-semibold text-white">{item.value}</p>
-                      <p className="text-sm text-slate-200/80">{item.label}</p>
+                      <p className="text-3xl font-semibold text-blue-700">{item.value}</p>
+                      <p className="text-sm text-slate-500">{item.label}</p>
                     </div>
                   </div>
                 ))}
@@ -347,7 +347,7 @@ function HeroSection({
         </div>
 
         <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <div className="hidden rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-white/75 backdrop-blur md:inline-flex">
+          <div className="hidden rounded-full border border-blue-100 bg-white/90 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-blue-600 backdrop-blur md:inline-flex">
             {slide.title}
           </div>
           <div className="ml-auto flex items-center gap-3">
@@ -374,13 +374,13 @@ function HeroSection({
               onClick={() => setActiveSlide(index)}
               className={[
                 "h-2.5 rounded-full transition-all duration-300",
-                index === activeSlide ? "w-10 bg-amber-300" : "w-2.5 bg-white/45 hover:bg-white/75",
+                index === activeSlide ? "w-10 bg-blue-600" : "w-2.5 bg-blue-200 hover:bg-blue-400",
               ].join(" ")}
             />
           ))}
         </div>
 
-        <div className="absolute right-6 top-24 hidden rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.25em] text-white/75 backdrop-blur md:block">
+        <div className="absolute right-6 top-24 hidden rounded-full border border-blue-100 bg-white/90 px-4 py-2 text-xs font-medium uppercase tracking-[0.25em] text-blue-600 backdrop-blur md:block">
           Pause on hover
         </div>
 
@@ -411,7 +411,7 @@ function IntroSection() {
             transition={{ delay: index * 0.08 }}
             className="group rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
           >
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 transition-transform duration-300 group-hover:scale-105">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
               <div className="h-6 w-6 rounded-lg border-2 border-current" />
             </div>
             <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
@@ -434,7 +434,7 @@ function FeaturedProjects() {
       action={
         <Link
           href="/projects"
-          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:border-amber-200 hover:shadow-md"
+          className="inline-flex items-center justify-center rounded-full border border-blue-100 bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
         >
           View All Projects
         </Link>
@@ -474,7 +474,7 @@ function FeaturedProjects() {
               <div className="mt-6">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-slate-800"
+                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
                 >
                   View Details
                 </Link>
@@ -501,7 +501,7 @@ function TrustSection() {
             transition={{ delay: index * 0.08 }}
             className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-amber-300">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
               <div className="h-5 w-5 rounded-full border-2 border-current" />
             </div>
             <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
@@ -530,7 +530,7 @@ function ServicesSection() {
             whileHover={{ y: -8 }}
             className="group rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,_#ffffff_0%,_#fbf8f3_100%)] p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-800 transition-transform duration-300 group-hover:scale-105">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
               <ServiceGlyph index={index} />
             </div>
             <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
@@ -561,14 +561,14 @@ function ProcessSection() {
             {index < processSteps.length - 1 ? (
               <motion.span
                 aria-hidden="true"
-                className="absolute right-[-1.5rem] top-1/2 hidden h-px w-12 origin-left bg-gradient-to-r from-amber-300 via-amber-400 to-transparent xl:block"
+                className="absolute right-[-1.5rem] top-1/2 hidden h-px w-12 origin-left bg-gradient-to-r from-blue-300 via-blue-500 to-transparent xl:block"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, amount: 0.7 }}
                 transition={{ duration: 0.8, delay: 0.15 + index * 0.1 }}
               />
             ) : null}
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-semibold text-white">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
               {step.number}
             </div>
             <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
@@ -612,7 +612,7 @@ function TestimonialsSection({
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="flex justify-center lg:justify-start">
-              <div className="relative h-28 w-28 overflow-hidden rounded-full ring-8 ring-amber-100">
+              <div className="relative h-28 w-28 overflow-hidden rounded-full ring-8 ring-blue-100">
                 <Image
                   src={testimonial.image}
                   alt={testimonial.name}
@@ -624,7 +624,7 @@ function TestimonialsSection({
             </div>
 
             <div className="flex flex-col justify-center">
-              <div className="mb-3 flex items-center gap-1 text-amber-500">
+              <div className="mb-3 flex items-center gap-1 text-blue-500">
                 {Array.from({ length: testimonial.rating }).map((_, index) => (
                   <StarIcon key={index} className="h-5 w-5" />
                 ))}
@@ -650,14 +650,14 @@ function TestimonialsSection({
               onClick={() => setActiveIndex(index)}
               className={[
                 "h-2.5 rounded-full transition-all duration-300",
-                index === activeIndex ? "w-10 bg-slate-900" : "w-2.5 bg-slate-300 hover:bg-slate-400",
+                index === activeIndex ? "w-10 bg-blue-600" : "w-2.5 bg-blue-200 hover:bg-blue-400",
               ].join(" ")}
             />
           ))}
         </div>
 
         {paused ? (
-        <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
         ) : null}
       </div>
     </SectionShell>
@@ -668,9 +668,9 @@ function FinalCta() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none bg-slate-950 text-white"
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none bg-blue-950 text-white"
     >
-        <div className="absolute inset-0">
+      <div className="absolute inset-0">
         <Image
           src="/home/cta-banner.svg"
           alt="Dream project background"
@@ -678,11 +678,11 @@ function FinalCta() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(6,10,17,0.88)_0%,_rgba(6,10,17,0.58)_55%,_rgba(6,10,17,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(30,64,175,0.86)_0%,_rgba(37,99,235,0.66)_55%,_rgba(255,255,255,0.18)_100%)]" />
       </div>
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-200">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
           Start your next chapter
         </p>
         <h2
@@ -694,7 +694,7 @@ function FinalCta() {
         <div className="flex flex-col gap-4 sm:flex-row">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-amber-300 px-7 py-4 text-sm font-semibold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-amber-200"
+            className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-semibold text-blue-700 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
           >
             Book Consultation
           </Link>
@@ -726,11 +726,11 @@ function SectionShell({
   return (
     <section id={id} className="scroll-mt-24">
       <div className="mb-10 flex flex-col gap-4 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-700">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
           {eyebrow}
         </p>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:text-left">
-          <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:mx-0 lg:text-5xl">
+          <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:mx-0 lg:text-5xl">
             {title}
           </h2>
           {action ? <div className="flex justify-center lg:justify-end">{action}</div> : null}
@@ -753,7 +753,7 @@ function ArrowButton({
       type="button"
       aria-label={direction === "left" ? "Previous slide" : "Next slide"}
       onClick={onClick}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/10 text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/20"
     >
       <ChevronIcon direction={direction} />
     </button>
