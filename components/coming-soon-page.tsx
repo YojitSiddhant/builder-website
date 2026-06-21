@@ -8,7 +8,7 @@ export function ComingSoonPage({
   return (
     <section className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
       <div className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-sky-600">
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
           Coming Soon
         </p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
