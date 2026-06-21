@@ -271,7 +271,7 @@ function HeroSection({
   return (
     <section
       aria-labelledby="home-hero-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-blue-950 text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
+      className="relative w-full overflow-hidden bg-blue-950 text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -711,7 +711,7 @@ function FinalCta() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none bg-white text-slate-900"
+      className="relative w-full overflow-hidden rounded-none bg-white text-slate-900"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(219,234,254,0.55),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fbff_100%)]" />
 
@@ -751,7 +751,7 @@ function SectionBand({
 }) {
   return (
     <section
-      className="relative left-1/2 w-screen -translate-x-1/2 bg-white"
+      className="relative w-full bg-white"
     >
       <div className="mx-auto w-full px-4 py-24 sm:px-6 lg:px-10 xl:px-16">{children}</div>
     </section>
