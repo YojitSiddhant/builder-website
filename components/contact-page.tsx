@@ -253,7 +253,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="border-t border-blue-50 bg-white px-4 py-20 sm:px-6 lg:px-8"
+        className="border-t border-blue-50 bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
@@ -265,7 +265,7 @@ export function ContactPage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
 
@@ -305,7 +305,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       >
         <div className="mx-auto w-full max-w-5xl">
           <motion.div
@@ -453,7 +453,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-2xl">
@@ -527,7 +527,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       >
         <div className="mx-auto w-full max-w-4xl">
           <div className="text-center">
@@ -595,7 +595,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-20 sm:px-6 lg:px-8"
+        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="relative overflow-hidden rounded-[2.25rem] border border-blue-100 shadow-[0_24px_70px_rgba(37,99,235,0.12)]">

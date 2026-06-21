@@ -753,7 +753,7 @@ function SectionBand({
     <section
       className="relative w-full bg-white"
     >
-      <div className="mx-auto w-full px-4 py-24 sm:px-6 lg:px-10 xl:px-16">{children}</div>
+      <div className="mx-auto w-full px-4 py-16 sm:px-6 sm:py-16 lg:px-10 lg:py-20 xl:px-16">{children}</div>
     </section>
   );
 }
@@ -773,18 +773,18 @@ function SectionShell({
 }) {
   return (
     <section id={id} className="scroll-mt-24">
-      <div className="mb-10 flex flex-col gap-4 text-center">
+      <div className="mb-8 flex flex-col gap-3 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
           {eyebrow}
         </p>
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:text-left">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:text-left">
           <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:text-5xl">
             {title}
           </h2>
           {action ? <div className="flex justify-center lg:justify-end">{action}</div> : null}
         </div>
       </div>
-      <div className="space-y-8">{children}</div>
+      <div className="space-y-6">{children}</div>
     </section>
   );
 }
