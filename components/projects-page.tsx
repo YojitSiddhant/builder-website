@@ -298,8 +298,8 @@ function FilterBar({
 }) {
   return (
     <section className="z-30 bg-white px-4 pt-10 pb-4 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap gap-2">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-5">
+        <div className="flex flex-wrap justify-center gap-2">
           {filters.map((filter) => {
             const active = filter === activeFilter;
             return (
@@ -320,7 +320,7 @@ function FilterBar({
           })}
         </div>
 
-        <label className="relative block w-full lg:max-w-sm">
+        <label className="relative block w-full max-w-md">
           <span className="sr-only">Search projects</span>
           <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-blue-500">
             <SearchIcon className="h-5 w-5" />
