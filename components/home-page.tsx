@@ -737,7 +737,7 @@ function SectionBand({
           : "w-full bg-white"
       }
     >
-      <div className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">{children}</div>
+      <div className="mx-auto w-full px-4 py-24 sm:px-6 lg:px-10 xl:px-16">{children}</div>
     </section>
   );
 }
@@ -762,7 +762,7 @@ function SectionShell({
           {eyebrow}
         </p>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:text-left">
-          <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:mx-0 lg:text-5xl">
+          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-4xl lg:text-5xl">
             {title}
           </h2>
           {action ? <div className="flex justify-center lg:justify-end">{action}</div> : null}
