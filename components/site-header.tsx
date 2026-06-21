@@ -17,10 +17,10 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-blue-100 bg-white/95 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
+          className="inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
             B
@@ -28,8 +28,8 @@ export function SiteHeader() {
           Builder
         </Link>
 
-        <nav aria-label="Primary" className="overflow-x-auto">
-          <ul className="flex min-w-max items-center gap-2 rounded-full bg-blue-50 p-1 text-sm font-medium text-blue-700">
+        <nav aria-label="Primary" className="justify-self-center overflow-x-auto">
+          <ul className="flex min-w-max items-center gap-2 text-sm font-medium text-blue-700">
             {links.map((link) => {
               const isActive =
                 link.href === "/"
@@ -45,7 +45,7 @@ export function SiteHeader() {
                       "inline-flex items-center rounded-full px-4 py-2 transition-colors",
                       isActive
                         ? "bg-blue-600 text-white shadow-sm"
-                        : "text-blue-700 hover:bg-white hover:text-blue-900",
+                        : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
                     ].join(" ")}
                   >
                     {link.label}
@@ -55,6 +55,8 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
+
+        <div aria-hidden="true" />
       </div>
     </header>
   );
