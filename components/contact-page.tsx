@@ -383,9 +383,9 @@ export function ContactPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-            <div className="relative overflow-hidden rounded-[2rem] border border-blue-100 shadow-[0_20px_60px_rgba(37,99,235,0.1)]">
-              <div className="aspect-[16/10] min-h-[360px] w-full">
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
+            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 shadow-[0_20px_60px_rgba(37,99,235,0.1)]">
+              <div className="relative flex-1 min-h-[420px] w-full">
                 <iframe
                   title="Builder office map"
                   src="https://www.google.com/maps?q=India&output=embed"
@@ -395,21 +395,19 @@ export function ContactPage() {
                 />
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 flex justify-start p-0 sm:bottom-6 sm:left-6 sm:right-auto sm:p-0">
-                <div className="w-full max-w-lg rounded-[1.5rem] border border-white/20 bg-white/95 p-5 text-center shadow-[0_15px_40px_rgba(37,99,235,0.12)] backdrop-blur-sm sm:min-w-[360px]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                    Builder Headquarters
-                  </p>
-                  <div className="mt-4 grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
-                    <div className="space-y-1">
-                      <p className="font-semibold text-slate-900">Office timing</p>
-                      <p className="mt-1">Mon - Sat, 9:00 AM - 6:00 PM</p>
-                    </div>
-                    <div className="space-y-1">
-                      <p className="font-semibold text-slate-900">Quick contact</p>
-                      <p className="mt-1">+91 XXXXX XXXXX</p>
-                      <p>contact@builder.com</p>
-                    </div>
+              <div className="border-t border-blue-100 bg-white px-5 py-5 sm:px-6">
+                <p className="text-center text-sm font-semibold uppercase tracking-[0.32em] text-blue-600">
+                  Builder Headquarters
+                </p>
+                <div className="mt-4 grid gap-4 text-center text-sm text-slate-600 sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <p className="font-semibold text-slate-900">Office timing</p>
+                    <p>Mon - Sat, 9:00 AM - 6:00 PM</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="font-semibold text-slate-900">Quick contact</p>
+                    <p>+91 XXXXX XXXXX</p>
+                    <p>contact@builder.com</p>
                   </div>
                 </div>
               </div>
