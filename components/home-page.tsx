@@ -342,14 +342,14 @@ function HeroSection({
             </motion.div>
           </div>
 
-          <div className="flex items-end justify-start lg:justify-end">
+          <div className="flex items-end justify-center lg:justify-end">
             <motion.div
-              className="w-full max-w-md rounded-[2rem] border border-blue-100 bg-white/95 p-6 shadow-2xl shadow-blue-900/10 backdrop-blur-xl sm:p-8"
+              className="w-full max-w-md rounded-[2rem] border border-blue-100 bg-white/95 p-6 text-center shadow-2xl shadow-blue-900/10 backdrop-blur-xl sm:p-8"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col items-center gap-2">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
                     {slide.eyebrow}
@@ -366,9 +366,9 @@ function HeroSection({
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-blue-100 bg-white px-5 py-4 shadow-sm"
+                    className="rounded-2xl border border-blue-100 bg-white px-5 py-4 text-center shadow-sm"
                   >
-                    <div className="flex items-end justify-between gap-4">
+                    <div className="flex flex-col items-center gap-1">
                       <p className="text-3xl font-semibold text-blue-700">{item.value}</p>
                       <p className="text-sm text-slate-500">{item.label}</p>
                     </div>
