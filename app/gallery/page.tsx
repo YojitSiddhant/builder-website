@@ -1,5 +1,12 @@
-import { ComingSoonPage } from "@/components/coming-soon-page";
+import type { Metadata } from "next";
+import { GalleryPage } from "@/components/gallery-page";
 
-export default function GalleryPage() {
-  return <ComingSoonPage title="Gallery" />;
+export const metadata: Metadata = {
+  title: "Builder Gallery",
+  description:
+    "Explore Builder's premium gallery of completed projects, interiors, architecture, and construction excellence.",
+};
+
+export default function GalleryRoutePage() {
+  return <GalleryPage />;
 }
