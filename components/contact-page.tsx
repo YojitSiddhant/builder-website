@@ -10,6 +10,7 @@ import {
   type ChangeEvent,
   type ChangeEventHandler,
   type FormEvent,
+  type InputHTMLAttributes,
   useState,
 } from "react";
 
@@ -25,6 +26,9 @@ type FormState = {
 };
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phonePattern = /^[+]?[\d\s()-]{8,20}$/;
 
 const contactInfo = [
   {
@@ -119,18 +123,19 @@ export function ContactPage() {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     const { name, value, type } = event.target;
+    const fieldName = name as keyof FormState;
 
     if (type === "checkbox") {
       const checked = (event.target as HTMLInputElement).checked;
-      setForm((current) => ({ ...current, [name]: checked } as FormState));
+      setForm((current) => ({ ...current, [fieldName]: checked } as FormState));
     } else {
-      setForm((current) => ({ ...current, [name]: value } as FormState));
+      setForm((current) => ({ ...current, [fieldName]: value } as FormState));
     }
 
-    if (errors[name as keyof FormState]) {
+    if (errors[fieldName]) {
       setErrors((current) => {
         const next = { ...current };
-        delete next[name as keyof FormState];
+        delete next[fieldName];
         return next;
       });
     }
@@ -139,19 +144,87 @@ export function ContactPage() {
     }
   }
 
+  function validateField(
+    field: keyof FormState,
+    value: string | boolean,
+    values: FormState
+  ): string | undefined {
+    void values;
+
+    switch (field) {
+      case "fullName": {
+        const text = String(value).trim();
+        if (!text) return "Full name is required.";
+        if (text.length < 2) return "Please enter your full name.";
+        return undefined;
+      }
+      case "phoneNumber": {
+        const text = String(value).trim();
+        if (!text) return "Phone number is required.";
+        const digits = text.replace(/\D/g, "");
+        if (digits.length < 10 || digits.length > 15 || !phonePattern.test(text)) {
+          return "Enter a valid phone number.";
+        }
+        return undefined;
+      }
+      case "emailAddress": {
+        const text = String(value).trim();
+        if (!text) return "Email address is required.";
+        if (!emailPattern.test(text)) return "Enter a valid email address.";
+        return undefined;
+      }
+      case "projectType":
+        if (!value) return "Please choose a project type.";
+        return undefined;
+      case "budget":
+        if (!value) return "Please select a budget range.";
+        return undefined;
+      case "timeline": {
+        const text = String(value).trim();
+        if (!text) return "Timeline is required.";
+        if (text.length < 3) return "Please share a clearer timeline.";
+        return undefined;
+      }
+      case "message": {
+        const text = String(value).trim();
+        if (!text) return "Tell us a little about your project.";
+        if (text.length < 20) return "Please add a few more details.";
+        return undefined;
+      }
+      case "consent":
+        if (!value) return "Please agree to be contacted.";
+        return undefined;
+      default:
+        return undefined;
+    }
+  }
+
   function validate(values: FormState): FormErrors {
     const nextErrors: FormErrors = {};
 
-    if (!values.fullName.trim()) nextErrors.fullName = "Full name is required.";
-    if (!values.phoneNumber.trim()) nextErrors.phoneNumber = "Phone number is required.";
-    if (!values.emailAddress.trim()) nextErrors.emailAddress = "Email address is required.";
-    if (!values.projectType) nextErrors.projectType = "Please choose a project type.";
-    if (!values.budget) nextErrors.budget = "Please select a budget range.";
-    if (!values.timeline.trim()) nextErrors.timeline = "Timeline is required.";
-    if (!values.message.trim()) nextErrors.message = "Tell us a little about your project.";
-    if (!values.consent) nextErrors.consent = "Please agree to be contacted.";
+    (Object.keys(values) as Array<keyof FormState>).forEach((field) => {
+      const error = validateField(field, values[field], values);
+      if (error) {
+        nextErrors[field] = error;
+      }
+    });
 
     return nextErrors;
+  }
+
+  function handleBlur(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
+    const { name, value, type } = event.target;
+    const fieldName = name as keyof FormState;
+    const fieldValue =
+      type === "checkbox" ? (event.target as HTMLInputElement).checked : value;
+    const nextError = validateField(fieldName, fieldValue, form);
+
+    setErrors((current) => ({
+      ...current,
+      [fieldName]: nextError,
+    }));
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -262,6 +335,7 @@ export function ContactPage() {
                   name="fullName"
                   value={form.fullName}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   error={errors.fullName}
                   placeholder="Your full name"
                 />
@@ -270,8 +344,10 @@ export function ContactPage() {
                   name="phoneNumber"
                   value={form.phoneNumber}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   error={errors.phoneNumber}
                   placeholder="+91 XXXXX XXXXX"
+                  inputMode="tel"
                 />
               </div>
 
@@ -280,6 +356,7 @@ export function ContactPage() {
                 name="emailAddress"
                 value={form.emailAddress}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 error={errors.emailAddress}
                 placeholder="you@example.com"
                 type="email"
@@ -291,6 +368,7 @@ export function ContactPage() {
                   name="projectType"
                   value={form.projectType}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   error={errors.projectType}
                   options={["Residential", "Commercial", "Renovation", "Interior"]}
                 />
@@ -299,6 +377,7 @@ export function ContactPage() {
                   name="budget"
                   value={form.budget}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   error={errors.budget}
                   options={budgetOptions}
                 />
@@ -309,6 +388,7 @@ export function ContactPage() {
                 name="timeline"
                 value={form.timeline}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 error={errors.timeline}
                 placeholder="e.g. 6 to 9 months"
               />
@@ -318,6 +398,7 @@ export function ContactPage() {
                 name="message"
                 value={form.message}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 error={errors.message}
                 placeholder="Share your project vision, location, size, or any specific requirements."
               />
@@ -328,6 +409,7 @@ export function ContactPage() {
                   name="consent"
                   checked={form.consent}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   className="mt-1 h-4 w-4 rounded border-blue-300 text-blue-600 focus:ring-blue-600"
                 />
                 <span>
@@ -607,7 +689,9 @@ function Field({
   value: string;
   placeholder?: string;
   type?: string;
+  inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
     <label className="block">
@@ -638,6 +722,7 @@ function SelectField({
   value: string;
   options: string[];
   onChange: ChangeEventHandler<HTMLSelectElement>;
+  onBlur?: ChangeEventHandler<HTMLSelectElement>;
 }) {
   return (
     <label className="block">
@@ -674,6 +759,7 @@ function TextareaField({
   value: string;
   placeholder?: string;
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  onBlur?: ChangeEventHandler<HTMLTextAreaElement>;
 }) {
   return (
     <label className="block">
