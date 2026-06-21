@@ -9,24 +9,52 @@ const heroSlides = [
   {
     title: "Luxury Building",
     eyebrow: "Residential Excellence",
+    headingTop: "BUILDING TOMORROW,",
+    headingBottom: "DELIVERING TRUST",
+    description: "Premium residential and commercial spaces designed for modern living.",
+    cardLabel: "Live",
+    cardTitle: "Building with confidence",
+    statValue: "10+",
+    statLabel: "Years Experience",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Apartment",
     eyebrow: "Urban Living",
+    headingTop: "SMART SPACES,",
+    headingBottom: "ELEVATED LIVING",
+    description: "Contemporary homes with natural light, efficient layouts, and city-ready comfort.",
+    cardLabel: "Live",
+    cardTitle: "Designed for modern life",
+    statValue: "150+",
+    statLabel: "Homes Delivered",
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Commercial Tower",
     eyebrow: "Business Destinations",
+    headingTop: "SPACES THAT GROW",
+    headingBottom: "BUSINESS VALUE",
+    description: "Commercial developments planned for visibility, performance, and long-term returns.",
+    cardLabel: "Live",
+    cardTitle: "Built for business growth",
+    statValue: "24/7",
+    statLabel: "Operational Impact",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Interior Architecture",
     eyebrow: "Refined Details",
+    headingTop: "INTERIORS THAT FEEL",
+    headingBottom: "POLISHED AND WARM",
+    description: "Beautifully detailed interiors that balance elegance, function, and comfort.",
+    cardLabel: "Live",
+    cardTitle: "Crafted interior detail",
+    statValue: "1:1",
+    statLabel: "Design Balance",
     image:
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
   },
@@ -280,8 +308,8 @@ function HeroSection({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              BUILDING TOMORROW,
-              <span className="block text-blue-100">DELIVERING TRUST</span>
+              {slide.headingTop}
+              <span className="block text-blue-100">{slide.headingBottom}</span>
             </motion.h1>
 
             <motion.p
@@ -290,7 +318,7 @@ function HeroSection({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
             >
-              Premium residential and commercial spaces designed for modern living.
+              {slide.description}
             </motion.p>
 
             <motion.div
@@ -324,21 +352,21 @@ function HeroSection({
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
-                    Experience
+                    {slide.eyebrow}
                   </p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900">Building with confidence</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900">{slide.cardTitle}</p>
                 </div>
                 <div className="rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-right">
-                  <p className="text-xs uppercase tracking-[0.28em] text-blue-500">Live</p>
-                  <p className="text-sm font-medium text-slate-900">{slide.eyebrow}</p>
+                  <p className="text-xs uppercase tracking-[0.28em] text-blue-500">{slide.cardLabel}</p>
+                  <p className="text-sm font-medium text-slate-900">{slide.title}</p>
                 </div>
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-4">
                 {[
-                  { value: "10+", label: "Years Experience" },
-                  { value: "150+", label: "Projects" },
-                  { value: "500+", label: "Happy Clients" },
+                  { value: slide.statValue, label: slide.statLabel },
+                  { value: slide.title === "Commercial Tower" ? "150+" : "500+", label: slide.title === "Commercial Tower" ? "Corporate Sites" : slide.title === "Interior Architecture" ? "Design Touchpoints" : "Projects" },
+                  { value: slide.title === "Modern Apartment" ? "500+" : "24/7", label: slide.title === "Modern Apartment" ? "Happy Residents" : slide.title === "Interior Architecture" ? "Finishing Precision" : "Support" },
                 ].map((item) => (
                   <div
                     key={item.label}
