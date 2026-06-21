@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", icon: HomeIcon },
+  { href: "/about", label: "About", icon: InfoIcon },
+  { href: "/services", label: "Services", icon: SparkIcon },
+  { href: "/projects", label: "Projects", icon: BriefcaseIcon },
+  { href: "/gallery", label: "Gallery", icon: ImageIcon },
+  { href: "/contact", label: "Contact", icon: MailIcon },
 ];
 
 export function SiteHeader() {
@@ -35,6 +35,7 @@ export function SiteHeader() {
                 link.href === "/"
                   ? pathname === link.href
                   : pathname.startsWith(link.href);
+              const Icon = link.icon;
 
               return (
                 <li key={link.href}>
@@ -42,12 +43,20 @@ export function SiteHeader() {
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
                     className={[
-                      "inline-flex items-center rounded-full px-4 py-2 transition-colors",
+                      "group inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors",
                       isActive
                         ? "bg-blue-600 text-white shadow-sm"
                         : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
                     ].join(" ")}
                   >
+                    <Icon
+                      className={[
+                        "h-4 w-4 shrink-0 transition-all duration-300 ease-out",
+                        isActive
+                          ? "translate-x-0 opacity-100"
+                          : "opacity-70 group-hover:translate-x-1 group-hover:opacity-100",
+                      ].join(" ")}
+                    />
                     {link.label}
                   </Link>
                 </li>
@@ -59,5 +68,105 @@ export function SiteHeader() {
         <div aria-hidden="true" />
       </div>
     </header>
+  );
+}
+
+function HomeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M4 11.5 12 4l8 7.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.5 10.25V20h11V10.25"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function InfoIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M12 10.25V16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="7.75" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function SparkIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M12 3.5 13.9 9l5.5 1.9-5.5 1.9L12 18.3 10.1 12.8 4.6 10.9l5.5-1.9L12 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M9 6.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <rect x="4" y="6.5" width="16" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M4 12h16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ImageIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M8.5 11.5 11 14l2.25-2.25L16.5 16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="9" cy="9" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="m5.5 7.5 6.5 5 6.5-5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
