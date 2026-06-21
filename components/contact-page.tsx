@@ -234,25 +234,7 @@ export function ContactPage() {
         variants={sectionVariants}
         className="bg-white px-4 py-20 sm:px-6 lg:px-8"
       >
-        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.65 }}
-            className="relative min-h-[420px] overflow-hidden rounded-[2rem] shadow-[0_20px_60px_rgba(37,99,235,0.12)]"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
-              alt="Luxury building exterior"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-blue-900/55 to-blue-700/30" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_30%)]" />
-          </motion.div>
-
+        <div className="mx-auto w-full max-w-5xl">
           <motion.div
             id="enquiry-form"
             initial={{ opacity: 0, x: 24 }}
