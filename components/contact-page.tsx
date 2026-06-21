@@ -569,8 +569,8 @@ function Hero() {
   return (
     <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
       <Image
-        src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80"
-        alt="Luxury building background"
+        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
+        alt="Modern building background"
         fill
         priority
         className="object-cover"
@@ -585,9 +585,6 @@ function Hero() {
         variants={heroVariants}
         className="relative z-10 mx-auto w-full max-w-4xl text-center text-white"
       >
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100/90">
-          Home / Contact
-        </p>
         <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
           Let’s Build Something Extraordinary
         </h1>
