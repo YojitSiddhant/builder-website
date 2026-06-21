@@ -413,22 +413,22 @@ export function ContactPage() {
                 />
               </div>
 
-              <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
-                <div className="w-full max-w-lg rounded-[1.5rem] border border-white/20 bg-white/95 p-5 text-center shadow-[0_15px_40px_rgba(37,99,235,0.12)] backdrop-blur-sm">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                  Builder Headquarters
-                </p>
-                <div className="mt-4 grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
-                  <div className="space-y-1">
-                    <p className="font-semibold text-slate-900">Office timing</p>
-                    <p className="mt-1">Mon - Sat, 9:00 AM - 6:00 PM</p>
+              <div className="absolute bottom-4 left-4 right-4 flex justify-start p-0 sm:bottom-6 sm:left-6 sm:right-auto sm:p-0">
+                <div className="w-full max-w-lg rounded-[1.5rem] border border-white/20 bg-white/95 p-5 text-center shadow-[0_15px_40px_rgba(37,99,235,0.12)] backdrop-blur-sm sm:min-w-[360px]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                    Builder Headquarters
+                  </p>
+                  <div className="mt-4 grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+                    <div className="space-y-1">
+                      <p className="font-semibold text-slate-900">Office timing</p>
+                      <p className="mt-1">Mon - Sat, 9:00 AM - 6:00 PM</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-semibold text-slate-900">Quick contact</p>
+                      <p className="mt-1">+91 XXXXX XXXXX</p>
+                      <p>contact@builder.com</p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <p className="font-semibold text-slate-900">Quick contact</p>
-                    <p className="mt-1">+91 XXXXX XXXXX</p>
-                    <p>contact@builder.com</p>
-                  </div>
-                </div>
                 </div>
               </div>
             </div>
