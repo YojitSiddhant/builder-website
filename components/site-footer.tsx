@@ -1,12 +1,12 @@
 import Link from "next/link";
 
 const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", icon: HomeIcon },
+  { href: "/about", label: "About", icon: InfoIcon },
+  { href: "/services", label: "Services", icon: SparkIcon },
+  { href: "/projects", label: "Projects", icon: BriefcaseIcon },
+  { href: "/gallery", label: "Gallery", icon: ImageIcon },
+  { href: "/contact", label: "Contact", icon: MailIcon },
 ];
 
 export function SiteFooter() {
@@ -30,8 +30,12 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-slate-600">
             {quickLinks.map((link) => (
               <li key={link.href}>
-                <Link className="transition-colors hover:text-blue-700" href={link.href}>
-                  {link.label}
+                <Link
+                  className="inline-flex items-center justify-center gap-2 transition-colors hover:text-blue-700"
+                  href={link.href}
+                >
+                  <link.icon className="h-4 w-4 shrink-0" />
+                  <span>{link.label}</span>
                 </Link>
               </li>
             ))}
@@ -117,6 +121,106 @@ function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path d="M6.5 9H4v11h2.5V9ZM5.25 4.25A1.5 1.5 0 1 0 5.25 7a1.5 1.5 0 0 0 0-2.75ZM20 20h-2.5v-5.3c0-1.3-.1-2.9-1.9-2.9s-2.2 1.5-2.2 2.8V20H11V9h2.4v1.5h.1c.3-.7 1.3-1.7 3-1.7 2.6 0 3.5 1.7 3.5 4.4V20Z" />
+    </svg>
+  );
+}
+
+function HomeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M4 11.5 12 4l8 7.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.5 10.25V20h11V10.25"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function InfoIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M12 10.25V16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="7.75" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function SparkIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M12 3.5 13.9 9l5.5 1.9-5.5 1.9L12 18.3 10.1 12.8 4.6 10.9l5.5-1.9L12 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M9 6.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <rect x="4" y="6.5" width="16" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M4 12h16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ImageIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M8.5 11.5 11 14l2.25-2.25L16.5 16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="9" cy="9" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="m5.5 7.5 6.5 5 6.5-5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
