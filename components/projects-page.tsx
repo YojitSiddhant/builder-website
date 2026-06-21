@@ -297,7 +297,7 @@ function FilterBar({
   setSearch: (value: string) => void;
 }) {
   return (
-    <section className="sticky top-[72px] z-30 border-y border-blue-100 bg-white/95 px-4 py-4 backdrop-blur-xl sm:px-6 lg:px-8">
+    <section className="z-30 bg-white px-4 pt-10 pb-4 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap gap-2">
           {filters.map((filter) => {
