@@ -188,14 +188,14 @@ export function HomePage() {
   }, [testimonialPaused]);
 
   return (
-    <div className="-mt-8 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.45),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f4f8ff_42%,_#ffffff_100%)] text-slate-900">
+    <div className="-mt-8 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.5),_transparent_40%),linear-gradient(180deg,_#eff6ff_0%,_#ffffff_28%,_#eff6ff_100%)] text-slate-900">
       <HeroSection
         activeSlide={heroIndex}
         setActiveSlide={setHeroIndex}
         paused={heroPaused}
         setPaused={setHeroPaused}
       />
-      <main className="mx-auto flex w-full max-w-7xl flex-col gap-24 px-4 py-24 sm:px-6 lg:px-8">
+      <main className="flex w-full flex-col">
         <IntroSection />
         <FeaturedProjects />
         <TrustSection />
@@ -394,191 +394,201 @@ function HeroSection({
 
 function IntroSection() {
   return (
-    <SectionShell eyebrow="Who We Are" title="Crafting Landmarks That Inspire">
-      <p className="mx-auto max-w-3xl text-center text-base leading-8 text-slate-600 sm:text-lg">
-        We create modern residential and commercial developments with quality construction,
-        thoughtful planning, and timely delivery.
-      </p>
+    <SectionBand tone="light">
+      <SectionShell eyebrow="Who We Are" title="Crafting Landmarks That Inspire">
+        <p className="mx-auto max-w-3xl text-center text-base leading-8 text-slate-600 sm:text-lg">
+          We create modern residential and commercial developments with quality construction,
+          thoughtful planning, and timely delivery.
+        </p>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {introValues.map((item, index) => (
-          <motion.div
-            key={item.title}
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ delay: index * 0.08 }}
-            className="group rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
-          >
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
-              <div className="h-6 w-6 rounded-lg border-2 border-current" />
-            </div>
-            <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
-              {item.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </SectionShell>
+        <div className="grid gap-6 md:grid-cols-3">
+          {introValues.map((item, index) => (
+            <motion.div
+              key={item.title}
+              variants={sectionReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ delay: index * 0.08 }}
+              className="group rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
+            >
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
+                <div className="h-6 w-6 rounded-lg border-2 border-current" />
+              </div>
+              <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
 function FeaturedProjects() {
   return (
-    <SectionShell
-      id="projects"
-      eyebrow="Portfolio"
-      title="Our Featured Developments"
-      action={
-        <Link
-          href="/projects"
-          className="inline-flex items-center justify-center rounded-full border border-blue-100 bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
-        >
-          View All Projects
-        </Link>
-      }
-    >
-      <div className="grid gap-7 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <motion.article
-            key={project.name}
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ y: -8 }}
-            className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+    <SectionBand tone="blue">
+      <SectionShell
+        id="projects"
+        eyebrow="Portfolio"
+        title="Our Featured Developments"
+        action={
+          <Link
+            href="/projects"
+            className="inline-flex items-center justify-center rounded-full border border-blue-100 bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(4,9,18,0.05)_0%,_rgba(4,9,18,0.55)_100%)]" />
-              <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm">
-                {project.status}
-              </span>
-            </div>
-
-            <div className="p-7">
-              <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
-                {project.name}
-              </h3>
-              <p className="mt-2 text-sm text-slate-600">{project.location}</p>
-              <div className="mt-6">
-                <Link
-                  href="/projects"
-                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
-                >
-                  View Details
-                </Link>
+            View All Projects
+          </Link>
+        }
+      >
+        <div className="grid gap-7 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.name}
+              variants={sectionReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
+              className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(4,9,18,0.05)_0%,_rgba(4,9,18,0.55)_100%)]" />
+                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm">
+                  {project.status}
+                </span>
               </div>
-            </div>
-          </motion.article>
-        ))}
-      </div>
-    </SectionShell>
+
+              <div className="p-7">
+                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
+                  {project.name}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">{project.location}</p>
+                <div className="mt-6">
+                  <Link
+                    href="/projects"
+                    className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
 function TrustSection() {
   return (
-    <SectionShell eyebrow="Why Us" title="Why Homeowners Trust Us">
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {trustFeatures.map((item, index) => (
-          <motion.div
-            key={item.title}
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ delay: index * 0.08 }}
-            className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-              <div className="h-5 w-5 rounded-full border-2 border-current" />
-            </div>
-            <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-              {item.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </SectionShell>
+    <SectionBand tone="light">
+      <SectionShell eyebrow="Why Us" title="Why Homeowners Trust Us">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {trustFeatures.map((item, index) => (
+            <motion.div
+              key={item.title}
+              variants={sectionReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ delay: index * 0.08 }}
+              className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
+                <div className="h-5 w-5 rounded-full border-2 border-current" />
+              </div>
+              <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
 function ServicesSection() {
   return (
-    <SectionShell eyebrow="Services" title="What We Build">
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {services.map((item, index) => (
-          <motion.div
-            key={item.title}
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: index * 0.08 }}
-            whileHover={{ y: -8 }}
-            className="group rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,_#ffffff_0%,_#fbf8f3_100%)] p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
-              <ServiceGlyph index={index} />
-            </div>
-            <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-              {item.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </SectionShell>
+    <SectionBand tone="blue">
+      <SectionShell eyebrow="Services" title="What We Build">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {services.map((item, index) => (
+            <motion.div
+              key={item.title}
+              variants={sectionReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.08 }}
+              whileHover={{ y: -8 }}
+              className="group rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,_#ffffff_0%,_#fbf8f3_100%)] p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
+                <ServiceGlyph index={index} />
+              </div>
+              <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
 function ProcessSection() {
   return (
-    <SectionShell eyebrow="Process" title="Our Process">
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {processSteps.map((step, index) => (
-          <motion.div
-            key={step.number}
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ delay: index * 0.1 }}
-            className="relative rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
-          >
-            {index < processSteps.length - 1 ? (
-              <motion.span
-                aria-hidden="true"
-                className="absolute right-[-1.5rem] top-1/2 hidden h-px w-12 origin-left bg-gradient-to-r from-blue-300 via-blue-500 to-transparent xl:block"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, amount: 0.7 }}
-                transition={{ duration: 0.8, delay: 0.15 + index * 0.1 }}
-              />
-            ) : null}
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
-              {step.number}
-            </div>
-            <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-              {step.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
-          </motion.div>
-        ))}
-      </div>
-    </SectionShell>
+    <SectionBand tone="light">
+      <SectionShell eyebrow="Process" title="Our Process">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              variants={sectionReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ delay: index * 0.1 }}
+              className="relative rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
+            >
+              {index < processSteps.length - 1 ? (
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute right-[-1.5rem] top-1/2 hidden h-px w-12 origin-left bg-gradient-to-r from-blue-300 via-blue-500 to-transparent xl:block"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, amount: 0.7 }}
+                  transition={{ duration: 0.8, delay: 0.15 + index * 0.1 }}
+                />
+              ) : null}
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+                {step.number}
+              </div>
+              <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
+                {step.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
@@ -596,71 +606,73 @@ function TestimonialsSection({
   const testimonial = testimonials[activeIndex];
 
   return (
-    <SectionShell eyebrow="Reviews" title="What Clients Say">
-      <div
-        className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-10"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={testimonial.name}
-            className="grid gap-8 lg:grid-cols-[auto,1fr]"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -18 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative h-28 w-28 overflow-hidden rounded-full ring-8 ring-blue-100">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  fill
-                  sizes="112px"
-                  className="object-cover"
-                />
+    <SectionBand tone="blue">
+      <SectionShell eyebrow="Reviews" title="What Clients Say">
+        <div
+          className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-10"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={testimonial.name}
+              className="grid gap-8 lg:grid-cols-[auto,1fr]"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative h-28 w-28 overflow-hidden rounded-full ring-8 ring-blue-100">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    fill
+                    sizes="112px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col justify-center">
-              <div className="mb-3 flex items-center gap-1 text-blue-500">
-                {Array.from({ length: testimonial.rating }).map((_, index) => (
-                  <StarIcon key={index} className="h-5 w-5" />
-                ))}
+              <div className="flex flex-col justify-center">
+                <div className="mb-3 flex items-center gap-1 text-blue-500">
+                  {Array.from({ length: testimonial.rating }).map((_, index) => (
+                    <StarIcon key={index} className="h-5 w-5" />
+                  ))}
+                </div>
+                <p className="text-xl leading-8 text-slate-700 sm:text-2xl">
+                  {testimonial.review}
+                </p>
+                <div className="mt-6">
+                  <p className="text-lg font-semibold text-slate-900">{testimonial.name}</p>
+                  <p className="text-sm text-slate-500">{testimonial.role}</p>
+                </div>
               </div>
-              <p className="text-xl leading-8 text-slate-700 sm:text-2xl">
-                {testimonial.review}
-              </p>
-              <div className="mt-6">
-                <p className="text-lg font-semibold text-slate-900">{testimonial.name}</p>
-                <p className="text-sm text-slate-500">{testimonial.role}</p>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          {testimonials.map((item, index) => (
-            <button
-              key={item.name}
-              type="button"
-              aria-label={`Show testimonial from ${item.name}`}
-              aria-pressed={index === activeIndex}
-              onClick={() => setActiveIndex(index)}
-              className={[
-                "h-2.5 rounded-full transition-all duration-300",
-                index === activeIndex ? "w-10 bg-blue-600" : "w-2.5 bg-blue-200 hover:bg-blue-400",
-              ].join(" ")}
-            />
-          ))}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {testimonials.map((item, index) => (
+              <button
+                key={item.name}
+                type="button"
+                aria-label={`Show testimonial from ${item.name}`}
+                aria-pressed={index === activeIndex}
+                onClick={() => setActiveIndex(index)}
+                className={[
+                  "h-2.5 rounded-full transition-all duration-300",
+                  index === activeIndex ? "w-10 bg-blue-600" : "w-2.5 bg-blue-200 hover:bg-blue-400",
+                ].join(" ")}
+              />
+            ))}
+          </div>
+
+          {paused ? (
+            <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
+          ) : null}
         </div>
-
-        {paused ? (
-          <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
-        ) : null}
-      </div>
-    </SectionShell>
+      </SectionShell>
+    </SectionBand>
   );
 }
 
@@ -710,6 +722,26 @@ function FinalCta() {
   );
 }
 
+function SectionBand({
+  tone,
+  children,
+}: {
+  tone: "light" | "blue";
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className={
+        tone === "blue"
+          ? "w-full bg-[linear-gradient(180deg,_#eff6ff_0%,_#f8fbff_48%,_#eff6ff_100%)]"
+          : "w-full bg-white"
+      }
+    >
+      <div className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">{children}</div>
+    </section>
+  );
+}
+
 function SectionShell({
   eyebrow,
   title,
@@ -753,7 +785,7 @@ function ArrowButton({
       type="button"
       aria-label={direction === "left" ? "Previous slide" : "Next slide"}
       onClick={onClick}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/10 text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/10 text-white backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/20"
     >
       <ChevronIcon direction={direction} />
     </button>
