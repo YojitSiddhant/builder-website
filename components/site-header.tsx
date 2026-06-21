@@ -16,7 +16,7 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
+    <header className="bg-white/95 backdrop-blur-xl">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
