@@ -1,5 +1,12 @@
-import { ComingSoonPage } from "@/components/coming-soon-page";
+import type { Metadata } from "next";
+import { ProjectsPage } from "@/components/projects-page";
 
-export default function ProjectsPage() {
-  return <ComingSoonPage title="Projects" />;
+export const metadata: Metadata = {
+  title: "Builder Projects",
+  description:
+    "Explore premium residential and commercial developments crafted for modern living.",
+};
+
+export default function ProjectsRoutePage() {
+  return <ProjectsPage />;
 }
