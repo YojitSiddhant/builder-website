@@ -52,7 +52,7 @@ const galleryImages = [
     location: "Noida",
     category: "Construction",
     image:
-      "https://images.unsplash.com/photo-1511823795005-6a0f34d89b08?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 6,
@@ -439,16 +439,13 @@ function MasonryGallery({
           </p>
         </div>
 
-        <motion.div
-          layout
-          className="mt-10 columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4"
-        >
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {items.map((item, index) => (
               <GalleryCard key={item.id} item={item} index={index} />
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </motion.div>
     </SectionWrap>
   );
@@ -469,16 +466,16 @@ function GalleryCard({
       exit={{ opacity: 0, y: 12 }}
       transition={{ duration: 0.35, delay: index * 0.02 }}
       whileHover={{ y: -6 }}
-      className="group mb-6 break-inside-avoid overflow-hidden rounded-[1.75rem] border border-transparent bg-gradient-to-br from-blue-100 via-white to-blue-50 p-[1px] shadow-[0_18px_60px_rgba(37,99,235,0.08)]"
+      className="group h-[520px] overflow-hidden rounded-[1.75rem] border border-transparent bg-gradient-to-br from-blue-100 via-white to-blue-50 p-[1px] shadow-[0_18px_60px_rgba(37,99,235,0.08)]"
     >
-      <div className="relative overflow-hidden rounded-[1.7rem] bg-white">
-        <div className="relative">
+      <div className="flex h-full flex-col overflow-hidden rounded-[1.7rem] bg-white">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={item.image}
             alt={item.project}
-            width={1200}
-            height={900}
-            className="h-auto w-full object-cover transition duration-700 group-hover:scale-110"
+            fill
+            sizes="(max-width: 1280px) 100vw, 25vw"
+            className="object-cover transition duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.02)_0%,rgba(15,23,42,0.42)_100%)] opacity-0 transition duration-500 group-hover:opacity-100" />
           <div className="absolute inset-0 flex items-center justify-center gap-3 bg-slate-950/0 opacity-0 backdrop-blur-[1px] transition duration-500 group-hover:bg-slate-950/35 group-hover:opacity-100">
@@ -497,10 +494,12 @@ function GalleryCard({
           </div>
         </div>
 
-        <div className="p-5">
+        <div className="flex flex-1 flex-col justify-between p-5">
           <StatusTag>{item.category}</StatusTag>
-          <h3 className="mt-4 text-xl font-semibold text-slate-950">{item.project}</h3>
-          <p className="mt-2 text-sm text-slate-500">{item.location}</p>
+          <div className="pt-4">
+            <h3 className="text-xl font-semibold text-slate-950">{item.project}</h3>
+            <p className="mt-2 text-sm text-slate-500">{item.location}</p>
+          </div>
         </div>
       </div>
     </motion.article>
