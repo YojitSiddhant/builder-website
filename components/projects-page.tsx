@@ -243,42 +243,43 @@ export function ProjectsPage() {
 
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[60vh] items-center overflow-hidden bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-8">
-      <Image
-        src={heroImage}
-        alt="Luxury residential building"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-55"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.84)_0%,rgba(15,23,42,0.68)_55%,rgba(15,23,42,0.9)_100%)]" />
+    <section className="overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto grid min-h-[60vh] w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center lg:text-left"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.45em] text-blue-700">
+            Home / Projects
+          </p>
+          <h1 className="mt-6 text-4xl font-semibold tracking-[0.18em] text-slate-950 sm:text-5xl lg:text-7xl">
+            OUR PROJECTS
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg lg:text-xl">
+            Explore premium residential and commercial developments crafted for modern living.
+          </p>
+        </motion.div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-sm font-semibold uppercase tracking-[0.45em] text-blue-200"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-3 shadow-[0_24px_80px_rgba(37,99,235,0.08)]"
         >
-          Home / Projects
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.05, ease: "easeOut" }}
-          className="mt-6 text-4xl font-semibold tracking-[0.18em] text-white sm:text-5xl lg:text-7xl"
-        >
-          OUR PROJECTS
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="mt-6 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg lg:text-xl"
-        >
-          Explore premium residential and commercial developments crafted for modern living.
-        </motion.p>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+            <Image
+              src={heroImage}
+              alt="Luxury residential building"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.02)_45%,rgba(37,99,235,0.08)_100%)]" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
