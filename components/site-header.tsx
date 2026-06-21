@@ -20,9 +20,9 @@ export function SiteHeader() {
       <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
+          className="inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-[15px] font-bold leading-none text-white">
             B
           </span>
           Builder
