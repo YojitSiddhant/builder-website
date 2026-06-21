@@ -11,8 +11,6 @@ const introImage =
   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80";
 const whyImage =
   "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80";
-const ctaImage =
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=80";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -118,7 +116,7 @@ const features = [
 
 export function AboutPage() {
   return (
-    <div className="overflow-hidden bg-[#faf7f0] text-slate-900">
+    <div className="overflow-hidden bg-white text-slate-900">
       <HeroSection />
       <main>
         <CompanyIntroSection />
@@ -135,34 +133,44 @@ export function AboutPage() {
 
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-8">
-      <Image
-        src={heroImage}
-        alt="Luxury building exterior with warm architectural lighting"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-55"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.84)_0%,rgba(15,23,42,0.68)_55%,rgba(15,23,42,0.9)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.18),transparent_42%),radial-gradient(circle_at_bottom,rgba(255,255,255,0.08),transparent_35%)]" />
+    <section className="overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto grid min-h-[60vh] w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center lg:text-left"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.45em] text-blue-700">
+            Home / About
+          </p>
+          <h1 className="mt-6 text-4xl font-semibold tracking-[0.18em] text-slate-950 sm:text-5xl lg:text-7xl">
+            ABOUT BUILDER
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg lg:text-xl">
+            Creating trusted spaces with quality construction, modern design, and customer-first values.
+          </p>
+        </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center"
-      >
-        <p className="text-sm font-semibold uppercase tracking-[0.45em] text-amber-200/90">
-          Home / About
-        </p>
-        <h1 className="mt-6 text-4xl font-semibold tracking-[0.18em] text-white sm:text-5xl lg:text-7xl">
-          ABOUT BUILDER
-        </h1>
-        <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg lg:text-xl">
-          Creating trusted spaces with quality construction, modern design, and customer-first values.
-        </p>
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-3 shadow-[0_24px_80px_rgba(37,99,235,0.08)]"
+        >
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+            <Image
+              src={heroImage}
+              alt="Luxury building exterior with modern architecture"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.02)_45%,rgba(37,99,235,0.08)_100%)]" />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -182,7 +190,7 @@ function CompanyIntroSection() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)]"
+            className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-3 shadow-[0_24px_80px_rgba(37,99,235,0.08)]"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
             <Image
@@ -192,7 +200,7 @@ function CompanyIntroSection() {
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/18 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/12 via-transparent to-transparent" />
           </div>
         </motion.div>
 
@@ -214,7 +222,7 @@ function CompanyIntroSection() {
           <div className="mt-8">
             <Link
               href="/projects"
-              className="inline-flex items-center justify-center rounded-full bg-slate-950 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-950/10 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-950/20"
+              className="inline-flex items-center justify-center rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
             >
               Explore Projects
             </Link>
@@ -227,7 +235,7 @@ function CompanyIntroSection() {
 
 function WhoWeAreSection() {
   return (
-    <SectionWrap tone="muted">
+    <SectionWrap>
       <motion.div
         variants={staggerVariants}
         initial="hidden"
@@ -253,9 +261,9 @@ function WhoWeAreSection() {
                 variants={sectionVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-[1.75rem] border border-white/80 bg-white p-6 shadow-[0_18px_60px_rgba(15,23,42,0.06)]"
+                className="group rounded-[1.75rem] border border-blue-100 bg-white p-6 shadow-[0_18px_60px_rgba(37,99,235,0.06)]"
               >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 ring-1 ring-amber-100 transition duration-300 group-hover:scale-105">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition duration-300 group-hover:scale-105">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-slate-950">{card.title}</h3>
@@ -286,9 +294,9 @@ function MissionVisionSection() {
               key={item.title}
               variants={sectionVariants}
               whileHover={{ y: -4 }}
-              className="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
+              className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_20px_60px_rgba(37,99,235,0.06)]"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white">
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="mt-6 text-2xl font-semibold tracking-tight text-slate-950">
@@ -305,7 +313,7 @@ function MissionVisionSection() {
 
 function StatsSection() {
   return (
-    <SectionWrap tone="muted">
+    <SectionWrap>
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -352,9 +360,9 @@ function CoreValuesSection() {
                 variants={sectionVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_16px_50px_rgba(15,23,42,0.05)]"
+                className="group rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-[0_16px_50px_rgba(37,99,235,0.05)]"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white transition duration-300 group-hover:scale-105">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white transition duration-300 group-hover:scale-105">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-slate-950">{value.title}</h3>
@@ -370,7 +378,7 @@ function CoreValuesSection() {
 
 function WhyChooseUsSection() {
   return (
-    <SectionWrap tone="muted">
+    <SectionWrap>
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -393,7 +401,7 @@ function WhyChooseUsSection() {
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/18 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/12 via-transparent to-transparent" />
           </div>
         </motion.div>
 
@@ -417,9 +425,9 @@ function WhyChooseUsSection() {
               <motion.li
                 key={feature}
                 variants={sectionVariants}
-                className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
+                className="flex items-center gap-3 rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-[0_10px_30px_rgba(37,99,235,0.04)]"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-700 ring-1 ring-blue-100">
                   <CheckIcon className="h-4 w-4" />
                 </span>
                 <span className="text-sm font-medium text-slate-700">{feature}</span>
@@ -441,24 +449,19 @@ function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[2.5rem] bg-slate-950 px-6 py-16 text-white shadow-[0_30px_90px_rgba(15,23,42,0.24)] sm:px-10 lg:px-16 lg:py-20"
+          className="relative overflow-hidden rounded-[2.5rem] bg-white px-6 py-16 text-slate-950 shadow-[0_30px_90px_rgba(37,99,235,0.12)] ring-1 ring-blue-100 sm:px-10 lg:px-16 lg:py-20"
         >
-          <Image
-            src={ctaImage}
-            alt="Luxury architecture with warm interior lighting"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-35"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.9)_0%,rgba(15,23,42,0.72)_55%,rgba(15,23,42,0.92)_100%)]" />
+          <div className="absolute inset-0 bg-white" />
+          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-blue-100/60 blur-3xl" />
+          <div className="absolute right-0 top-10 h-72 w-72 rounded-full bg-blue-50 blur-3xl" />
 
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
-              <SectionEyebrow className="text-amber-200/90">Get In Touch</SectionEyebrow>
-              <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <SectionEyebrow className="text-blue-700">Get In Touch</SectionEyebrow>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
                 Let&apos;s Build Your Dream Space
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
+              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
                 Connect with us today and take the first step toward your future home or commercial project.
               </p>
             </div>
@@ -466,13 +469,13 @@ function CtaSection() {
             <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-amber-100"
+                className="inline-flex items-center justify-center rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
               >
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/15"
+                className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-white px-7 py-3.5 text-sm font-semibold text-blue-700 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
               >
                 Contact Us
               </Link>
@@ -486,18 +489,11 @@ function CtaSection() {
 
 function SectionWrap({
   children,
-  tone = "default",
 }: {
   children: ReactNode;
-  tone?: "default" | "muted";
 }) {
   return (
-    <section
-      className={[
-        "px-4 py-20 sm:px-6 sm:py-24 lg:px-8",
-        tone === "muted" ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.66),rgba(250,247,240,0.96))]" : "",
-      ].join(" ")}
-    >
+    <section className="bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">{children}</div>
     </section>
   );
@@ -509,9 +505,9 @@ function SectionEyebrow({
 }: {
   children: ReactNode;
   className?: string;
-}) {
+  }) {
   return (
-    <p className={`text-sm font-semibold uppercase tracking-[0.35em] text-amber-700 ${className}`}>
+    <p className={`text-sm font-semibold uppercase tracking-[0.35em] text-blue-700 ${className}`}>
       {children}
     </p>
   );
