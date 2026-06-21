@@ -22,8 +22,8 @@ export function SiteHeader() {
           href="/"
           className="inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-[15px] font-bold leading-none text-white">
-            B
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white">
+            <BuilderMark className="h-5 w-5" />
           </span>
           Builder
         </Link>
@@ -162,6 +162,26 @@ function MailIcon({ className }: { className?: string }) {
       <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
       <path
         d="m5.5 7.5 6.5 5 6.5-5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function BuilderMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M6 17.5V6.5h6.3a3.2 3.2 0 0 1 0 6.4H10.2 6Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.2 12.9H13a3.2 3.2 0 1 1 0 6.4h-7"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
