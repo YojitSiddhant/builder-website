@@ -9,22 +9,26 @@ const heroSlides = [
   {
     title: "Luxury Building",
     eyebrow: "Residential Excellence",
-    image: "/home/slide-luxury-building.svg",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Apartment",
     eyebrow: "Urban Living",
-    image: "/home/slide-modern-apartment.svg",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Commercial Tower",
     eyebrow: "Business Destinations",
-    image: "/home/slide-commercial-tower.svg",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Interior Architecture",
     eyebrow: "Refined Details",
-    image: "/home/slide-interior-architecture.svg",
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -32,14 +36,17 @@ const introValues = [
   {
     title: "Quality",
     description: "Superior materials and careful execution from foundation to finish.",
+    icon: ShieldCheckIcon,
   },
   {
     title: "Transparency",
     description: "Clear communication, honest timelines, and dependable delivery.",
+    icon: EyeIcon,
   },
   {
     title: "Innovation",
     description: "Future-ready spaces shaped by modern design thinking.",
+    icon: SparkIcon,
   },
 ] as const;
 
@@ -48,19 +55,22 @@ const projects = [
     name: "Skyline Heights",
     location: "Sector 62, Noida",
     status: "Ready to Move",
-    image: "/home/project-skyline-heights.svg",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     name: "Emerald Towers",
     location: "Whitefield, Bengaluru",
     status: "Under Construction",
-    image: "/home/project-emerald-towers.svg",
+    image:
+      "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1600&q=80",
   },
   {
     name: "Urban Residency",
     location: "Andheri West, Mumbai",
     status: "New Launch",
-    image: "/home/project-urban-residency.svg",
+    image:
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -68,18 +78,22 @@ const trustFeatures = [
   {
     title: "Premium Quality",
     description: "Strong structures, thoughtful detailing, and premium finishes throughout.",
+    icon: MedalIcon,
   },
   {
     title: "On-Time Delivery",
     description: "Disciplined scheduling and execution that respects your milestones.",
+    icon: ClockIcon,
   },
   {
     title: "Modern Architecture",
     description: "Elegant spaces planned for light, function, and long-term value.",
+    icon: BlueprintIcon,
   },
   {
     title: "Customer Satisfaction",
     description: "A relationship-first approach with support that continues after handover.",
+    icon: HeartHandshakeIcon,
   },
 ] as const;
 
@@ -413,7 +427,7 @@ function IntroSection() {
               className="group rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
             >
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
-                <div className="h-6 w-6 rounded-lg border-2 border-current" />
+                <item.icon className="h-6 w-6" />
               </div>
               <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
                 {item.title}
@@ -470,10 +484,17 @@ function FeaturedProjects() {
               </div>
 
               <div className="p-7">
-                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
-                  {project.name}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">{project.location}</p>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
+                      {project.name}
+                    </h3>
+                    <p className="mt-2 text-sm text-slate-600">{project.location}</p>
+                  </div>
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                    <BuildingIcon className="h-5 w-5" />
+                  </div>
+                </div>
                 <div className="mt-6">
                   <Link
                     href="/projects"
@@ -507,7 +528,7 @@ function TrustSection() {
               className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                <div className="h-5 w-5 rounded-full border-2 border-current" />
+                <item.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
                 {item.title}
@@ -788,6 +809,107 @@ function ServiceGlyph({ index }: { index: number }) {
     default:
       return <PenToolIcon className="h-6 w-6" />;
   }
+}
+
+function ShieldCheckIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M12 3.5 18 6v5.2c0 4.2-2.7 7.6-6 9.3-3.3-1.7-6-5.1-6-9.3V6l6-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m8.7 11.9 2 2 4.6-4.8"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function EyeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M2.5 12s3.7-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.7 6.5-9.5 6.5S2.5 12 2.5 12Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="2.8" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+function SparkIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M12 3.5 13.8 9l5.5 1.8-5.5 1.9L12 18.5 10.2 12.7l-5.5-1.9L10.2 9 12 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function MedalIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <circle cx="12" cy="10" r="4.5" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M9.8 13.8 8.5 20l3.5-2 3.5 2-1.3-6.2"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 8.5V12l2.5 1.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BlueprintIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="4.5" y="4.5" width="15" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8 8.5h8M8 12h8M8 15.5h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function HeartHandshakeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <path
+        d="M12 19.5 6.3 14a2.6 2.6 0 0 1 0-3.7 2.6 2.6 0 0 1 3.7 0L12 12.3l2-2a2.6 2.6 0 0 1 3.7 0 2.6 2.6 0 0 1 0 3.7L12 19.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function BuildingIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
+      <rect x="5" y="3.5" width="14" height="17" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
 }
 
 function StarIcon({ className }: { className?: string }) {
