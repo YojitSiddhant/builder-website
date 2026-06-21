@@ -22,8 +22,8 @@ export function SiteHeader() {
           href="/"
           className="inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white">
-            <BuilderMark className="h-5 w-5" />
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 leading-none text-white">
+            <BuilderMark className="block h-5 w-5" />
           </span>
           Builder
         </Link>
@@ -175,16 +175,15 @@ function BuilderMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
       <path
-        d="M6 17.5V6.5h6.3a3.2 3.2 0 0 1 0 6.4H10.2 6Z"
+        d="M7 5.5h6.1a3 3 0 0 1 0 6H7v-6Z"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
       <path
-        d="M10.2 12.9H13a3.2 3.2 0 1 1 0 6.4h-7"
+        d="M7 12.5h6.7a3.1 3.1 0 1 1 0 6.2H7v-6.2Z"
         stroke="currentColor"
         strokeWidth="1.8"
-        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
