@@ -466,7 +466,7 @@ function GalleryCard({
       exit={{ opacity: 0, y: 12 }}
       transition={{ duration: 0.35, delay: index * 0.02 }}
       whileHover={{ y: -6 }}
-      className="group h-[520px] overflow-hidden rounded-[1.75rem] border border-transparent bg-gradient-to-br from-blue-100 via-white to-blue-50 p-[1px] shadow-[0_18px_60px_rgba(37,99,235,0.08)]"
+      className="group h-[460px] overflow-hidden rounded-[1.75rem] border border-transparent bg-gradient-to-br from-blue-100 via-white to-blue-50 p-[1px] shadow-[0_18px_60px_rgba(37,99,235,0.08)] sm:h-[500px] xl:h-[520px]"
     >
       <div className="flex h-full flex-col overflow-hidden rounded-[1.7rem] bg-white">
         <div className="relative aspect-[4/3] overflow-hidden">

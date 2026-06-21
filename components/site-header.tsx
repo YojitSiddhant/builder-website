@@ -19,7 +19,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
-      <div className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:px-8">
         <Link
           href="/"
           className="inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
@@ -81,7 +81,7 @@ export function SiteHeader() {
         <div aria-hidden="true" className="hidden lg:block" />
 
         {mobileMenuOpen ? (
-          <div className="absolute left-0 right-0 top-full z-50 mt-3 rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)] lg:hidden">
+          <div className="absolute left-4 right-4 top-full z-50 mt-3 max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)] lg:hidden">
             <nav aria-label="Mobile Primary">
               <ul className="grid gap-2">
                 {links.map((link) => {
