@@ -47,9 +47,9 @@ export function SiteFooter() {
             Contact
           </h2>
           <ul className="mt-4 space-y-3 text-sm text-slate-600">
-            <li>Email: hello@builder.com</li>
-            <li>Phone: +1 (000) 000-0000</li>
-            <li>Location: Your City, Country</li>
+            <li>Email: contact@example.com</li>
+            <li>Phone: +91 94250 80418</li>
+            <li>Location: 219, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016</li>
           </ul>
         </section>
 
