@@ -485,8 +485,6 @@ function IntroSection() {
     <SectionBand>
       <SectionShell eyebrow="Who We Are" title="Crafting Landmarks That Inspire">
         <p className="mx-auto max-w-3xl text-center text-base leading-8 text-slate-600 sm:text-lg">
-          We create modern residential and commercial developments with quality construction,
-          thoughtful planning, and timely delivery.
         </p>
 
         <div className="grid gap-6 md:grid-cols-3">
