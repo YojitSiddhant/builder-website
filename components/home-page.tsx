@@ -587,7 +587,7 @@ function ProcessSection() {
   return (
     <SectionBand>
       <SectionShell eyebrow="Process" title="Our Process">
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {processSteps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -596,7 +596,7 @@ function ProcessSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.1 }}
-              className="relative rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
+              className="relative h-full"
             >
               {index < processSteps.length - 1 ? (
                 <motion.span
@@ -608,13 +608,15 @@ function ProcessSection() {
                   transition={{ duration: 0.8, delay: 0.15 + index * 0.1 }}
                 />
               ) : null}
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
-                {step.number}
-              </div>
-              <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+              <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+                  {step.number}
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+              </article>
             </motion.div>
           ))}
         </div>

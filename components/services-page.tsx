@@ -350,7 +350,7 @@ function ProcessSection() {
         <div className="relative mt-12">
           <div className="absolute left-6 top-6 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-blue-200 via-blue-300 to-blue-100 md:left-0 md:right-0 md:top-10 md:h-px md:w-auto" />
 
-          <div className="grid gap-8 md:grid-cols-5 md:gap-5">
+          <div className="grid items-stretch gap-8 md:grid-cols-5 md:gap-5">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -358,12 +358,12 @@ function ProcessSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-                className="relative pl-16 md:pl-0"
+                className="relative h-full pl-16 md:pl-0"
               >
                 <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)] md:left-1/2 md:-translate-x-1/2">
                   {step.number}
                 </div>
-                <article className="rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)]">
+                <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)]">
                   <h3 className="text-lg font-semibold text-slate-950">{step.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
                 </article>
