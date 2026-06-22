@@ -91,7 +91,17 @@ export function SiteFooter() {
 
       <div className="border-t border-blue-100">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-4 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>Content coming soon.</p>
+          <p>
+            Design and developed by{" "}
+            <a
+              href="https://techvantalabs.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-blue-700 transition-colors hover:text-blue-900"
+            >
+              TechVanta Labs
+            </a>
+          </p>
           <p>&copy; 2026 Builder</p>
         </div>
       </div>
