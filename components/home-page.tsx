@@ -165,38 +165,18 @@ const services = [
   {
     title: "Residential",
     description: "Apartments, villas, and gated communities designed for everyday comfort.",
-    image: makeHoverImage({
-      title: "Residential",
-      variant: "home-services-residential",
-      theme: "residential",
-    }),
   },
   {
     title: "Commercial",
     description: "Workplaces, retail spaces, and mixed-use developments built to perform.",
-    image: makeHoverImage({
-      title: "Commercial",
-      variant: "home-services-commercial",
-      theme: "commercial",
-    }),
   },
   {
     title: "Renovation",
     description: "Transformations that upgrade value while preserving structural integrity.",
-    image: makeHoverImage({
-      title: "Renovation",
-      variant: "home-services-renovation",
-      theme: "construction",
-    }),
   },
   {
     title: "Interior Design",
     description: "Refined interior planning that balances luxury, flow, and usability.",
-    image: makeHoverImage({
-      title: "Interior Design",
-      variant: "home-services-interior-design",
-      theme: "design",
-    }),
   },
 ] as const;
 
@@ -673,14 +653,8 @@ function ServicesSection() {
               className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,_#ffffff_0%,_#fbf8f3_100%)] p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]"
             >
               <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 25vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.82),rgba(15,23,42,0.94))]" />
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_45%,rgba(37,99,235,0.12)_100%)]" />
               </div>
               <div className="relative z-10">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
