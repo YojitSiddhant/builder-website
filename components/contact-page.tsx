@@ -465,7 +465,7 @@ export function ContactPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
+          <div className="mt-10">
             <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 shadow-[0_20px_60px_rgba(37,99,235,0.1)]">
               <div className="relative flex-1 min-h-[420px] w-full">
                 <iframe
@@ -475,30 +475,6 @@ export function ContactPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(37,99,235,0.08)] sm:p-8">
-              <h3 className="text-2xl font-semibold text-slate-950">
-                We’re easy to reach.
-              </h3>
-              <p className="mt-4 text-base leading-8 text-slate-600">
-                Whether you want to discuss a new build, renovation, or a commercial project, our office is ready to guide you through the next step.
-              </p>
-
-              <div className="mt-6 space-y-4">
-                <InfoRow title="Address" text="219, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016" />
-                <InfoRow title="Call" text="+91 94250 80418" />
-                <InfoRow title="Email" text="contact@builder.com" />
-              </div>
-
-              <div className="mt-8 rounded-[1.5rem] border border-blue-100 bg-white p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                  Response time
-                </p>
-                <p className="mt-3 text-lg font-semibold text-slate-950">
-                  We usually respond within one business day.
-                </p>
               </div>
             </div>
           </div>
@@ -759,17 +735,6 @@ function TextareaField({
       />
       {error ? <span className="mt-2 block text-sm text-rose-600">{error}</span> : null}
     </label>
-  );
-}
-
-function InfoRow({ title, text }: { title: string; text: string }) {
-  return (
-    <div className="rounded-2xl border border-blue-100 bg-white px-4 py-4">
-      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">
-        {title}
-      </p>
-      <p className="mt-2 text-sm leading-7 text-slate-700">{text}</p>
-    </div>
   );
 }
 
