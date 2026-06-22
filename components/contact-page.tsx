@@ -43,7 +43,7 @@ const contactInfo = [
   },
   {
     title: "Email",
-    lines: ["contact@builder.com"],
+    lines: ["contact@example.com"],
     icon: MailIcon,
   },
   {
