@@ -145,11 +145,36 @@ const pricingPlans = [
 ] as const;
 
 const processSteps = [
-  { title: "Planning", description: "We define scope, budget, approvals, and delivery roadmap." },
-  { title: "Design", description: "We shape a premium design language for the project vision." },
-  { title: "Construction", description: "We execute with disciplined coordination and quality checks." },
-  { title: "Quality Check", description: "We review finish, safety, and readiness before handover." },
-  { title: "Delivery", description: "We complete the project with a structured and polished handoff." },
+  {
+    title: "Planning",
+    description: "We define scope, budget, approvals, and delivery roadmap.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    title: "Design",
+    description: "We shape a premium design language for the project vision.",
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    title: "Construction",
+    description: "We execute with disciplined coordination and quality checks.",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    title: "Quality Check",
+    description: "We review finish, safety, and readiness before handover.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    title: "Delivery",
+    description: "We complete the project with a structured and polished handoff.",
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+  },
 ] as const;
 
 const faqItems = [
@@ -623,14 +648,30 @@ function ProcessSection() {
                 transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
                 className="relative h-full"
               >
-                <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)]">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)]">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className="pt-1 text-lg font-semibold text-slate-950">{step.title}</h3>
+                <article className="group relative flex h-full min-h-[13.5rem] flex-col overflow-hidden rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]">
+                  <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 20vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.2)_0%,rgba(15,23,42,0.78)_100%)]" />
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)] transition duration-300 group-hover:bg-white/15 group-hover:text-white">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+                      <h3 className="pt-1 text-lg font-semibold text-slate-950 transition-colors duration-300 group-hover:text-white">
+                        {step.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                      {step.description}
+                    </p>
+                  </div>
                 </article>
               </motion.div>
             ))}

@@ -85,11 +85,41 @@ const services = [
 ] as const;
 
 const processSteps = [
-  { number: "01", title: "Consultation", description: "We understand goals, site conditions, budget, and timelines." },
-  { number: "02", title: "Planning", description: "We structure the roadmap, approvals, and delivery approach." },
-  { number: "03", title: "Design", description: "We shape efficient plans with modern architectural clarity." },
-  { number: "04", title: "Construction", description: "We execute with disciplined coordination and quality checks." },
-  { number: "05", title: "Delivery", description: "We complete handover with precision, documentation, and care." },
+  {
+    number: "01",
+    title: "Consultation",
+    description: "We understand goals, site conditions, budget, and timelines.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    number: "02",
+    title: "Planning",
+    description: "We structure the roadmap, approvals, and delivery approach.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    number: "03",
+    title: "Design",
+    description: "We shape efficient plans with modern architectural clarity.",
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    number: "04",
+    title: "Construction",
+    description: "We execute with disciplined coordination and quality checks.",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    number: "05",
+    title: "Delivery",
+    description: "We complete handover with precision, documentation, and care.",
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+  },
 ] as const;
 
 const serviceReasons = [
@@ -98,24 +128,32 @@ const serviceReasons = [
     description:
       "Premium materials, careful supervision, and consistent quality control from start to finish.",
     icon: ShieldIcon,
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Experienced Professionals",
     description:
       "Skilled builders, engineers, designers, and managers focused on dependable execution.",
     icon: TeamIcon,
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Transparent Process",
     description:
       "Clear communication, realistic milestones, and a process clients can trust.",
     icon: EyeIcon,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Timely Delivery",
     description:
       "Organized planning and disciplined scheduling designed to protect your timeline.",
     icon: ClockIcon,
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -360,14 +398,30 @@ function ProcessSection() {
                 transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
                 className="relative h-full"
               >
-                <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)]">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)]">
-                      {step.number}
-                    </div>
-                    <h3 className="pt-1 text-lg font-semibold text-slate-950">{step.title}</h3>
+                <article className="group relative flex h-full min-h-[13.5rem] flex-col overflow-hidden rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]">
+                  <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 20vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.2)_0%,rgba(15,23,42,0.78)_100%)]" />
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)] transition duration-300 group-hover:bg-white/15 group-hover:text-white">
+                        {step.number}
+                      </div>
+                      <h3 className="pt-1 text-lg font-semibold text-slate-950 transition-colors duration-300 group-hover:text-white">
+                        {step.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                      {step.description}
+                    </p>
+                  </div>
                 </article>
               </motion.div>
             ))}
@@ -403,13 +457,29 @@ function WhyServicesSection() {
                 variants={sectionVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-[0_16px_50px_rgba(37,99,235,0.06)]"
+                className="group relative overflow-hidden rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-[0_16px_50px_rgba(37,99,235,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition duration-300 group-hover:scale-105">
-                  <Icon className="h-6 w-6" />
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+                <div className="relative z-10">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold text-slate-950 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                    {item.description}
+                  </p>
+                </div>
               </motion.article>
             );
           })}

@@ -65,16 +65,22 @@ const introValues = [
     title: "Quality",
     description: "Superior materials and careful execution from foundation to finish.",
     icon: ShieldCheckIcon,
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Transparency",
     description: "Clear communication, honest timelines, and dependable delivery.",
     icon: EyeIcon,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Innovation",
     description: "Future-ready spaces shaped by modern design thinking.",
     icon: SparkIcon,
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -107,21 +113,29 @@ const trustFeatures = [
     title: "Premium Quality",
     description: "Strong structures, thoughtful detailing, and premium finishes throughout.",
     icon: MedalIcon,
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "On-Time Delivery",
     description: "Disciplined scheduling and execution that respects your milestones.",
     icon: ClockIcon,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Architecture",
     description: "Elegant spaces planned for light, function, and long-term value.",
     icon: BlueprintIcon,
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Customer Satisfaction",
     description: "A relationship-first approach with support that continues after handover.",
     icon: HeartHandshakeIcon,
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -149,21 +163,29 @@ const processSteps = [
     number: "01",
     title: "Consultation",
     description: "We understand your goals, budget, and site requirements in detail.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
   },
   {
     number: "02",
     title: "Planning",
     description: "We map the project with architectural and execution clarity.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     number: "03",
     title: "Construction",
     description: "Skilled teams deliver the build with care and consistent oversight.",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     number: "04",
     title: "Delivery",
     description: "The final handover is clean, documented, and ready for occupancy.",
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -434,15 +456,29 @@ function IntroSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.08 }}
-              className="group rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
+              className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105">
-                <item.icon className="h-6 w-6" />
+              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
               </div>
-              <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+              <div className="relative z-10">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
+                  <item.icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900 transition-colors duration-300 group-hover:text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                  {item.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -535,15 +571,29 @@ function TrustSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.08 }}
-              className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]"
+              className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                <item.icon className="h-5 w-5" />
+              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
               </div>
-              <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+              <div className="relative z-10">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white transition duration-300 group-hover:bg-white/15">
+                  <item.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900 transition-colors duration-300 group-hover:text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                  {item.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -608,14 +658,28 @@ function ProcessSection() {
                   transition={{ duration: 0.8, delay: 0.15 + index * 0.1 }}
                 />
               ) : null}
-              <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
-                  {step.number}
+              <article className="group relative flex h-full min-h-[13.5rem] flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]">
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.2)_0%,rgba(15,23,42,0.78)_100%)]" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+                <div className="relative z-10">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white transition duration-300 group-hover:bg-white/15">
+                    {step.number}
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-slate-900 transition-colors duration-300 group-hover:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                    {step.description}
+                  </p>
+                </div>
               </article>
             </motion.div>
           ))}
