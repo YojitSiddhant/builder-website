@@ -7,17 +7,10 @@ import {
   motion,
 } from "framer-motion";
 import { useState, type ReactNode } from "react";
+import { makeHoverImage } from "./hover-image";
 
 const heroImage =
   "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=80";
-const servicesImages = [
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
-] as const;
 const ctaImage =
   "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1800&q=80";
 
@@ -44,42 +37,66 @@ const services = [
     title: "Residential Construction",
     description:
       "Premium homes designed for comfort, functionality, and long-term value.",
-    image: servicesImages[0],
+    image: makeHoverImage({
+      title: "Residential Construction",
+      variant: "services-main-residential",
+      theme: "residential",
+    }),
     icon: HomeIcon,
   },
   {
     title: "Commercial Construction",
     description:
       "Modern office and business spaces built for growth and performance.",
-    image: servicesImages[1],
+    image: makeHoverImage({
+      title: "Commercial Construction",
+      variant: "services-main-commercial",
+      theme: "commercial",
+    }),
     icon: BriefcaseIcon,
   },
   {
     title: "Renovation & Remodeling",
     description:
       "Transform existing spaces into modern and efficient environments.",
-    image: servicesImages[2],
+    image: makeHoverImage({
+      title: "Renovation & Remodeling",
+      variant: "services-main-renovation",
+      theme: "construction",
+    }),
     icon: RefreshIcon,
   },
   {
     title: "Interior Design",
     description:
       "Thoughtful interiors that combine aesthetics with practical living.",
-    image: servicesImages[3],
+    image: makeHoverImage({
+      title: "Interior Design",
+      variant: "services-main-interior",
+      theme: "design",
+    }),
     icon: PaletteIcon,
   },
   {
     title: "Project Management",
     description:
       "Complete planning, execution, and delivery management.",
-    image: servicesImages[4],
+    image: makeHoverImage({
+      title: "Project Management",
+      variant: "services-main-project-management",
+      theme: "planning",
+    }),
     icon: ClipboardIcon,
   },
   {
     title: "Consultation & Planning",
     description:
       "Expert guidance from concept to construction.",
-    image: servicesImages[5],
+    image: makeHoverImage({
+      title: "Consultation & Planning",
+      variant: "services-main-consultation-planning",
+      theme: "team",
+    }),
     icon: CompassIcon,
   },
 ] as const;
@@ -89,36 +106,51 @@ const processSteps = [
     number: "01",
     title: "Consultation",
     description: "We understand goals, site conditions, budget, and timelines.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Consultation",
+      variant: "services-process-consultation",
+      theme: "team",
+    }),
   },
   {
     number: "02",
     title: "Planning",
     description: "We structure the roadmap, approvals, and delivery approach.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Planning",
+      variant: "services-process-planning",
+      theme: "planning",
+    }),
   },
   {
     number: "03",
     title: "Design",
     description: "We shape efficient plans with modern architectural clarity.",
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Design",
+      variant: "services-process-design",
+      theme: "design",
+    }),
   },
   {
     number: "04",
     title: "Construction",
     description: "We execute with disciplined coordination and quality checks.",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Construction",
+      variant: "services-process-construction",
+      theme: "construction",
+    }),
   },
   {
     number: "05",
     title: "Delivery",
     description: "We complete handover with precision, documentation, and care.",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Delivery",
+      variant: "services-process-delivery",
+      theme: "delivery",
+    }),
   },
 ] as const;
 
@@ -128,32 +160,44 @@ const serviceReasons = [
     description:
       "Premium materials, careful supervision, and consistent quality control from start to finish.",
     icon: ShieldIcon,
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Quality Assurance",
+      variant: "services-why-quality",
+      theme: "trust",
+    }),
   },
   {
     title: "Experienced Professionals",
     description:
       "Skilled builders, engineers, designers, and managers focused on dependable execution.",
     icon: TeamIcon,
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Experienced Professionals",
+      variant: "services-why-professionals",
+      theme: "team",
+    }),
   },
   {
     title: "Transparent Process",
     description:
       "Clear communication, realistic milestones, and a process clients can trust.",
     icon: EyeIcon,
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Transparent Process",
+      variant: "services-why-transparent-process",
+      theme: "planning",
+    }),
   },
   {
     title: "Timely Delivery",
     description:
       "Organized planning and disciplined scheduling designed to protect your timeline.",
     icon: ClockIcon,
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Timely Delivery",
+      variant: "services-why-timely-delivery",
+      theme: "delivery",
+    }),
   },
 ] as const;
 

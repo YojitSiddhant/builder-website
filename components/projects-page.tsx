@@ -7,6 +7,7 @@ import {
   motion,
 } from "framer-motion";
 import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
+import { makeHoverImage } from "./hover-image";
 
 const heroImage =
   "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=80";
@@ -148,32 +149,47 @@ const processSteps = [
   {
     title: "Planning",
     description: "We define scope, budget, approvals, and delivery roadmap.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Planning",
+      variant: "projects-process-planning",
+      theme: "planning",
+    }),
   },
   {
     title: "Design",
     description: "We shape a premium design language for the project vision.",
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Design",
+      variant: "projects-process-design",
+      theme: "design",
+    }),
   },
   {
     title: "Construction",
     description: "We execute with disciplined coordination and quality checks.",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Construction",
+      variant: "projects-process-construction",
+      theme: "construction",
+    }),
   },
   {
     title: "Quality Check",
     description: "We review finish, safety, and readiness before handover.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Quality Check",
+      variant: "projects-process-quality-check",
+      theme: "trust",
+    }),
   },
   {
     title: "Delivery",
     description: "We complete the project with a structured and polished handoff.",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Delivery",
+      variant: "projects-process-delivery",
+      theme: "delivery",
+    }),
   },
 ] as const;
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
+import { makeHoverImage } from "./hover-image";
 
 const heroSlides = [
   {
@@ -65,22 +66,31 @@ const introValues = [
     title: "Quality",
     description: "Superior materials and careful execution from foundation to finish.",
     icon: ShieldCheckIcon,
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Quality",
+      variant: "home-intro-quality",
+      theme: "home",
+    }),
   },
   {
     title: "Transparency",
     description: "Clear communication, honest timelines, and dependable delivery.",
     icon: EyeIcon,
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Transparency",
+      variant: "home-intro-transparency",
+      theme: "planning",
+    }),
   },
   {
     title: "Innovation",
     description: "Future-ready spaces shaped by modern design thinking.",
     icon: SparkIcon,
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Innovation",
+      variant: "home-intro-innovation",
+      theme: "design",
+    }),
   },
 ] as const;
 
@@ -113,29 +123,41 @@ const trustFeatures = [
     title: "Premium Quality",
     description: "Strong structures, thoughtful detailing, and premium finishes throughout.",
     icon: MedalIcon,
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Premium Quality",
+      variant: "home-trust-premium-quality",
+      theme: "trust",
+    }),
   },
   {
     title: "On-Time Delivery",
     description: "Disciplined scheduling and execution that respects your milestones.",
     icon: ClockIcon,
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "On-Time Delivery",
+      variant: "home-trust-on-time-delivery",
+      theme: "delivery",
+    }),
   },
   {
     title: "Modern Architecture",
     description: "Elegant spaces planned for light, function, and long-term value.",
     icon: BlueprintIcon,
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Modern Architecture",
+      variant: "home-trust-modern-architecture",
+      theme: "design",
+    }),
   },
   {
     title: "Customer Satisfaction",
     description: "A relationship-first approach with support that continues after handover.",
     icon: HeartHandshakeIcon,
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Customer Satisfaction",
+      variant: "home-trust-customer-satisfaction",
+      theme: "values",
+    }),
   },
 ] as const;
 
@@ -163,29 +185,41 @@ const processSteps = [
     number: "01",
     title: "Consultation",
     description: "We understand your goals, budget, and site requirements in detail.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Consultation",
+      variant: "home-process-consultation",
+      theme: "team",
+    }),
   },
   {
     number: "02",
     title: "Planning",
     description: "We map the project with architectural and execution clarity.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Planning",
+      variant: "home-process-planning",
+      theme: "planning",
+    }),
   },
   {
     number: "03",
     title: "Construction",
     description: "Skilled teams deliver the build with care and consistent oversight.",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Construction",
+      variant: "home-process-construction",
+      theme: "construction",
+    }),
   },
   {
     number: "04",
     title: "Delivery",
     description: "The final handover is clean, documented, and ready for occupancy.",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Delivery",
+      variant: "home-process-delivery",
+      theme: "delivery",
+    }),
   },
 ] as const;
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { makeHoverImage } from "./hover-image";
 
 const heroImage =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80";
@@ -36,24 +37,33 @@ const whoCards = [
     description:
       "A collaborative group of builders, designers, and project managers with real-world execution experience.",
     icon: TeamIcon,
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Experienced Team",
+      variant: "about-who-experienced-team",
+      theme: "team",
+    }),
   },
   {
     title: "Modern Planning",
     description:
       "Careful site planning, efficient layouts, and future-ready thinking guide every project from day one.",
     icon: PlanningIcon,
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Modern Planning",
+      variant: "about-who-modern-planning",
+      theme: "planning",
+    }),
   },
   {
     title: "Trusted Delivery",
     description:
       "We stay transparent on timelines and quality so every handover feels dependable and professional.",
     icon: DeliveryIcon,
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Trusted Delivery",
+      variant: "about-who-trusted-delivery",
+      theme: "delivery",
+    }),
   },
 ] as const;
 
@@ -63,16 +73,22 @@ const missionVision = [
     description:
       "To deliver high-quality residential and commercial projects with honesty, innovation, and timely execution.",
     icon: TargetIcon,
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Our Mission",
+      variant: "about-mission",
+      theme: "mission",
+    }),
   },
   {
     title: "Our Vision",
     description:
       "To become a trusted real estate brand known for modern design, reliable construction, and long-term customer satisfaction.",
     icon: HorizonIcon,
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Our Vision",
+      variant: "about-vision",
+      theme: "design",
+    }),
   },
 ] as const;
 
@@ -88,43 +104,61 @@ const values = [
     title: "Quality Construction",
     description: "Strong structures, premium finishes, and disciplined execution at every stage.",
     icon: BuildingIcon,
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Quality Construction",
+      variant: "about-value-quality-construction",
+      theme: "construction",
+    }),
   },
   {
     title: "Transparent Process",
     description: "Clear updates, honest communication, and a process clients can follow with confidence.",
     icon: TransparencyIcon,
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Transparent Process",
+      variant: "about-value-transparent-process",
+      theme: "planning",
+    }),
   },
   {
     title: "On-Time Delivery",
     description: "Reliable planning and coordinated teams that keep the schedule moving in the right direction.",
     icon: ClockIcon,
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "On-Time Delivery",
+      variant: "about-value-on-time-delivery",
+      theme: "delivery",
+    }),
   },
   {
     title: "Customer Satisfaction",
     description: "We build long-term relationships by listening carefully and delivering with care.",
     icon: HeartIcon,
-    image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Customer Satisfaction",
+      variant: "about-value-customer-satisfaction",
+      theme: "trust",
+    }),
   },
   {
     title: "Modern Design",
     description: "Elegant architecture and thoughtful layouts shaped for contemporary living.",
     icon: DraftingIcon,
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Modern Design",
+      variant: "about-value-modern-design",
+      theme: "design",
+    }),
   },
   {
     title: "Sustainable Planning",
     description: "Practical decisions that support efficiency, comfort, and long-term value.",
     icon: LeafIcon,
-    image:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+    image: makeHoverImage({
+      title: "Sustainable Planning",
+      variant: "about-value-sustainable-planning",
+      theme: "planning",
+    }),
   },
 ] as const;
 
