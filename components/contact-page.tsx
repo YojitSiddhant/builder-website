@@ -38,7 +38,7 @@ const contactInfo = [
   },
   {
     title: "Phone",
-    lines: ["+91 XXXXX XXXXX"],
+    lines: ["+91 94250 80418"],
     icon: PhoneIcon,
   },
   {
@@ -346,7 +346,7 @@ export function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={errors.phoneNumber}
-                  placeholder="+91 XXXXX XXXXX"
+                  placeholder="+91 94250 80418"
                   inputMode="tel"
                 />
               </div>
@@ -488,7 +488,7 @@ export function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="font-semibold text-slate-900">Quick contact</p>
-                    <p>+91 XXXXX XXXXX</p>
+                    <p>+91 94250 80418</p>
                     <p>contact@builder.com</p>
                   </div>
                 </div>
@@ -505,7 +505,7 @@ export function ContactPage() {
 
               <div className="mt-6 space-y-4">
                 <InfoRow title="Address" text="219, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016" />
-                <InfoRow title="Call" text="+91 XXXXX XXXXX" />
+                <InfoRow title="Call" text="+91 94250 80418" />
                 <InfoRow title="Email" text="contact@builder.com" />
               </div>
 
