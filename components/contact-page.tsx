@@ -467,7 +467,7 @@ export function ContactPage() {
 
           <div className="mt-10">
             <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 shadow-[0_20px_60px_rgba(37,99,235,0.1)]">
-              <div className="relative flex-1 min-h-[420px] w-full">
+              <div className="relative h-[520px] w-full sm:h-[580px] lg:h-[640px]">
                 <iframe
                   title="Builder office map"
                   src="https://www.google.com/maps?q=219,+E-3,+Arera+Colony,+Bhopal,+Madhya+Pradesh+462016&z=17&output=embed"
