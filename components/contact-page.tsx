@@ -470,7 +470,7 @@ export function ContactPage() {
               <div className="relative flex-1 min-h-[420px] w-full">
                 <iframe
                   title="Builder office map"
-                  src="https://www.google.com/maps?q=India&output=embed"
+                  src="https://www.google.com/maps?q=219,+E-3,+Arera+Colony,+Bhopal,+Madhya+Pradesh+462016&z=17&output=embed"
                   className="h-full w-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
