@@ -476,23 +476,6 @@ export function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-
-              <div className="border-t border-blue-100 bg-white px-5 py-5 sm:px-6">
-                <p className="text-center text-sm font-semibold uppercase tracking-[0.32em] text-blue-600">
-                  Builder Headquarters
-                </p>
-                <div className="mt-4 grid gap-4 text-center text-sm text-slate-600 sm:grid-cols-2">
-                  <div className="space-y-1">
-                    <p className="font-semibold text-slate-900">Office timing</p>
-                    <p>Mon - Sat, 9:00 AM - 6:00 PM</p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="font-semibold text-slate-900">Quick contact</p>
-                    <p>+91 94250 80418</p>
-                    <p>contact@builder.com</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(37,99,235,0.08)] sm:p-8">
