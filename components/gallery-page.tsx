@@ -494,9 +494,9 @@ function GalleryCard({
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-between p-5">
+        <div className="flex flex-1 flex-col gap-4 p-5">
           <StatusTag>{item.category}</StatusTag>
-          <div className="pt-4">
+          <div className="mt-1">
             <h3 className="text-xl font-semibold text-slate-950">{item.project}</h3>
             <p className="mt-2 text-sm text-slate-500">{item.location}</p>
           </div>
