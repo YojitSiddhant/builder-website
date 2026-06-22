@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -10,6 +13,8 @@ const links = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
       <div className="relative mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:px-8">
@@ -27,14 +32,26 @@ export function SiteHeader() {
           <ul className="flex items-center gap-2 text-sm font-medium text-blue-700">
             {links.map((link) => {
               const Icon = link.icon;
+              const isActive = isActiveLink(pathname, link.href);
 
               return (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-2 rounded-full px-4 py-2 text-blue-700 transition-colors hover:bg-blue-50 hover:text-blue-900"
+                    aria-current={isActive ? "page" : undefined}
+                    className={[
+                      "group inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors",
+                      isActive
+                        ? "bg-blue-600 text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
+                        : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
+                    ].join(" ")}
                   >
-                    <Icon className="h-4 w-4 shrink-0 opacity-70 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+                    <Icon
+                      className={[
+                        "h-4 w-4 shrink-0 transition-all duration-300 ease-out",
+                        isActive ? "opacity-100" : "opacity-70 group-hover:translate-x-1 group-hover:opacity-100",
+                      ].join(" ")}
+                    />
                     {link.label}
                   </Link>
                 </li>
@@ -56,14 +73,21 @@ export function SiteHeader() {
               <ul className="grid gap-2">
                 {links.map((link) => {
                   const Icon = link.icon;
+                  const isActive = isActiveLink(pathname, link.href);
 
                   return (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-50 hover:text-blue-900"
+                        aria-current={isActive ? "page" : undefined}
+                        className={[
+                          "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
+                          isActive
+                            ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
+                            : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
+                        ].join(" ")}
                       >
-                        <Icon className="h-4 w-4 shrink-0 opacity-70" />
+                        <Icon className={["h-4 w-4 shrink-0", isActive ? "opacity-100" : "opacity-70"].join(" ")} />
                         {link.label}
                       </Link>
                     </li>
@@ -209,4 +233,12 @@ function MenuIcon({
       <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
+}
+
+function isActiveLink(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
