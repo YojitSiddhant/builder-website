@@ -346,7 +346,7 @@ export function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={errors.phoneNumber}
-                  placeholder="+91 94250 80418"
+                  placeholder="Enter your phone number"
                   inputMode="tel"
                 />
               </div>
