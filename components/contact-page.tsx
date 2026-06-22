@@ -33,7 +33,7 @@ const phonePattern = /^[+]?[\d\s()-]{8,20}$/;
 const contactInfo = [
   {
     title: "Office Address",
-    lines: ["Business District", "Your City, Country"],
+    lines: ["219, E-3, Arera Colony", "Bhopal, Madhya Pradesh 462016"],
     icon: OfficeIcon,
   },
   {
@@ -504,7 +504,7 @@ export function ContactPage() {
               </p>
 
               <div className="mt-6 space-y-4">
-                <InfoRow title="Address" text="Business District, Your City, Country" />
+                <InfoRow title="Address" text="219, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016" />
                 <InfoRow title="Call" text="+91 XXXXX XXXXX" />
                 <InfoRow title="Email" text="contact@builder.com" />
               </div>
