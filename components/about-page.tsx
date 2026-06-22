@@ -201,7 +201,7 @@ function HeroSection() {
             Home / About
           </p>
           <h1 className="mt-6 text-4xl font-semibold tracking-[0.18em] text-slate-950 sm:text-5xl lg:text-7xl">
-            ABOUT BUILDER
+            ABOUT
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg lg:text-xl">
             Creating trusted spaces with quality construction, modern design, and customer-first values.
