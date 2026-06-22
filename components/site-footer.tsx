@@ -102,7 +102,7 @@ export function SiteFooter() {
               TechVanta Labs
             </a>
           </p>
-          <p>&copy; 2026 Builder</p>
+          <p>&copy; 2026 TechVanta Labs Pvt Ltd. All Rights Reserved</p>
         </div>
       </div>
     </footer>
