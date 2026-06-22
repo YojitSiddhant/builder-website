@@ -358,13 +358,15 @@ function ProcessSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-                className="relative h-full pl-16 md:pl-0"
+                className="relative h-full"
               >
-                <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)] md:left-1/2 md:-translate-x-1/2">
-                  {step.number}
-                </div>
                 <article className="flex h-full min-h-[13.5rem] flex-col rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-[0_16px_45px_rgba(37,99,235,0.05)]">
-                  <h3 className="text-lg font-semibold text-slate-950">{step.title}</h3>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-white text-sm font-semibold text-blue-700 shadow-[0_12px_30px_rgba(37,99,235,0.1)]">
+                      {step.number}
+                    </div>
+                    <h3 className="pt-1 text-lg font-semibold text-slate-950">{step.title}</h3>
+                  </div>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
                 </article>
               </motion.div>
