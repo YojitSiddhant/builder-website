@@ -36,18 +36,24 @@ const whoCards = [
     description:
       "A collaborative group of builders, designers, and project managers with real-world execution experience.",
     icon: TeamIcon,
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Planning",
     description:
       "Careful site planning, efficient layouts, and future-ready thinking guide every project from day one.",
     icon: PlanningIcon,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Trusted Delivery",
     description:
       "We stay transparent on timelines and quality so every handover feels dependable and professional.",
     icon: DeliveryIcon,
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -57,12 +63,16 @@ const missionVision = [
     description:
       "To deliver high-quality residential and commercial projects with honesty, innovation, and timely execution.",
     icon: TargetIcon,
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Our Vision",
     description:
       "To become a trusted real estate brand known for modern design, reliable construction, and long-term customer satisfaction.",
     icon: HorizonIcon,
+    image:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -78,31 +88,43 @@ const values = [
     title: "Quality Construction",
     description: "Strong structures, premium finishes, and disciplined execution at every stage.",
     icon: BuildingIcon,
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Transparent Process",
     description: "Clear updates, honest communication, and a process clients can follow with confidence.",
     icon: TransparencyIcon,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "On-Time Delivery",
     description: "Reliable planning and coordinated teams that keep the schedule moving in the right direction.",
     icon: ClockIcon,
+    image:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Customer Satisfaction",
     description: "We build long-term relationships by listening carefully and delivering with care.",
     icon: HeartIcon,
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Design",
     description: "Elegant architecture and thoughtful layouts shaped for contemporary living.",
     icon: DraftingIcon,
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Sustainable Planning",
     description: "Practical decisions that support efficiency, comfort, and long-term value.",
     icon: LeafIcon,
+    image:
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
@@ -261,13 +283,29 @@ function WhoWeAreSection() {
                 variants={sectionVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-[1.75rem] border border-blue-100 bg-white p-6 shadow-[0_18px_60px_rgba(37,99,235,0.06)]"
+                className="group relative overflow-hidden rounded-[1.75rem] border border-blue-100 bg-white p-6 shadow-[0_18px_60px_rgba(37,99,235,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]"
               >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition duration-300 group-hover:scale-105">
-                  <Icon className="h-6 w-6" />
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-slate-950">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{card.description}</p>
+                <div className="relative z-10">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold text-slate-950 transition-colors duration-300 group-hover:text-white">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                    {card.description}
+                  </p>
+                </div>
               </motion.article>
             );
           })}
@@ -294,15 +332,29 @@ function MissionVisionSection() {
               key={item.title}
               variants={sectionVariants}
               whileHover={{ y: -4 }}
-              className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_20px_60px_rgba(37,99,235,0.06)]"
+              className="group relative overflow-hidden rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_20px_60px_rgba(37,99,235,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white">
-                <Icon className="h-6 w-6" />
+              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.78)_100%)]" />
               </div>
-              <h3 className="mt-6 text-2xl font-semibold tracking-tight text-slate-950">
-                {item.title}
-              </h3>
-              <p className="mt-4 text-base leading-8 text-slate-600">{item.description}</p>
+              <div className="relative z-10">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white transition duration-300 group-hover:bg-white/15">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 group-hover:text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-base leading-8 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                  {item.description}
+                </p>
+              </div>
             </motion.article>
           );
         })}
@@ -360,13 +412,29 @@ function CoreValuesSection() {
                 variants={sectionVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="group rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-[0_16px_50px_rgba(37,99,235,0.05)]"
+                className="group relative overflow-hidden rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-[0_16px_50px_rgba(37,99,235,0.05)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)]"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white transition duration-300 group-hover:scale-105">
-                  <Icon className="h-6 w-6" />
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <Image
+                    src={value.image}
+                    alt={value.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-slate-950">{value.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{value.description}</p>
+                <div className="relative z-10">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-700 text-white transition duration-300 group-hover:bg-white/15">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold text-slate-950 transition-colors duration-300 group-hover:text-white">
+                    {value.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-blue-50">
+                    {value.description}
+                  </p>
+                </div>
               </motion.article>
             );
           })}
