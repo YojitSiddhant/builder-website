@@ -321,7 +321,7 @@ export function ContactPage() {
                 Enquiry Form
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Tell us about your project.
+                Tell us about youre requirement
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
                 We’ll review your details and get back with a thoughtful response, tailored next steps, and a transparent process.
