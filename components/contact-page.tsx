@@ -260,7 +260,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="border-t border-blue-50 bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="border-t border-blue-50 bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
@@ -312,7 +312,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
       >
         <div className="mx-auto w-full max-w-5xl">
           <motion.div
@@ -460,7 +460,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-2xl">
@@ -493,7 +493,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
       >
         <div className="mx-auto w-full max-w-4xl">
           <div className="text-center">
@@ -561,7 +561,7 @@ export function ContactPage() {
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
-        className="bg-white px-4 py-16 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="relative overflow-hidden rounded-[2.25rem] border border-blue-100 shadow-[0_24px_70px_rgba(37,99,235,0.12)]">
@@ -615,7 +615,7 @@ export function ContactPage() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative flex min-h-[42vh] items-center justify-center overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
       <Image
         src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
         alt="Modern building background"

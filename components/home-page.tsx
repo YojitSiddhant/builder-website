@@ -324,7 +324,7 @@ function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(16,72,162,0.78)_0%,_rgba(37,99,235,0.4)_45%,_rgba(255,255,255,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
 
-        <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center gap-12 px-4 py-20 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
+        <div className="relative mx-auto flex min-h-[88svh] w-full max-w-7xl flex-col justify-center gap-10 px-4 py-12 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <motion.h1
               id="home-hero-title"
@@ -712,7 +712,7 @@ function FinalCta() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(219,234,254,0.55),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fbff_100%)]" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
           Start your next chapter
         </p>
@@ -750,7 +750,7 @@ function SectionBand({
     <section
       className="relative w-full bg-white"
     >
-      <div className="mx-auto w-full px-4 py-16 sm:px-6 sm:py-16 lg:px-10 lg:py-20 xl:px-16">{children}</div>
+      <div className="mx-auto w-full px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14 xl:px-16">{children}</div>
     </section>
   );
 }

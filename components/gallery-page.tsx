@@ -324,8 +324,8 @@ export function GalleryPage() {
 
 function HeroSection() {
   return (
-    <section className="overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto grid min-h-[60vh] w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+    <section className="overflow-hidden bg-white px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto grid min-h-[48vh] w-full max-w-7xl items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1065,7 +1065,7 @@ function CtaSection() {
 
 function SectionWrap({ children }: { children: ReactNode }) {
   return (
-    <section className="bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+    <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">{children}</div>
     </section>
   );
