@@ -324,8 +324,8 @@ export function GalleryPage() {
 
 function HeroSection() {
   return (
-    <section className="overflow-hidden bg-white px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto grid min-h-[48vh] w-full max-w-7xl items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
+    <section className="overflow-hidden bg-white px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+      <div className="mx-auto grid min-h-[30vh] w-full max-w-7xl items-center gap-6 lg:min-h-[48vh] lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -412,7 +412,7 @@ function CategoryFilter({
   setActiveCategory: (category: (typeof categories)[number]) => void;
 }) {
   return (
-    <section className="sticky top-[72px] z-30 border-y border-blue-100 bg-white/95 px-4 py-5 backdrop-blur-xl sm:px-6 lg:px-8">
+    <section className="sticky top-[72px] z-30 border-y border-blue-100 bg-white/95 px-4 py-3 backdrop-blur-xl sm:px-6 sm:py-4 lg:px-8 lg:py-5">
       <div className="mx-auto flex w-full max-w-7xl justify-center">
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map((category) => {
@@ -423,7 +423,7 @@ function CategoryFilter({
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 className={[
-                  "rounded-full px-4 py-2 text-sm font-medium transition duration-300",
+                  "rounded-full px-3.5 py-2 text-sm font-medium transition duration-300 sm:px-4",
                   active
                     ? "bg-blue-700 text-white shadow-lg shadow-blue-700/20"
                     : "border border-blue-100 bg-white text-slate-700 hover:-translate-y-0.5 hover:bg-blue-50 hover:text-blue-700",
@@ -466,7 +466,7 @@ function MasonryGallery({
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {items.map((item, index) => (
               <GalleryCard key={item.id} item={item} index={index} onViewImage={onViewImage} />
@@ -550,7 +550,7 @@ function FeaturedShowcase({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+        className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16"
       >
         <FeaturedSlider slide={slide} setSlide={setSlide} />
 
@@ -668,7 +668,7 @@ function VideoShowcase() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
+        className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
       >
         <div>
           <SectionEyebrow>Video Showcase</SectionEyebrow>
@@ -726,7 +726,7 @@ function BeforeAfterSection() {
           </h2>
         </motion.div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-3">
           {beforeAfterItems.map((item) => (
             <BeforeAfterCard key={item.title} item={item} />
           ))}
@@ -800,7 +800,7 @@ function StatsSection() {
           Built on Scale and Trust
         </h2>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 xl:grid-cols-4">
           {stats.map((stat) => (
             <StatCard key={stat.label} stat={stat} />
           ))}
@@ -873,7 +873,7 @@ function TestimonialSlider({ activeIndex }: { activeIndex: number }) {
           Trusted by Clients
         </h2>
 
-        <div className="mt-10 overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_18px_60px_rgba(37,99,235,0.06)]">
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-5 shadow-[0_18px_60px_rgba(37,99,235,0.06)] sm:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -1020,7 +1020,7 @@ function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[2.5rem] bg-slate-950 px-6 py-16 text-white shadow-[0_30px_90px_rgba(37,99,235,0.16)] sm:px-10 lg:px-16 lg:py-20"
+          className="relative overflow-hidden rounded-[2.5rem] bg-slate-950 px-6 py-12 text-white shadow-[0_30px_90px_rgba(37,99,235,0.16)] sm:px-10 sm:py-16 lg:px-16 lg:py-20"
         >
           <Image
             src={heroImage}
@@ -1065,7 +1065,7 @@ function CtaSection() {
 
 function SectionWrap({ children }: { children: ReactNode }) {
   return (
-    <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+    <section className="bg-white px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
       <div className="mx-auto w-full max-w-7xl">{children}</div>
     </section>
   );
