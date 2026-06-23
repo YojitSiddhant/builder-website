@@ -950,44 +950,44 @@ function GalleryImageModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 12 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_90px_rgba(15,23,42,0.28)]"
+            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-[1.75rem] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.24)]"
           >
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="relative min-h-[280px] bg-slate-100 sm:min-h-[420px]">
+            <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="relative min-h-[240px] bg-slate-100 sm:min-h-[320px]">
                 <Image
                   src={item.image}
                   alt={item.project}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
                   className="object-cover"
                 />
               </div>
 
-              <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
+              <div className="flex flex-col justify-between gap-5 px-5 py-5 sm:px-7 sm:py-6">
                 <div>
                   <div className="flex items-center justify-between gap-4">
                     <StatusTag>{item.category}</StatusTag>
                     <button
                       type="button"
                       onClick={onClose}
-                      className="rounded-full border border-slate-200 px-3 py-1 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+                      className="rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
                     >
                       Close
                     </button>
                   </div>
 
-                  <h3 id="gallery-modal-title" className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
+                  <h3 id="gallery-modal-title" className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">
                     {item.project}
                   </h3>
-                  <p className="mt-2 text-sm uppercase tracking-[0.28em] text-blue-700">
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">
                     {item.location}
                   </p>
-                  <p className="mt-6 text-base leading-8 text-slate-600">
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
                     This demo project highlights premium finishes, clean architectural lines, and a modern
                     living experience designed for long-term comfort and visual impact.
                   </p>
 
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <DetailPill label="Area" value="2,400 sq. ft." />
                     <DetailPill label="Status" value="Ready for preview" />
                     <DetailPill label="Style" value="Contemporary luxury" />
@@ -995,17 +995,17 @@ function GalleryImageModal({
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col gap-2.5 sm:flex-row">
                   <Link
                     href="/projects"
-                    className="inline-flex items-center justify-center rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
+                    className="inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
                   >
                     View Project Details
                   </Link>
                   <button
                     type="button"
                     onClick={onClose}
-                    className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                    className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
                   >
                     Back to Gallery
                   </button>
@@ -1103,8 +1103,8 @@ function StatusTag({ children }: { children: ReactNode }) {
 
 function DetailPill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3">
-      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-slate-500">{label}</p>
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-3.5 py-3">
+      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-slate-500">{label}</p>
       <p className="mt-1 text-sm font-semibold text-slate-950">{value}</p>
     </div>
   );
