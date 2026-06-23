@@ -295,6 +295,10 @@ export function GalleryPage() {
     <div className="overflow-hidden bg-white text-slate-900">
       <HeroSection />
       <main>
+        <MobileGalleryPreview
+          items={filteredImages}
+          onViewImage={(item) => setActiveGalleryItem(item)}
+        />
         <IntroSection />
         <CategoryFilter
           activeCategory={activeCategory}
@@ -368,7 +372,7 @@ function HeroSection() {
 
 function IntroSection() {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -544,7 +548,7 @@ function FeaturedShowcase({
   setSlide: (value: number) => void;
 }) {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -662,7 +666,7 @@ function FeaturedSlider({
 
 function VideoShowcase() {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -712,7 +716,7 @@ function VideoShowcase() {
 
 function BeforeAfterSection() {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={staggerVariants}
         initial="hidden"
@@ -788,7 +792,7 @@ function BeforeAfterCard({
 
 function StatsSection() {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -860,7 +864,7 @@ function StatCard({ stat }: { stat: { value: number; suffix: string; label: stri
 
 function TestimonialSlider({ activeIndex }: { activeIndex: number }) {
   return (
-    <SectionWrap>
+    <SectionWrap className="hidden md:block">
       <motion.div
         variants={sectionVariants}
         initial="hidden"
@@ -1013,7 +1017,7 @@ function GalleryImageModal({
 
 function CtaSection() {
   return (
-    <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+    <section className="hidden px-4 pb-16 sm:px-6 sm:pb-20 lg:block lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -1063,10 +1067,75 @@ function CtaSection() {
   );
 }
 
-function SectionWrap({ children }: { children: ReactNode }) {
+function SectionWrap({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <section className="bg-white px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+    <section className={`bg-white px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 ${className}`}>
       <div className="mx-auto w-full max-w-7xl">{children}</div>
+    </section>
+  );
+}
+
+function MobileGalleryPreview({
+  items,
+  onViewImage,
+}: {
+  items: ReadonlyArray<(typeof galleryImages)[number]>;
+  onViewImage: (item: (typeof galleryImages)[number]) => void;
+}) {
+  return (
+    <section className="px-4 py-6 sm:px-6 md:hidden">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <SectionEyebrow>Gallery Preview</SectionEyebrow>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+              Featured Projects
+            </h2>
+          </div>
+          <p className="text-xs text-slate-500">
+            {items.length} images
+          </p>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          {items.slice(0, 6).map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => onViewImage(item)}
+              className="group overflow-hidden rounded-[1.35rem] border border-blue-100 bg-white text-left shadow-[0_10px_30px_rgba(37,99,235,0.08)]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.project}
+                  fill
+                  sizes="50vw"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+              </div>
+              <div className="p-3">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-blue-700">
+                  {item.category}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-slate-950">
+                  {item.project}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  {item.location}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
