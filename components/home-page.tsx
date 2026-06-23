@@ -453,18 +453,18 @@ function IntroSection() {
               transition={{ delay: index * 0.08 }}
               className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
             >
-              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+              <div className="absolute inset-0 opacity-0 transition duration-500 ease-out group-hover:opacity-100">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
+                  className="object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.18)_0%,rgba(15,23,42,0.75)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.12)_0%,rgba(15,23,42,0.78)_100%)] transition-opacity duration-500 group-hover:opacity-100" />
               </div>
               <div className="relative z-10">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-white/15 group-hover:text-white">
                   <item.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900 transition-colors duration-300 group-hover:text-white">
