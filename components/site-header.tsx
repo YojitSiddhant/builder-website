@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   IoBusinessOutline,
   IoHomeOutline,
@@ -23,6 +24,7 @@ const links = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
@@ -69,15 +71,31 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <details className="group relative lg:hidden">
-          <summary
-            className="inline-flex h-11 w-11 list-none items-center justify-center rounded-full border border-blue-100 bg-white text-blue-700 shadow-sm transition hover:bg-blue-50 [&::-webkit-details-marker]:hidden"
+        <div className="lg:hidden">
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-blue-100 bg-white text-blue-700 shadow-sm transition hover:bg-blue-50"
             aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMobileOpen((current) => !current)}
           >
             <MenuIcon className="h-5 w-5" />
-          </summary>
+          </button>
+        </div>
 
-          <div className="absolute left-0 right-0 top-full z-50 mt-3 hidden max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)] group-open:block lg:hidden">
+        <div aria-hidden="true" className="hidden lg:block" />
+      </div>
+
+      <div
+        id="mobile-navigation"
+        className={[
+          "lg:hidden",
+          mobileOpen ? "block" : "hidden",
+        ].join(" ")}
+      >
+        <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
+          <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)]">
             <nav aria-label="Mobile Primary">
               <ul className="grid gap-2">
                 {links.map((link) => {
@@ -89,6 +107,7 @@ export function SiteHeader() {
                       <Link
                         href={link.href}
                         aria-current={isActive ? "page" : undefined}
+                        onClick={() => setMobileOpen(false)}
                         className={[
                           "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
                           isActive
@@ -105,9 +124,7 @@ export function SiteHeader() {
               </ul>
             </nav>
           </div>
-        </details>
-
-        <div aria-hidden="true" className="hidden lg:block" />
+        </div>
       </div>
     </header>
   );
