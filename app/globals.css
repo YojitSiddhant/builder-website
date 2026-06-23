@@ -7,6 +7,8 @@
 
 html {
   min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 @theme inline {
@@ -22,4 +24,31 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

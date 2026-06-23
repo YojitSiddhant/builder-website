@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full overflow-x-clip bg-white text-slate-900">
-        <div className="flex min-h-screen flex-col">
+    <html lang="en" className="h-full scroll-smooth antialiased">
+      <body className="min-h-full overflow-x-clip bg-white text-slate-900 antialiased">
+        <div className="flex min-h-screen min-w-0 flex-col">
           <SiteHeader />
-          <main className="flex w-full flex-1 flex-col overflow-x-clip">
+          <main className="flex w-full min-w-0 flex-1 flex-col overflow-x-clip">
             {children}
           </main>
           <SiteFooter />
