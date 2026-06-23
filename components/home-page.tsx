@@ -66,31 +66,22 @@ const introValues = [
     title: "Quality",
     description: "Superior materials and careful execution from foundation to finish.",
     icon: ShieldCheckIcon,
-    image: makeHoverImage({
-      title: "Quality",
-      variant: "home-intro-quality",
-      theme: "home",
-    }),
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Transparency",
     description: "Clear communication, honest timelines, and dependable delivery.",
     icon: EyeIcon,
-    image: makeHoverImage({
-      title: "Transparency",
-      variant: "home-intro-transparency",
-      theme: "planning",
-    }),
+    image:
+      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Innovation",
     description: "Future-ready spaces shaped by modern design thinking.",
     icon: SparkIcon,
-    image: makeHoverImage({
-      title: "Innovation",
-      variant: "home-intro-innovation",
-      theme: "design",
-    }),
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
   },
 ] as const;
 
