@@ -251,6 +251,7 @@ export function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
   const [featuredSlide, setFeaturedSlide] = useState(0);
   const [testimonialSlide, setTestimonialSlide] = useState(0);
+  const [activeGalleryItem, setActiveGalleryItem] = useState<(typeof galleryImages)[number] | null>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -268,6 +269,17 @@ export function GalleryPage() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (!activeGalleryItem) return;
+
+    const originalOverflow = window.document.body.style.overflow;
+    window.document.body.style.overflow = "hidden";
+
+    return () => {
+      window.document.body.style.overflow = originalOverflow;
+    };
+  }, [activeGalleryItem]);
+
   const filteredImages = useMemo(() => {
     if (activeCategory === "All") return galleryImages;
     return galleryImages.filter((item) => item.category === activeCategory);
@@ -282,7 +294,10 @@ export function GalleryPage() {
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
-        <MasonryGallery items={filteredImages} />
+        <MasonryGallery
+          items={filteredImages}
+          onViewImage={(item) => setActiveGalleryItem(item)}
+        />
         <FeaturedShowcase
           slide={featuredSlide}
           setSlide={setFeaturedSlide}
@@ -293,6 +308,10 @@ export function GalleryPage() {
         <TestimonialSlider activeIndex={testimonialSlide} />
         <CtaSection />
       </main>
+      <GalleryImageModal
+        item={activeGalleryItem}
+        onClose={() => setActiveGalleryItem(null)}
+      />
     </div>
   );
 }
@@ -416,8 +435,10 @@ function CategoryFilter({
 
 function MasonryGallery({
   items,
+  onViewImage,
 }: {
   items: ReadonlyArray<(typeof galleryImages)[number]>;
+  onViewImage: (item: (typeof galleryImages)[number]) => void;
 }) {
   return (
     <SectionWrap>
@@ -442,7 +463,7 @@ function MasonryGallery({
         <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {items.map((item, index) => (
-              <GalleryCard key={item.id} item={item} index={index} />
+              <GalleryCard key={item.id} item={item} index={index} onViewImage={onViewImage} />
             ))}
           </AnimatePresence>
         </div>
@@ -454,9 +475,11 @@ function MasonryGallery({
 function GalleryCard({
   item,
   index,
+  onViewImage,
 }: {
   item: (typeof galleryImages)[number];
   index: number;
+  onViewImage: (item: (typeof galleryImages)[number]) => void;
 }) {
   return (
     <motion.article
@@ -479,12 +502,13 @@ function GalleryCard({
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.02)_0%,rgba(15,23,42,0.42)_100%)] opacity-0 transition duration-500 group-hover:opacity-100" />
           <div className="absolute inset-0 flex items-center justify-center gap-3 bg-slate-950/0 opacity-0 backdrop-blur-[1px] transition duration-500 group-hover:bg-slate-950/35 group-hover:opacity-100">
-            <Link
-              href="/gallery"
+            <button
+              type="button"
+              onClick={() => onViewImage(item)}
               className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg transition hover:-translate-y-0.5"
             >
               View Image
-            </Link>
+            </button>
             <Link
               href="/projects"
               className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15"
@@ -883,6 +907,117 @@ function TestimonialSlider({ activeIndex }: { activeIndex: number }) {
   );
 }
 
+function GalleryImageModal({
+  item,
+  onClose,
+}: {
+  item: (typeof galleryImages)[number] | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!item) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [item, onClose]);
+
+  return (
+    <AnimatePresence>
+      {item ? (
+        <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="gallery-modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <button
+            type="button"
+            aria-label="Close image viewer"
+            className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+            onClick={onClose}
+          />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: 12 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_90px_rgba(15,23,42,0.28)]"
+          >
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[280px] bg-slate-100 sm:min-h-[420px]">
+                <Image
+                  src={item.image}
+                  alt={item.project}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <StatusTag>{item.category}</StatusTag>
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="rounded-full border border-slate-200 px-3 py-1 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+                    >
+                      Close
+                    </button>
+                  </div>
+
+                  <h3 id="gallery-modal-title" className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
+                    {item.project}
+                  </h3>
+                  <p className="mt-2 text-sm uppercase tracking-[0.28em] text-blue-700">
+                    {item.location}
+                  </p>
+                  <p className="mt-6 text-base leading-8 text-slate-600">
+                    This demo project highlights premium finishes, clean architectural lines, and a modern
+                    living experience designed for long-term comfort and visual impact.
+                  </p>
+
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <DetailPill label="Area" value="2,400 sq. ft." />
+                    <DetailPill label="Status" value="Ready for preview" />
+                    <DetailPill label="Style" value="Contemporary luxury" />
+                    <DetailPill label="Use Case" value="Residential showcase" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/projects"
+                    className="inline-flex items-center justify-center rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
+                  >
+                    View Project Details
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                  >
+                    Back to Gallery
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
 function CtaSection() {
   return (
     <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
@@ -962,6 +1097,15 @@ function StatusTag({ children }: { children: ReactNode }) {
     <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-blue-700">
       {children}
     </span>
+  );
+}
+
+function DetailPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3">
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-slate-500">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-950">{value}</p>
+    </div>
   );
 }
 
