@@ -454,9 +454,9 @@ function MasonryGallery({
     <SectionWrap>
       <motion.div
         variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.15 }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
       >
         <div className="flex items-end justify-between gap-4">
           <div>
