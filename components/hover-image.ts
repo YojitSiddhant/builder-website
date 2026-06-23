@@ -20,82 +20,93 @@ type HoverImageOptions = {
   theme: HoverTheme;
 };
 
-const hoverImageQueries: Record<string, string> = {
-  "home-intro-quality": "luxury residential facade",
-  "home-intro-transparency": "architect reviewing floor plans",
-  "home-intro-innovation": "modern architectural detail",
-  "home-trust-premium-quality": "premium apartment exterior",
-  "home-trust-on-time-delivery": "construction site crane skyline",
-  "home-trust-modern-architecture": "contemporary house exterior",
-  "home-trust-customer-satisfaction": "happy homeowners modern house",
-  "home-process-consultation": "architect client meeting",
-  "home-process-planning": "site plan and blueprint",
-  "home-process-construction": "building under construction",
-  "home-process-delivery": "completed house handover",
-  "services-main-residential": "residential apartment building",
-  "services-main-commercial": "commercial office tower",
-  "services-main-renovation": "home renovation interior",
-  "services-main-interior": "modern interior design living room",
-  "services-main-project-management": "project management desk blueprint",
-  "services-main-consultation-planning": "architectural consultation meeting",
-  "services-process-consultation": "property consultation meeting",
-  "services-process-planning": "architectural planning desk",
-  "services-process-design": "architectural design sketch",
-  "services-process-construction": "construction workers building",
-  "services-process-delivery": "property handover keys",
-  "services-why-quality": "quality construction details",
-  "services-why-professionals": "construction team planning",
-  "services-why-transparent-process": "blueprint and reports",
-  "services-why-timely-delivery": "construction schedule clock",
-  "about-who-experienced-team": "construction team collaboration",
-  "about-who-modern-planning": "site planning blueprint",
-  "about-who-trusted-delivery": "project handover agreement",
-  "about-mission": "architecture vision board",
-  "about-vision": "modern city development",
-  "about-value-quality-construction": "strong concrete structure",
-  "about-value-transparent-process": "architect reviewing plans",
-  "about-value-on-time-delivery": "timely project management",
-  "about-value-customer-satisfaction": "happy family home",
-  "about-value-modern-design": "modern interior architecture",
-  "about-value-sustainable-planning": "sustainable building design",
-  "projects-process-planning": "project planning blueprint",
-  "projects-process-design": "building design sketches",
-  "projects-process-construction": "active construction site",
-  "projects-process-quality-check": "quality inspection construction",
-  "projects-process-delivery": "final property handover",
+const hoverImageUrls: Record<string, string> = {
+  "home-intro-quality":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "home-intro-transparency":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "home-intro-innovation":
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+  "home-trust-premium-quality":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "home-trust-on-time-delivery":
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+  "home-trust-modern-architecture":
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+  "home-trust-customer-satisfaction":
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80",
+  "home-process-consultation":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "home-process-planning":
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+  "home-process-construction":
+    "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80",
+  "home-process-delivery":
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+  "services-main-residential":
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+  "services-main-commercial":
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+  "services-main-renovation":
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
+  "services-main-interior":
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+  "services-main-project-management":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "services-main-consultation-planning":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "services-process-consultation":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "services-process-planning":
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+  "services-process-design":
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80",
+  "services-process-construction":
+    "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80",
+  "services-process-delivery":
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+  "services-why-quality":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "services-why-professionals":
+    "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80",
+  "services-why-transparent-process":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "services-why-timely-delivery":
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+  "about-who-experienced-team":
+    "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80",
+  "about-who-modern-planning":
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+  "about-who-trusted-delivery":
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+  "about-mission":
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+  "about-vision":
+    "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=1600&q=80",
+  "about-value-quality-construction":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "about-value-transparent-process":
+    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80",
+  "about-value-on-time-delivery":
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+  "about-value-customer-satisfaction":
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80",
+  "about-value-modern-design":
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+  "about-value-sustainable-planning":
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+  "projects-process-planning":
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1600&q=80",
+  "projects-process-design":
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80",
+  "projects-process-construction":
+    "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80",
+  "projects-process-quality-check":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+  "projects-process-delivery":
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
 };
-
-const themeFallbackQueries: Record<HoverTheme, string> = {
-  home: "modern residential architecture",
-  services: "architecture and construction",
-  projects: "real estate project development",
-  about: "construction company team",
-  residential: "residential building exterior",
-  commercial: "commercial office building",
-  construction: "construction site and structure",
-  planning: "architectural planning and blueprint",
-  delivery: "property handover and completion",
-  team: "construction team collaboration",
-  trust: "trusted construction quality",
-  design: "modern interior and exterior design",
-  values: "modern homes and quality living",
-  mission: "real estate vision and goals",
-};
-
-function hashString(value: string) {
-  let hash = 0;
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) | 0;
-  }
-  return Math.abs(hash);
-}
-
-function buildQuery({ title, variant, theme }: HoverImageOptions) {
-  return hoverImageQueries[variant] ?? `${title} ${themeFallbackQueries[theme]}`;
-}
 
 export function makeHoverImage(options: HoverImageOptions) {
-  const query = buildQuery(options);
-  const seed = hashString(options.variant);
-  return `https://source.unsplash.com/featured/1600x900/?${encodeURIComponent(query)}&sig=${seed}`;
+  return hoverImageUrls[options.variant] ?? hoverImageUrls["home-trust-premium-quality"];
 }
