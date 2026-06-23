@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useInView } from "framer-motion";
+import { IoCloseOutline } from "react-icons/io5";
 import {
   useEffect,
   useMemo,
@@ -970,9 +971,10 @@ function GalleryImageModal({
                     <button
                       type="button"
                       onClick={onClose}
-                      className="rounded-full border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-50 hover:text-slate-950"
+                      aria-label="Close modal"
                     >
-                      Close
+                      <IoCloseOutline className="h-5 w-5" />
                     </button>
                   </div>
 
