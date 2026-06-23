@@ -928,93 +928,203 @@ function GalleryImageModal({
   return (
     <AnimatePresence>
       {item ? (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="gallery-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <GalleryImageModalContent key={item.id} item={item} onClose={onClose} />
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function GalleryImageModalContent({
+  item,
+  onClose,
+}: {
+  item: (typeof galleryImages)[number];
+  onClose: () => void;
+}) {
+  const [activePanel, setActivePanel] = useState<"photo" | "info">("photo");
+
+  return (
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gallery-modal-title"
+      className="relative z-10 w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_90px_rgba(15,23,42,0.28)]"
+      initial={{ opacity: 0, scale: 0.96, y: 24 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, y: 12 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+    >
+      <div className="flex items-center justify-between gap-4 border-b border-slate-100 px-5 py-4 sm:px-7">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
+            Gallery Preview
+          </p>
+          <h3 id="gallery-modal-title" className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
+            {item.project}
+          </h3>
+        </div>
+
+        <div className="flex items-center gap-2">
           <button
             type="button"
-            aria-label="Close image viewer"
-            className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
-            onClick={onClose}
-          />
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 24 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: 12 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_90px_rgba(15,23,42,0.28)]"
+            onClick={() => setActivePanel("photo")}
+            className={[
+              "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition",
+              activePanel === "photo"
+                ? "bg-blue-700 text-white shadow-lg shadow-blue-700/20"
+                : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50",
+            ].join(" ")}
+            aria-pressed={activePanel === "photo"}
           >
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="relative min-h-[280px] bg-slate-100 sm:min-h-[420px]">
-                <Image
-                  src={item.image}
-                  alt={item.project}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  className="object-cover"
-                />
+            <ArrowIcon className="h-4 w-4 rotate-180" />
+            Swipe Left Photo
+          </button>
+          <button
+            type="button"
+            onClick={() => setActivePanel("info")}
+            className={[
+              "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition",
+              activePanel === "info"
+                ? "bg-blue-700 text-white shadow-lg shadow-blue-700/20"
+                : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50",
+            ].join(" ")}
+            aria-pressed={activePanel === "info"}
+          >
+            Swipe Right Info
+            <ArrowIcon className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-full border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {activePanel === "photo" ? (
+          <motion.div
+            key="photo"
+            initial={{ opacity: 0, x: -28 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 28 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="grid lg:grid-cols-[1.18fr_0.82fr]"
+          >
+            <div className="relative min-h-[320px] bg-slate-100 sm:min-h-[520px]">
+              <Image
+                src={item.image}
+                alt={item.project}
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
+              <div>
+                <StatusTag>{item.category}</StatusTag>
+                <p className="mt-5 text-base leading-8 text-slate-600">
+                  Swipe right to see property info, quick facts, and demo project details for this showcase.
+                </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <DetailPill label="Location" value={item.location} />
+                  <DetailPill label="Status" value="Ready for preview" />
+                  <DetailPill label="Style" value="Contemporary luxury" />
+                  <DetailPill label="Use Case" value="Residential showcase" />
+                </div>
               </div>
 
-              <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
-                <div>
-                  <div className="flex items-center justify-between gap-4">
-                    <StatusTag>{item.category}</StatusTag>
-                    <button
-                      type="button"
-                      onClick={onClose}
-                      className="rounded-full border border-slate-200 px-3 py-1 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
-                    >
-                      Close
-                    </button>
-                  </div>
-
-                  <h3 id="gallery-modal-title" className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
-                    {item.project}
-                  </h3>
-                  <p className="mt-2 text-sm uppercase tracking-[0.28em] text-blue-700">
-                    {item.location}
-                  </p>
-                  <p className="mt-6 text-base leading-8 text-slate-600">
-                    This demo project highlights premium finishes, clean architectural lines, and a modern
-                    living experience designed for long-term comfort and visual impact.
-                  </p>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <DetailPill label="Area" value="2,400 sq. ft." />
-                    <DetailPill label="Status" value="Ready for preview" />
-                    <DetailPill label="Style" value="Contemporary luxury" />
-                    <DetailPill label="Use Case" value="Residential showcase" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center justify-center rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
-                  >
-                    View Project Details
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
-                  >
-                    Back to Gallery
-                  </button>
-                </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={() => setActivePanel("info")}
+                  className="inline-flex items-center justify-center rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
+                >
+                  Swipe Right to Property Info
+                </button>
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                >
+                  View Project Details
+                </Link>
               </div>
             </div>
           </motion.div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+        ) : (
+          <motion.div
+            key="info"
+            initial={{ opacity: 0, x: 28 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -28 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="grid lg:grid-cols-[0.92fr_1.08fr]"
+          >
+            <div className="flex flex-col justify-between gap-6 bg-slate-950 p-6 text-white sm:p-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-200">
+                  Property Information
+                </p>
+                <h4 className="mt-4 text-3xl font-semibold tracking-tight">{item.project}</h4>
+                <p className="mt-2 text-sm uppercase tracking-[0.28em] text-blue-100">
+                  {item.location}
+                </p>
+                <p className="mt-6 text-base leading-8 text-slate-200">
+                  This demo property blends modern planning, premium materials, and a practical layout
+                  designed for comfortable living and strong visual appeal.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <DetailPill label="Total Area" value="2,400 sq. ft." />
+                <DetailPill label="Floors" value="12 Levels" />
+                <DetailPill label="Units" value="48 Homes" />
+                <DetailPill label="Timeline" value="Ready in 2025" />
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
+              <div>
+                <StatusTag>{item.category}</StatusTag>
+                <h4 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
+                  Why this project stands out
+                </h4>
+                <p className="mt-4 text-base leading-8 text-slate-600">
+                  The concept is intentionally simple for demo purposes: premium exterior design,
+                  efficient interiors, and a polished finish that communicates confidence.
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <DetailPill label="Architecture" value="Contemporary" />
+                  <DetailPill label="Materials" value="Premium finish" />
+                  <DetailPill label="Parking" value="Basement + Surface" />
+                  <DetailPill label="Amenities" value="Lobby, lounge, gym" />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={() => setActivePanel("photo")}
+                  className="inline-flex items-center justify-center rounded-full bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
+                >
+                  Swipe Left to Photo
+                </button>
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                >
+                  View Project Details
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
