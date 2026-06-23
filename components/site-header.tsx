@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   IoBusinessOutline,
   IoHomeOutline,
@@ -25,6 +26,36 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const drawerVariants = {
+    hidden: { opacity: 0, y: -10, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.28,
+        ease: "easeOut" as const,
+        when: "beforeChildren" as const,
+        staggerChildren: 0.06,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      scale: 0.98,
+      transition: { duration: 0.2, ease: "easeIn" as const },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 8 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.24, ease: "easeOut" as const },
+    },
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
@@ -87,45 +118,55 @@ export function SiteHeader() {
         <div aria-hidden="true" className="hidden lg:block" />
       </div>
 
-      <div
-        id="mobile-navigation"
-        className={[
-          "lg:hidden",
-          mobileOpen ? "block" : "hidden",
-        ].join(" ")}
-      >
-        <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
-          <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)]">
-            <nav aria-label="Mobile Primary">
-              <ul className="grid gap-2">
-                {links.map((link) => {
-                  const Icon = link.icon;
-                  const isActive = isActiveLink(pathname, link.href);
+      <AnimatePresence initial={false}>
+        {mobileOpen ? (
+          <motion.div
+            id="mobile-navigation"
+            className="lg:hidden"
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            variants={drawerVariants}
+          >
+            <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
+              <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)]">
+                <motion.nav aria-label="Mobile Primary">
+                  <motion.ul className="grid gap-2">
+                    {links.map((link) => {
+                      const Icon = link.icon;
+                      const isActive = isActiveLink(pathname, link.href);
 
-                  return (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        aria-current={isActive ? "page" : undefined}
-                        onClick={() => setMobileOpen(false)}
-                        className={[
-                          "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
-                          isActive
-                            ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
-                            : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
-                        ].join(" ")}
-                      >
-                        <Icon className={["h-4 w-4 shrink-0", isActive ? "opacity-100" : "opacity-70"].join(" ")} />
-                        {link.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+                      return (
+                        <motion.li key={link.href} variants={itemVariants}>
+                          <Link
+                            href={link.href}
+                            aria-current={isActive ? "page" : undefined}
+                            onClick={() => setMobileOpen(false)}
+                            className={[
+                              "flex items-center justify-center gap-3 rounded-2xl px-4 py-3 text-center text-sm font-medium transition-colors",
+                              isActive
+                                ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
+                                : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
+                            ].join(" ")}
+                          >
+                            <Icon
+                              className={[
+                                "h-4 w-4 shrink-0",
+                                isActive ? "opacity-100" : "opacity-70",
+                              ].join(" ")}
+                            />
+                            <span className="text-center">{link.label}</span>
+                          </Link>
+                        </motion.li>
+                      );
+                    })}
+                  </motion.ul>
+                </motion.nav>
+              </div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }
