@@ -416,7 +416,7 @@ function CategoryFilter({
   setActiveCategory: (category: (typeof categories)[number]) => void;
 }) {
   return (
-    <section className="sticky top-[72px] z-30 border-y border-blue-100 bg-white/95 px-4 py-3 backdrop-blur-xl sm:px-6 sm:py-4 lg:px-8 lg:py-5">
+    <section className="sticky top-[72px] z-30 bg-white/95 px-4 py-3 backdrop-blur-xl sm:px-6 sm:py-4 lg:px-8 lg:py-5">
       <div className="mx-auto flex w-full max-w-7xl justify-center">
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map((category) => {
