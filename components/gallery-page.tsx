@@ -481,6 +481,8 @@ function GalleryCard({
   index: number;
   onViewImage: (item: (typeof galleryImages)[number]) => void;
 }) {
+  const details = getGalleryDetails(item);
+
   return (
     <motion.article
       layout
@@ -501,20 +503,46 @@ function GalleryCard({
             className="object-cover transition duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.02)_0%,rgba(15,23,42,0.42)_100%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-          <div className="absolute inset-0 flex items-center justify-center gap-3 bg-slate-950/0 opacity-0 backdrop-blur-[1px] transition duration-500 group-hover:bg-slate-950/35 group-hover:opacity-100">
-            <button
-              type="button"
-              onClick={() => onViewImage(item)}
-              className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg transition hover:-translate-y-0.5"
-            >
-              View Image
-            </button>
-            <Link
-              href="/projects"
-              className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15"
-            >
-              View Project
-            </Link>
+          <div className="absolute inset-0 flex flex-col justify-between bg-[linear-gradient(180deg,rgba(2,6,23,0.1)_0%,rgba(2,6,23,0.78)_100%)] opacity-0 backdrop-blur-[1px] transition duration-500 group-hover:opacity-100">
+            <div className="flex justify-end p-4">
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-white/90">
+                Preview
+              </span>
+            </div>
+
+            <div className="p-4 text-white">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
+                {item.category}
+              </p>
+              <h4 className="mt-2 text-2xl font-semibold tracking-tight">{item.project}</h4>
+              <p className="mt-2 text-sm text-white/80">{item.location}</p>
+              <p className="mt-4 max-w-sm text-sm leading-7 text-white/85">
+                {details.summary}
+              </p>
+
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                <HoverStat label="Area" value={details.area} />
+                <HoverStat label="Status" value={details.status} />
+                <HoverStat label="Style" value={details.style} />
+                <HoverStat label="Handover" value={details.handover} />
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => onViewImage(item)}
+                  className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg transition hover:-translate-y-0.5"
+                >
+                  View Image
+                </button>
+                <Link
+                  href="/projects"
+                  className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/15"
+                >
+                  View Project
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -527,6 +555,71 @@ function GalleryCard({
         </div>
       </div>
     </motion.article>
+  );
+}
+
+function getGalleryDetails(item: (typeof galleryImages)[number]) {
+  const base = {
+    summary:
+      "A polished demo project with premium finishes, modern planning, and a warm residential feel.",
+    area: "2,400 sq. ft.",
+    status: "Ready for preview",
+    style: "Contemporary",
+    handover: "2025",
+  };
+
+  switch (item.category) {
+    case "Exterior":
+      return {
+        ...base,
+        summary: "Exterior-focused design with bold lines, balanced proportions, and strong curb appeal.",
+        style: "Exterior Design",
+      };
+    case "Interior":
+      return {
+        ...base,
+        summary: "Elegant interior spaces shaped around light, comfort, and refined material choices.",
+        style: "Interior Luxury",
+      };
+    case "Residential":
+      return {
+        ...base,
+        summary: "Residential living with practical layouts, premium finishes, and family-ready spaces.",
+        area: "3,100 sq. ft.",
+        style: "Family Home",
+      };
+    case "Commercial":
+      return {
+        ...base,
+        summary: "Commercial architecture designed for visibility, efficient circulation, and business growth.",
+        area: "6,500 sq. ft.",
+        style: "Commercial Tower",
+      };
+    case "Construction":
+      return {
+        ...base,
+        summary: "A work-in-progress showcase highlighting structure, execution, and build quality.",
+        status: "Under Construction",
+        style: "Site Progress",
+      };
+    case "Completed":
+      return {
+        ...base,
+        summary: "Finished property presentation with clean detailing, balance, and move-in-ready confidence.",
+        status: "Completed",
+        handover: "Delivered",
+      };
+    default:
+      return base;
+  }
+}
+
+function HoverStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3">
+      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-white/65">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-white">{value}</p>
+    </div>
   );
 }
 
