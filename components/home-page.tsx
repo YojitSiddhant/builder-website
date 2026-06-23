@@ -231,33 +231,6 @@ const processSteps = [
   },
 ] as const;
 
-const testimonials = [
-  {
-    name: "Aarav Mehta",
-    role: "Homeowner",
-    rating: 5,
-    review:
-      "They delivered exactly what they promised. The quality, communication, and finish exceeded our expectations.",
-    image: "/home/avatar-aarav.svg",
-  },
-  {
-    name: "Priya Nair",
-    role: "Investor",
-    rating: 5,
-    review:
-      "Professional from start to finish. The team kept every milestone clear and the project looked exceptional at handover.",
-    image: "/home/avatar-priya.svg",
-  },
-  {
-    name: "Rohan Kapoor",
-    role: "Business Owner",
-    rating: 5,
-    review:
-      "A dependable builder with a premium approach. The commercial space came together beautifully and on schedule.",
-    image: "/home/avatar-rohan.svg",
-  },
-] as const;
-
 const sectionReveal = {
   hidden: { opacity: 0, y: 24 },
   show: {
@@ -270,8 +243,6 @@ const sectionReveal = {
 export function HomePage() {
   const [heroIndex, setHeroIndex] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [testimonialPaused, setTestimonialPaused] = useState(false);
 
   useEffect(() => {
     if (heroPaused) return;
@@ -282,16 +253,6 @@ export function HomePage() {
 
     return () => window.clearInterval(timer);
   }, [heroPaused]);
-
-  useEffect(() => {
-    if (testimonialPaused) return;
-
-    const timer = window.setInterval(() => {
-      setTestimonialIndex((current) => (current + 1) % testimonials.length);
-    }, 5000);
-
-    return () => window.clearInterval(timer);
-  }, [testimonialPaused]);
 
   return (
     <div className="-mt-8 overflow-x-clip bg-white text-slate-900">
@@ -307,12 +268,6 @@ export function HomePage() {
         <TrustSection />
         <ServicesSection />
         <ProcessSection />
-        <TestimonialsSection
-          activeIndex={testimonialIndex}
-          setActiveIndex={setTestimonialIndex}
-          paused={testimonialPaused}
-          setPaused={setTestimonialPaused}
-        />
         <FinalCta />
       </main>
     </div>
@@ -743,90 +698,6 @@ function ProcessSection() {
   );
 }
 
-function TestimonialsSection({
-  activeIndex,
-  setActiveIndex,
-  paused,
-  setPaused,
-}: {
-  activeIndex: number;
-  setActiveIndex: Dispatch<SetStateAction<number>>;
-  paused: boolean;
-  setPaused: Dispatch<SetStateAction<boolean>>;
-}) {
-  const testimonial = testimonials[activeIndex];
-
-  return (
-    <SectionBand>
-      <SectionShell eyebrow="Reviews" title="What Clients Say">
-        <div
-          className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-10"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={testimonial.name}
-              className="grid gap-8 lg:grid-cols-[auto,1fr]"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <div className="flex justify-center lg:justify-start">
-                <div className="relative h-28 w-28 overflow-hidden rounded-full ring-8 ring-blue-100">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    sizes="112px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col justify-center">
-                <div className="mb-3 flex items-center gap-1 text-blue-500">
-                  {Array.from({ length: testimonial.rating }).map((_, index) => (
-                    <StarIcon key={index} className="h-5 w-5" />
-                  ))}
-                </div>
-                <p className="text-xl leading-8 text-slate-700 sm:text-2xl">
-                  {testimonial.review}
-                </p>
-                <div className="mt-6">
-                  <p className="text-lg font-semibold text-slate-900">{testimonial.name}</p>
-                  <p className="text-sm text-slate-500">{testimonial.role}</p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            {testimonials.map((item, index) => (
-              <button
-                key={item.name}
-                type="button"
-                aria-label={`Show testimonial from ${item.name}`}
-                aria-pressed={index === activeIndex}
-                onClick={() => setActiveIndex(index)}
-                className={[
-                  "h-2.5 rounded-full transition-all duration-300",
-                  index === activeIndex ? "w-10 bg-blue-600" : "w-2.5 bg-blue-200 hover:bg-blue-400",
-                ].join(" ")}
-              />
-            ))}
-          </div>
-
-          {paused ? (
-            <div className="pointer-events-none absolute inset-0 bg-white/5" aria-hidden="true" />
-          ) : null}
-        </div>
-      </SectionShell>
-    </SectionBand>
-  );
-}
-
 function FinalCta() {
   return (
     <section
@@ -1038,14 +909,6 @@ function BuildingIcon({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
       <rect x="5" y="3.5" width="14" height="17" rx="2" stroke="currentColor" strokeWidth="1.8" />
       <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z" />
     </svg>
   );
 }
