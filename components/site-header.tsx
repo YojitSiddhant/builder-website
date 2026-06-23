@@ -120,51 +120,64 @@ export function SiteHeader() {
 
       <AnimatePresence initial={false}>
         {mobileOpen ? (
-          <motion.div
-            id="mobile-navigation"
-            className="lg:hidden"
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            variants={drawerVariants}
-          >
-            <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
-              <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)]">
-                <motion.nav aria-label="Mobile Primary">
-                  <motion.ul className="grid gap-2">
-                    {links.map((link) => {
-                      const Icon = link.icon;
-                      const isActive = isActiveLink(pathname, link.href);
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close navigation"
+              className="fixed inset-0 z-40 cursor-default bg-slate-950/18 backdrop-blur-[1px] lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onClick={() => setMobileOpen(false)}
+            />
 
-                      return (
-                        <motion.li key={link.href} variants={itemVariants}>
-                          <Link
-                            href={link.href}
-                            aria-current={isActive ? "page" : undefined}
-                            onClick={() => setMobileOpen(false)}
-                            className={[
-                              "flex items-center justify-center gap-3 rounded-2xl px-4 py-3 text-center text-sm font-medium transition-colors",
-                              isActive
-                                ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
-                                : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
-                            ].join(" ")}
-                          >
-                            <Icon
+            <motion.div
+              id="mobile-navigation"
+              className="absolute left-0 right-0 top-full z-50 lg:hidden"
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              variants={drawerVariants}
+            >
+              <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
+                <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white/98 p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)] backdrop-blur-xl">
+                  <motion.nav aria-label="Mobile Primary">
+                    <motion.ul className="grid gap-2">
+                      {links.map((link) => {
+                        const Icon = link.icon;
+                        const isActive = isActiveLink(pathname, link.href);
+
+                        return (
+                          <motion.li key={link.href} variants={itemVariants}>
+                            <Link
+                              href={link.href}
+                              aria-current={isActive ? "page" : undefined}
+                              onClick={() => setMobileOpen(false)}
                               className={[
-                                "h-4 w-4 shrink-0",
-                                isActive ? "opacity-100" : "opacity-70",
+                                "flex items-center justify-center gap-3 rounded-2xl px-4 py-3 text-center text-sm font-medium transition-colors",
+                                isActive
+                                  ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
+                                  : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
                               ].join(" ")}
-                            />
-                            <span className="text-center">{link.label}</span>
-                          </Link>
-                        </motion.li>
-                      );
-                    })}
-                  </motion.ul>
-                </motion.nav>
+                            >
+                              <Icon
+                                className={[
+                                  "h-4 w-4 shrink-0",
+                                  isActive ? "opacity-100" : "opacity-70",
+                                ].join(" ")}
+                              />
+                              <span className="text-center">{link.label}</span>
+                            </Link>
+                          </motion.li>
+                        );
+                      })}
+                    </motion.ul>
+                  </motion.nav>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         ) : null}
       </AnimatePresence>
     </header>
