@@ -6,6 +6,9 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Builder Website",
   description: "A simple website with navigation and placeholder pages.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
