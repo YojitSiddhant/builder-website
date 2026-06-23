@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  IoBusinessOutline,
+  IoHomeOutline,
+  IoImageOutline,
+  IoInformationCircleOutline,
+  IoMailOutline,
+  IoMenuOutline,
+  IoSparklesOutline,
+} from "react-icons/io5";
 
 const links = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -105,122 +114,31 @@ export function SiteHeader() {
 }
 
 function HomeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4 11.5 12 4l8 7.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.5 10.25V20h11V10.25"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoHomeOutline className={className} />;
 }
 
 function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M12 10.25V16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="7.75" r="1" fill="currentColor" />
-    </svg>
-  );
+  return <IoInformationCircleOutline className={className} />;
 }
 
 function SparkIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 3.5 13.9 9l5.5 1.9-5.5 1.9L12 18.3 10.1 12.8 4.6 10.9l5.5-1.9L12 3.5Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoSparklesOutline className={className} />;
 }
 
 function BriefcaseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M9 6.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <rect x="4" y="6.5" width="16" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M4 12h16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function ImageIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M8.5 11.5 11 14l2.25-2.25L16.5 16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="9" cy="9" r="1.2" fill="currentColor" />
-    </svg>
-  );
+  return <IoImageOutline className={className} />;
 }
 
 function MailIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="m5.5 7.5 6.5 5 6.5-5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoMailOutline className={className} />;
 }
 
 function BuilderMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M7 5.5h6.1a3 3 0 0 1 0 6H7v-6Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7 12.5h6.7a3.1 3.1 0 1 1 0 6.2H7v-6.2Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function MenuIcon({
@@ -228,11 +146,7 @@ function MenuIcon({
 }: {
   className?: string;
 }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoMenuOutline className={className} />;
 }
 
 function isActiveLink(pathname: string, href: string) {

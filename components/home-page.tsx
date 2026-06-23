@@ -3,6 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaHandshake } from "react-icons/fa6";
+import {
+  IoBusinessOutline,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+  IoHammerOutline,
+  IoEyeOutline,
+  IoHomeOutline,
+  IoLayersOutline,
+  IoMedalOutline,
+  IoPencilOutline,
+  IoShieldCheckmarkOutline,
+  IoSparklesOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { useEffect, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import { makeHoverImage } from "./hover-image";
 
@@ -804,172 +819,57 @@ function ServiceGlyph({ index }: { index: number }) {
 }
 
 function ShieldCheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 3.5 18 6v5.2c0 4.2-2.7 7.6-6 9.3-3.3-1.7-6-5.1-6-9.3V6l6-2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m8.7 11.9 2 2 4.6-4.8"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoShieldCheckmarkOutline className={className} />;
 }
 
 function EyeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M2.5 12s3.7-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.7 6.5-9.5 6.5S2.5 12 2.5 12Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="12" r="2.8" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
+  return <IoEyeOutline className={className} />;
 }
 
 function SparkIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 3.5 13.8 9l5.5 1.8-5.5 1.9L12 18.5 10.2 12.7l-5.5-1.9L10.2 9 12 3.5Z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoSparklesOutline className={className} />;
 }
 
 function MedalIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="10" r="4.5" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M9.8 13.8 8.5 20l3.5-2 3.5 2-1.3-6.2"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoMedalOutline className={className} />;
 }
 
 function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 8.5V12l2.5 1.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoTimeOutline className={className} />;
 }
 
 function BlueprintIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="4.5" y="4.5" width="15" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8 8.5h8M8 12h8M8 15.5h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoLayersOutline className={className} />;
 }
 
 function HeartHandshakeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 19.5 6.3 14a2.6 2.6 0 0 1 0-3.7 2.6 2.6 0 0 1 3.7 0L12 12.3l2-2a2.6 2.6 0 0 1 3.7 0 2.6 2.6 0 0 1 0 3.7L12 19.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <FaHandshake className={className} />;
 }
 
 function BuildingIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="5" y="3.5" width="14" height="17" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
-      <path
-        d={direction === "left" ? "M14.5 6.5 9 12l5.5 5.5" : "M9.5 6.5 15 12l-5.5 5.5"}
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+  return direction === "left" ? (
+    <IoChevronBackOutline className="h-5 w-5" />
+  ) : (
+    <IoChevronForwardOutline className="h-5 w-5" />
   );
 }
 
 function HouseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4.5 11.25 12 4.5l7.5 6.75"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.5 10.75V19.5h11V10.75"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoHomeOutline className={className} />;
 }
 
 function TowerIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="7" y="3.5" width="10" height="17" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M10 6.5h4M10 10h4M10 13.5h4M10 17h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function HammerIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="m14 4 6 6-2 2-3-3-6.3 6.3a2 2 0 0 1-2.8 0l-.2-.2 8.1-8.1-2-2 2.2-2Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoHammerOutline className={className} />;
 }
 
 function PenToolIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4.5 18.5 16.2 6.8a2 2 0 0 1 2.8 0l-5.2 5.2 2.7 2.7-4 4H6.5l-2 2-1-2.2Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoPencilOutline className={className} />;
 }

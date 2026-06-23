@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { IoCloseOutline } from "react-icons/io5";
+import {
+  IoArrowForwardOutline,
+  IoCloseOutline,
+  IoPlayOutline,
+  IoStar,
+} from "react-icons/io5";
 import {
   useEffect,
   useMemo,
@@ -1107,26 +1112,13 @@ function KeyStat({ label, value }: { label: string; value: string }) {
 }
 
 function PlayIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="m8 5 12 7-12 7V5Z" />
-    </svg>
-  );
+  return <IoPlayOutline className={className} />;
 }
 
 function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path d="M5 12h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="m13 6 6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <IoArrowForwardOutline className={className} />;
 }
 
 function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9L12 3Z" />
-    </svg>
-  );
+  return <IoStar className={className} />;
 }

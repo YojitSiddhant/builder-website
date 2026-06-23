@@ -4,6 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  IoBusinessOutline,
+  IoCheckmarkCircleOutline,
+  IoCompassOutline,
+  IoEyeOutline,
+  IoHeartOutline,
+  IoLeafOutline,
+  IoLayersOutline,
+  IoLocateOutline,
+  IoPencilOutline,
+  IoPeopleOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { makeHoverImage } from "./hover-image";
 
 const heroImage =
@@ -668,178 +681,49 @@ function StatCard({
 }
 
 function TeamIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M8.25 11.25a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M15.75 10.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M4.75 18.5c.2-2.9 2.1-4.75 5.5-4.75s5.3 1.85 5.5 4.75"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M13.3 18.5c.2-2.05 1.55-3.4 4-3.4 2 0 3.2.95 3.85 2.35"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <IoPeopleOutline className={className} />;
 }
 
 function PlanningIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="4.5" y="5" width="15" height="14" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M8 4.5V7m8-2.5V7M4.5 9.5h15"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path d="M8 12h8M8 15h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoLayersOutline className={className} />;
 }
 
 function DeliveryIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4.5 12.75 9 17.25 19.5 6.75"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M20 12a8 8 0 1 1-8-8"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <IoCheckmarkCircleOutline className={className} />;
 }
 
 function TargetIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 4.5V2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoLocateOutline className={className} />;
 }
 
 function HorizonIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path d="M4 16.5h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path
-        d="M7 16.5V11l5-3 5 3v5.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoCompassOutline className={className} />;
 }
 
 function BuildingIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="5" y="4.5" width="14" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8 8h2M8 11h2M8 14h2M14 8h2M14 11h2M14 14h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function TransparencyIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4.5 12c1.9-3.6 5-5.5 7.5-5.5S17.6 8.4 19.5 12c-1.9 3.6-5 5.5-7.5 5.5S6.4 15.6 4.5 12Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
+  return <IoEyeOutline className={className} />;
 }
 
 function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 8.5V12l2.5 1.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <IoTimeOutline className={className} />;
 }
 
 function HeartIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 19.5s-6.5-3.8-8.5-8.1C1.8 8.3 4 5.5 7 5.5c1.7 0 3 .9 5 3 2-2.1 3.3-3 5-3 3 0 5.2 2.8 3.5 5.9C18.5 15.7 12 19.5 12 19.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoHeartOutline className={className} />;
 }
 
 function DraftingIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path d="M7 18.5h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="m8.5 15 7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path
-        d="M15.5 8 18 10.5 10.5 18H8v-2.5L15.5 8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoPencilOutline className={className} />;
 }
 
 function LeafIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M19.5 4.5c-6.2.1-11 2.4-14.5 6.8-1.4 1.8-1.4 4.6.2 6.3 1.8 1.9 4.8 2 6.8.3 4.3-3.7 6.6-8.5 7.5-13.4Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M8 16c1.3-3.1 3.8-5.6 7.5-7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoLeafOutline className={className} />;
 }
 
 function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M5.5 12.5 9.5 16.5 18.5 7.5"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoCheckmarkCircleOutline className={className} />;
 }

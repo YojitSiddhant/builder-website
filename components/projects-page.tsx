@@ -7,6 +7,11 @@ import {
   motion,
 } from "framer-motion";
 import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
+import {
+  IoArrowForwardOutline,
+  IoChevronForwardOutline,
+  IoSearchOutline,
+} from "react-icons/io5";
 import { makeHoverImage } from "./hover-image";
 
 const heroImage =
@@ -894,44 +899,13 @@ function KeyStat({ label, value }: { label: string; value: string }) {
 }
 
 function SearchIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="m16 16 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoSearchOutline className={className} />;
 }
 
 function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M5 12h14"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="m13 6 6 6-6 6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoArrowForwardOutline className={className} />;
 }
 
 function ChevronIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="m6.5 9 5.5 6 5.5-6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoChevronForwardOutline className={className} />;
 }

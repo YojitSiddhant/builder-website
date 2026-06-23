@@ -6,7 +6,12 @@ import {
   motion,
   type Variants,
 } from "framer-motion";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import {
+  IoAddOutline,
+  IoCallOutline,
+  IoMailOutline,
+  IoTimeOutline,
   type ChangeEvent,
   type ChangeEventHandler,
   type FormEvent,
@@ -739,90 +744,21 @@ function TextareaField({
 }
 
 function OfficeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M5 19h14"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.5 19V6.8a1.3 1.3 0 0 1 1.3-1.3h6.4a1.3 1.3 0 0 1 1.3 1.3V19"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10 7.8h1.2M12.8 7.8H14M10 10.8h1.2M12.8 10.8H14M10 13.8h1.2M12.8 13.8H14"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <HiOutlineBuildingOffice2 className={className} />;
 }
 
 function PhoneIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M8 4.8h2.1c.5 0 .9.3 1 .8l.7 2.7c.1.4 0 .8-.3 1.1l-1.2 1.1c.8 1.8 2.2 3.2 4 4l1.1-1.2c.3-.3.7-.4 1.1-.3l2.7.7c.5.1.8.5.8 1V18c0 .6-.5 1-1 1C10.8 19 5 13.2 5 6.8c0-.6.4-1 1-1h2Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoCallOutline className={className} />;
 }
 
 function MailIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect
-        x="4"
-        y="6"
-        width="16"
-        height="12"
-        rx="2.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="m5.5 7.5 6.5 5 6.5-5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoMailOutline className={className} />;
 }
 
 function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M12 8.5V12l2.4 1.8"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoTimeOutline className={className} />;
 }
 
 function PlusIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 6v12M6 12h12"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <IoAddOutline className={className} />;
 }

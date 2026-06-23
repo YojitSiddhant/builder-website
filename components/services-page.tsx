@@ -7,6 +7,19 @@ import {
   motion,
 } from "framer-motion";
 import { useState, type ReactNode } from "react";
+import {
+  IoBusinessOutline,
+  IoChevronForwardOutline,
+  IoClipboardOutline,
+  IoColorPaletteOutline,
+  IoCompassOutline,
+  IoEyeOutline,
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoRefreshOutline,
+  IoShieldOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { makeHoverImage } from "./hover-image";
 
 const heroImage =
@@ -735,198 +748,45 @@ function SectionEyebrow({
 }
 
 function HomeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4 11.5 12 4l8 7.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.5 10.25V20h11V10.25"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoHomeOutline className={className} />;
 }
 
 function BriefcaseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M9 6.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <rect x="4" y="6.5" width="16" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M4 12h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoBusinessOutline className={className} />;
 }
 
 function RefreshIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M20 12a8 8 0 0 1-13.6 5.7"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4 12a8 8 0 0 1 13.6-5.7"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M15 3.8h3.2V7"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9 20.2H5.8V17"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoRefreshOutline className={className} />;
 }
 
 function PaletteIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 4.5c-4.1 0-7.5 3.2-7.5 7.2 0 3.7 2.8 7 7.6 7h1.2c1 0 1.7-.8 1.7-1.7 0-.7-.5-1.3-1.2-1.4l-1.1-.2c-.6-.1-1.1-.7-1.1-1.3 0-.8.6-1.4 1.4-1.4H15c2 0 3.5-1.5 3.5-3.5 0-2.9-3.1-4.7-6.5-4.7Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="8" cy="10" r="1" fill="currentColor" />
-      <circle cx="10.8" cy="7.8" r="1" fill="currentColor" />
-      <circle cx="13.8" cy="7.6" r="1" fill="currentColor" />
-    </svg>
-  );
+  return <IoColorPaletteOutline className={className} />;
 }
 
 function ClipboardIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <rect x="6" y="4.5" width="12" height="15" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M9 4.5a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 1 3 0"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M9 10h6M9 13h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoClipboardOutline className={className} />;
 }
 
 function CompassIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="m14.5 9.5-1 5-5 1 1-5 5-1Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M12 4.5V2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
+  return <IoCompassOutline className={className} />;
 }
 
 function ShieldIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M12 3.8 18.5 6.5v5.2c0 4.1-2.5 6.9-6.5 8.3-4-1.4-6.5-4.2-6.5-8.3V6.5L12 3.8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M9.5 12.2 11 13.7l3.5-3.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <IoShieldOutline className={className} />;
 }
 
 function TeamIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M8.25 11.25a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M15.75 10.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M4.75 18.5c.2-2.9 2.1-4.75 5.5-4.75s5.3 1.85 5.5 4.75"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M13.3 18.5c.2-2.05 1.55-3.4 4-3.4 2 0 3.2.95 3.85 2.35"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <IoPeopleOutline className={className} />;
 }
 
 function EyeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M4.5 12c1.9-3.6 5-5.5 7.5-5.5S17.6 8.4 19.5 12c-1.9 3.6-5 5.5-7.5 5.5S6.4 15.6 4.5 12Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
+  return <IoEyeOutline className={className} />;
 }
 
 function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M12 8.5V12l2.5 1.8"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoTimeOutline className={className} />;
 }
 
 function ChevronIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="m6.5 9 5.5 6 5.5-6"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <IoChevronForwardOutline className={className} />;
 }
