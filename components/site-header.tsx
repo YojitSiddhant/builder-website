@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -26,6 +27,7 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const portalTarget = typeof document === "undefined" ? null : document.body;
 
   useEffect(() => {
     if (!mobileOpen) {
@@ -140,71 +142,76 @@ export function SiteHeader() {
         <div aria-hidden="true" className="hidden lg:block" />
       </div>
 
-      <AnimatePresence initial={false}>
-        {mobileOpen ? (
-          <>
-            <motion.button
-              type="button"
-              aria-label="Close navigation"
-              className="fixed inset-0 z-40 cursor-default bg-slate-950/30 backdrop-blur-md lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              onClick={() => setMobileOpen(false)}
-            />
+      {portalTarget
+        ? createPortal(
+            <AnimatePresence initial={false}>
+              {mobileOpen ? (
+                <>
+                  <motion.button
+                    type="button"
+                    aria-label="Close navigation"
+                    className="fixed inset-0 z-[60] cursor-default bg-slate-950/35 backdrop-blur-md lg:hidden"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    onClick={() => setMobileOpen(false)}
+                  />
 
-            <motion.div
-              id="mobile-navigation"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Mobile navigation"
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 lg:hidden"
-              initial="hidden"
-              animate="show"
-              exit="exit"
-              variants={drawerVariants}
-            >
-              <div className="w-full max-w-sm">
-                <div className="max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-[1.75rem] border border-blue-100 bg-white/96 p-4 shadow-[0_24px_60px_rgba(37,99,235,0.18)] backdrop-blur-2xl">
-                  <motion.nav aria-label="Mobile Primary">
-                    <motion.ul className="grid gap-2">
-                      {links.map((link) => {
-                        const Icon = link.icon;
-                        const isActive = isActiveLink(pathname, link.href);
+                  <motion.div
+                    id="mobile-navigation"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Mobile navigation"
+                    className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-6 lg:hidden"
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
+                    variants={drawerVariants}
+                  >
+                    <div className="w-full max-w-sm">
+                      <div className="max-h-[calc(100dvh-3rem)] overflow-y-auto rounded-[1.75rem] border border-blue-100 bg-white/96 p-4 shadow-[0_24px_60px_rgba(37,99,235,0.18)] backdrop-blur-2xl">
+                        <motion.nav aria-label="Mobile Primary">
+                          <motion.ul className="grid gap-2">
+                            {links.map((link) => {
+                              const Icon = link.icon;
+                              const isActive = isActiveLink(pathname, link.href);
 
-                        return (
-                          <motion.li key={link.href} variants={itemVariants}>
-                            <Link
-                              href={link.href}
-                              aria-current={isActive ? "page" : undefined}
-                              onClick={() => setMobileOpen(false)}
-                              className={[
-                                "flex items-center justify-center gap-3 rounded-2xl px-4 py-3 text-center text-sm font-medium transition-colors",
-                                isActive
-                                  ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
-                                  : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
-                              ].join(" ")}
-                            >
-                              <Icon
-                                className={[
-                                  "h-4 w-4 shrink-0",
-                                  isActive ? "opacity-100" : "opacity-70",
-                                ].join(" ")}
-                              />
-                              <span className="text-center">{link.label}</span>
-                            </Link>
-                          </motion.li>
-                        );
-                      })}
-                    </motion.ul>
-                  </motion.nav>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        ) : null}
-      </AnimatePresence>
+                              return (
+                                <motion.li key={link.href} variants={itemVariants}>
+                                  <Link
+                                    href={link.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={[
+                                      "flex items-center justify-center gap-3 rounded-2xl px-4 py-3 text-center text-sm font-medium transition-colors",
+                                      isActive
+                                        ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.2)]"
+                                        : "text-blue-700 hover:bg-blue-50 hover:text-blue-900",
+                                    ].join(" ")}
+                                  >
+                                    <Icon
+                                      className={[
+                                        "h-4 w-4 shrink-0",
+                                        isActive ? "opacity-100" : "opacity-70",
+                                      ].join(" ")}
+                                    />
+                                    <span className="text-center">{link.label}</span>
+                                  </Link>
+                                </motion.li>
+                              );
+                            })}
+                          </motion.ul>
+                        </motion.nav>
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : null}
+            </AnimatePresence>,
+            portalTarget,
+          )
+        : null}
     </header>
   );
 }
