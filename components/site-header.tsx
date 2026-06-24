@@ -147,29 +147,19 @@ export function SiteHeader() {
             <AnimatePresence initial={false}>
               {mobileOpen ? (
                 <>
-                  <motion.button
-                    type="button"
-                    aria-label="Close navigation"
-                    className="fixed inset-0 z-[60] cursor-default bg-slate-950/35 backdrop-blur-md xl:hidden"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={() => setMobileOpen(false)}
-                  />
-
                   <motion.div
                     id="mobile-navigation"
                     role="dialog"
                     aria-modal="true"
                     aria-label="Mobile navigation"
-                    className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-6 xl:hidden"
+                    className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/35 px-4 py-6 backdrop-blur-md xl:hidden"
                     initial="hidden"
                     animate="show"
                     exit="exit"
                     variants={drawerVariants}
+                    onClick={() => setMobileOpen(false)}
                   >
-                    <div className="w-full max-w-sm">
+                    <div className="w-full max-w-sm" onClick={(event) => event.stopPropagation()}>
                       <div className="max-h-[calc(100dvh-3rem)] overflow-y-auto rounded-[1.75rem] border border-blue-100 bg-white/96 p-4 shadow-[0_24px_60px_rgba(37,99,235,0.18)] backdrop-blur-2xl">
                         <motion.nav aria-label="Mobile Primary">
                           <motion.ul className="grid gap-2">
