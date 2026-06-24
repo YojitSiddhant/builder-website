@@ -94,7 +94,7 @@ export function SiteHeader() {
           Builder
         </Link>
 
-        <nav aria-label="Primary" className="hidden justify-self-center lg:block">
+        <nav aria-label="Primary" className="hidden justify-self-center xl:block">
           <ul className="flex items-center gap-2 text-sm font-medium text-blue-700">
             {links.map((link) => {
               const Icon = link.icon;
@@ -126,7 +126,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <button
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-blue-100 bg-white text-blue-700 shadow-sm transition hover:bg-blue-50"
@@ -139,7 +139,7 @@ export function SiteHeader() {
           </button>
         </div>
 
-        <div aria-hidden="true" className="hidden lg:block" />
+        <div aria-hidden="true" className="hidden xl:block" />
       </div>
 
       {portalTarget
@@ -150,7 +150,7 @@ export function SiteHeader() {
                   <motion.button
                     type="button"
                     aria-label="Close navigation"
-                    className="fixed inset-0 z-[60] cursor-default bg-slate-950/35 backdrop-blur-md lg:hidden"
+                    className="fixed inset-0 z-[60] cursor-default bg-slate-950/35 backdrop-blur-md xl:hidden"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -163,7 +163,7 @@ export function SiteHeader() {
                     role="dialog"
                     aria-modal="true"
                     aria-label="Mobile navigation"
-                    className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-6 lg:hidden"
+                    className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-6 xl:hidden"
                     initial="hidden"
                     animate="show"
                     exit="exit"
