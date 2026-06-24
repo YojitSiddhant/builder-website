@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   IoBusinessOutline,
@@ -26,6 +26,28 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileOpen]);
 
   const drawerVariants = {
     hidden: { opacity: 0, y: -10, scale: 0.98 },
@@ -124,7 +146,7 @@ export function SiteHeader() {
             <motion.button
               type="button"
               aria-label="Close navigation"
-              className="fixed inset-0 z-40 cursor-default bg-slate-950/18 backdrop-blur-[1px] lg:hidden"
+              className="fixed inset-0 z-40 cursor-default bg-slate-950/30 backdrop-blur-md lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -134,14 +156,17 @@ export function SiteHeader() {
 
             <motion.div
               id="mobile-navigation"
-              className="absolute left-0 right-0 top-full z-50 lg:hidden"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 lg:hidden"
               initial="hidden"
               animate="show"
               exit="exit"
               variants={drawerVariants}
             >
-              <div className="mx-auto w-full max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
-                <div className="max-h-[calc(100dvh-5.5rem)] overflow-y-auto rounded-[1.5rem] border border-blue-100 bg-white/98 p-3 shadow-[0_20px_50px_rgba(37,99,235,0.14)] backdrop-blur-xl">
+              <div className="w-full max-w-sm">
+                <div className="max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-[1.75rem] border border-blue-100 bg-white/96 p-4 shadow-[0_24px_60px_rgba(37,99,235,0.18)] backdrop-blur-2xl">
                   <motion.nav aria-label="Mobile Primary">
                     <motion.ul className="grid gap-2">
                       {links.map((link) => {
