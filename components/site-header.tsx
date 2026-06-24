@@ -83,7 +83,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl">
-      <div className="relative mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-4 px-4 py-4 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-6 xl:px-8">
         <Link
           href="/"
           className="inline-flex w-fit items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-blue-700"
