@@ -606,7 +606,43 @@ function PricingSection() {
           Pricing Plans
         </h2>
 
-        <div className="mt-10 overflow-hidden rounded-[1.75rem] border border-blue-100 bg-white shadow-[0_18px_60px_rgba(37,99,235,0.06)]">
+        <div className="mt-10 space-y-4 md:hidden">
+          {pricingPlans.map((row) => (
+            <div
+              key={row.type}
+              className={[
+                "rounded-[1.5rem] border border-blue-100 bg-white p-4 shadow-[0_18px_60px_rgba(37,99,235,0.06)]",
+                row.popular ? "ring-1 ring-blue-200" : "",
+              ].join(" ")}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-base font-semibold text-slate-950">
+                      {row.type}
+                    </span>
+                    {row.popular ? (
+                      <span className="rounded-full bg-blue-700 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-white">
+                        Popular
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-2 text-sm text-slate-500">{row.area}</p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-700">
+                    Price
+                  </p>
+                  <p className="mt-2 text-base font-semibold text-slate-950">
+                    {row.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 hidden overflow-hidden rounded-[1.75rem] border border-blue-100 bg-white shadow-[0_18px_60px_rgba(37,99,235,0.06)] md:block">
           <table className="min-w-full divide-y divide-blue-100 text-left">
             <thead className="bg-blue-50/60">
               <tr>
