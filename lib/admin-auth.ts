@@ -5,36 +5,37 @@ export const ADMIN_SESSION_COOKIE = "builder_admin_session";
 const ADMIN_SESSION_TTL_MS = 1000 * 60 * 60 * 8;
 
 type AdminSessionPayload = {
-  username: string;
   exp: number;
 };
 
 export function getAdminCredentials() {
-  const username = process.env.ADMIN_USERNAME?.trim() ?? "";
-  const password = process.env.ADMIN_PASSWORD?.trim() ?? "";
-  const secret = process.env.ADMIN_SESSION_SECRET?.trim() ?? "";
+  const password =
+    process.env.ADMIN_PASSWORD?.trim() ??
+    (process.env.NODE_ENV === "production" ? "" : "123");
+  const secret =
+    process.env.ADMIN_SESSION_SECRET?.trim() ??
+    (process.env.NODE_ENV === "production" ? "" : "dev-admin-session-secret");
 
-  return { username, password, secret };
+  return { password, secret };
 }
 
 export function hasAdminCredentials() {
-  const { username, password, secret } = getAdminCredentials();
-  return Boolean(username && password && secret);
+  const { password, secret } = getAdminCredentials();
+  return Boolean(password && secret);
 }
 
-export function createAdminSession(username: string) {
+export function createAdminSession() {
   const { secret } = getAdminCredentials();
   const payload: AdminSessionPayload = {
-    username,
     exp: Date.now() + ADMIN_SESSION_TTL_MS,
   };
   return signPayload(payload, secret);
 }
 
 export function verifyAdminSession(token: string | undefined) {
-  const { username, secret } = getAdminCredentials();
+  const { secret } = getAdminCredentials();
 
-  if (!token || !username || !secret) {
+  if (!token || !secret) {
     return false;
   }
 
@@ -50,10 +51,6 @@ export function verifyAdminSession(token: string | undefined) {
 
   try {
     const payload = JSON.parse(Buffer.from(encodedPayload, "base64url").toString("utf8")) as AdminSessionPayload;
-    if (payload.username !== username) {
-      return false;
-    }
-
     return payload.exp > Date.now();
   } catch {
     return false;

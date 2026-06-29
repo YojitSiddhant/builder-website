@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   getVisitPurposeOptions,
   getVisitSlotOptions,
+  getVisitBackendLabel,
   readSiteVisitRequests,
 } from "@/lib/site-visits";
 import { requireAdmin } from "@/lib/admin-auth";
@@ -35,6 +36,9 @@ export default async function AdminVisitsPage() {
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
                 Every request submitted from the contact page appears here so the team can review preferred dates, time slots, and visitor details.
+              </p>
+              <p className="mt-3 inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                {getVisitBackendLabel()}
               </p>
             </div>
 

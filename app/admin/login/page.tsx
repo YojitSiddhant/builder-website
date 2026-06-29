@@ -16,7 +16,7 @@ export default async function AdminLoginPage({
           Admin Login
         </h1>
         <p className="mt-3 text-sm leading-7 text-slate-600">
-          Sign in with the owner credentials from your environment variables to view and manage site visit requests.
+          Use the owner password to sign in and view the site visit requests.
         </p>
 
         {error ? (
@@ -28,17 +28,6 @@ export default async function AdminLoginPage({
         ) : null}
 
         <form action="/api/admin/login" method="post" className="mt-8 space-y-4">
-          <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-700">Username</span>
-            <input
-              name="username"
-              type="text"
-              autoComplete="username"
-              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none ring-0 transition placeholder:text-slate-400 focus:border-blue-400"
-              placeholder="Owner username"
-            />
-          </label>
-
           <label className="block">
             <span className="mb-2 block text-sm font-medium text-slate-700">Password</span>
             <input
@@ -57,6 +46,9 @@ export default async function AdminLoginPage({
             Sign In
           </button>
         </form>
+        <p className="mt-4 text-xs leading-6 text-slate-500">
+          For local testing, the default password is <span className="font-semibold text-slate-700">123</span> if you have not set <code>ADMIN_PASSWORD</code>.
+        </p>
       </div>
     </div>
   );
