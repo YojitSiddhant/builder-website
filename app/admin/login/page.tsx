@@ -7,20 +7,20 @@ export default async function AdminLoginPage({
   const error = resolvedSearchParams?.error;
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center bg-slate-950 px-4 py-16 text-slate-100 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-300">
+    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center bg-slate-50 px-4 py-16 text-slate-900 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
           Owner Access
         </p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white">
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
           Admin Login
         </h1>
-        <p className="mt-3 text-sm leading-7 text-slate-300">
+        <p className="mt-3 text-sm leading-7 text-slate-600">
           Sign in with the owner credentials from your environment variables to view and manage site visit requests.
         </p>
 
         {error ? (
-          <div className="mt-5 rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-200">
+          <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
             {error === "config"
               ? "Admin credentials are not configured on the server."
               : "Invalid username or password."}
@@ -29,30 +29,30 @@ export default async function AdminLoginPage({
 
         <form action="/api/admin/login" method="post" className="mt-8 space-y-4">
           <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-200">Username</span>
+            <span className="mb-2 block text-sm font-medium text-slate-700">Username</span>
             <input
               name="username"
               type="text"
               autoComplete="username"
-              className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-300"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none ring-0 transition placeholder:text-slate-400 focus:border-blue-400"
               placeholder="Owner username"
             />
           </label>
 
           <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-200">Password</span>
+            <span className="mb-2 block text-sm font-medium text-slate-700">Password</span>
             <input
               name="password"
               type="password"
               autoComplete="current-password"
-              className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-300"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none ring-0 transition placeholder:text-slate-400 focus:border-blue-400"
               placeholder="Owner password"
             />
           </label>
 
           <button
             type="submit"
-            className="inline-flex w-full items-center justify-center rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+            className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
             Sign In
           </button>

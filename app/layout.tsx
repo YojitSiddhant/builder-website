@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteShell } from "@/components/site-shell";
 
 export const metadata: Metadata = {
   title: "Builder Website",
@@ -19,13 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth antialiased">
       <body className="min-h-full overflow-x-clip bg-white text-slate-900 antialiased">
-        <div className="flex min-h-screen min-w-0 flex-col">
-          <SiteHeader />
-          <main className="flex w-full min-w-0 flex-1 flex-col overflow-x-clip">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

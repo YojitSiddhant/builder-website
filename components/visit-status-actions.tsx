@@ -57,7 +57,7 @@ export function VisitStatusActions({
         value={currentStatus}
         disabled={isPending}
         onChange={(event) => updateStatus(event.target.value)}
-        className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-3 py-2 text-xs font-medium capitalize text-slate-100 outline-none transition focus:border-cyan-300 disabled:cursor-not-allowed disabled:opacity-70"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-medium capitalize text-slate-700 outline-none transition focus:border-blue-400 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {STATUS_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
@@ -66,7 +66,7 @@ export function VisitStatusActions({
         ))}
       </select>
       {message ? (
-        <p className="text-xs text-slate-400">{message}</p>
+        <p className="text-xs text-slate-500">{message}</p>
       ) : null}
     </div>
   );

@@ -22,32 +22,32 @@ export default async function AdminVisitsPage() {
   const confirmedVisits = visits.filter((visit) => visit.status === "confirmed").length;
 
   return (
-    <div className="bg-slate-950 px-4 py-10 text-slate-100 sm:px-6 lg:px-8 lg:py-14">
+    <div className="bg-slate-50 px-4 py-10 text-slate-900 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur sm:p-8">
+        <div className="flex flex-col gap-4 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_80px_rgba(15,23,42,0.08)] sm:p-8">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-300">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
                 Internal Dashboard
               </p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
                 Site Visit Requests
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
                 Every request submitted from the contact page appears here so the team can review preferred dates, time slots, and visitor details.
               </p>
             </div>
 
             <Link
               href="/contact"
-              className="inline-flex w-fit items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:bg-cyan-400/20"
+              className="inline-flex w-fit items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-100"
             >
               Back to Contact
             </Link>
             <form action="/api/admin/logout" method="post" className="w-fit">
               <button
                 type="submit"
-                className="inline-flex w-fit items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex w-fit items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
               >
                 Sign Out
               </button>
@@ -61,18 +61,18 @@ export default async function AdminVisitsPage() {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900 shadow-[0_24px_70px_rgba(2,6,23,0.35)]">
-          <div className="border-b border-slate-800 px-6 py-5">
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
+          <div className="border-b border-slate-200 px-6 py-5">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-xl font-semibold text-white">Visit List</h2>
-                <p className="mt-1 text-sm text-slate-400">
+                <h2 className="text-xl font-semibold text-slate-950">Visit List</h2>
+                <p className="mt-1 text-sm text-slate-500">
                   Showing {visits.length} request{visits.length === 1 ? "" : "s"}.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-300">
+              <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-600">
                 {getVisitSlotOptions().map((slot) => (
-                  <span key={slot} className="rounded-full border border-slate-700 px-3 py-1">
+                  <span key={slot} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
                     {slot}
                   </span>
                 ))}
@@ -82,15 +82,15 @@ export default async function AdminVisitsPage() {
 
           {visits.length === 0 ? (
             <div className="px-6 py-16 text-center">
-              <p className="text-lg font-medium text-white">No visit requests yet.</p>
-              <p className="mt-2 text-sm text-slate-400">
+              <p className="text-lg font-medium text-slate-950">No visit requests yet.</p>
+              <p className="mt-2 text-sm text-slate-500">
                 Once someone books a slot through the contact page, the request will appear here.
               </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-slate-800 text-left">
-                <thead className="bg-slate-950/60 text-xs uppercase tracking-[0.2em] text-slate-400">
+              <table className="min-w-full divide-y divide-slate-200 text-left">
+                <thead className="bg-slate-50 text-xs uppercase tracking-[0.2em] text-slate-500">
                   <tr>
                     <th className="px-6 py-4">Visitor</th>
                     <th className="px-6 py-4">Visit Schedule</th>
@@ -100,32 +100,32 @@ export default async function AdminVisitsPage() {
                     <th className="px-6 py-4">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800 bg-slate-900 text-sm text-slate-200">
+                <tbody className="divide-y divide-slate-200 bg-white text-sm text-slate-700">
                   {visits.map((visit) => (
                     <tr key={visit.id} className="align-top">
                       <td className="px-6 py-5">
-                        <div className="font-semibold text-white">{visit.fullName}</div>
-                        <div className="mt-1 text-xs text-slate-400">
+                        <div className="font-semibold text-slate-950">{visit.fullName}</div>
+                        <div className="mt-1 text-xs text-slate-500">
                           Guests: {visit.visitors}
                         </div>
-                        <div className="mt-1 text-xs text-slate-500">
+                        <div className="mt-1 text-xs text-slate-400">
                           Requested {formatDateTime(visit.createdAt)}
                         </div>
                       </td>
                       <td className="px-6 py-5">
-                        <div className="font-medium text-white">{formatLongDate(visit.preferredDate)}</div>
-                        <div className="mt-1 text-sm text-slate-300">{visit.preferredSlot}</div>
+                        <div className="font-medium text-slate-950">{formatLongDate(visit.preferredDate)}</div>
+                        <div className="mt-1 text-sm text-slate-600">{visit.preferredSlot}</div>
                       </td>
                       <td className="px-6 py-5">
                         <div>{visit.phoneNumber}</div>
-                        <div className="mt-1 text-slate-400">{visit.emailAddress}</div>
+                        <div className="mt-1 text-slate-500">{visit.emailAddress}</div>
                       </td>
                       <td className="px-6 py-5">
-                        <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-200">
+                        <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
                           {visit.purpose}
                         </span>
                       </td>
-                      <td className="px-6 py-5 text-slate-300">
+                      <td className="px-6 py-5 text-slate-600">
                         <p className="max-w-md leading-6">{visit.notes}</p>
                       </td>
                       <td className="px-6 py-5">
@@ -155,9 +155,9 @@ function StatCard({
   value: string;
 }) {
   return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-      <p className="text-sm text-slate-300">{label}</p>
-      <p className="mt-3 text-3xl font-semibold text-white">{value}</p>
+    <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+      <p className="text-sm text-slate-500">{label}</p>
+      <p className="mt-3 text-3xl font-semibold text-slate-950">{value}</p>
     </div>
   );
 }
