@@ -21,7 +21,6 @@ import {
   useMemo,
   useState,
 } from "react";
-import { parseJsonResponse } from "@/lib/http";
 
 type FormState = {
   fullName: string;
@@ -92,7 +91,7 @@ const faqItems = [
   {
     question: "How do I book a site visit?",
     answer:
-      "Fill the form with your preferred date, time slot, and visit details. The request is saved for the team to review and confirm.",
+      "Fill the form with your preferred date, time slot, and visit details. Then share the details with the office to continue the booking process.",
   },
   {
     question: "Can I bring more than one guest?",
@@ -102,12 +101,12 @@ const faqItems = [
   {
     question: "Will someone confirm my visit?",
     answer:
-      "Yes. Once the request is reviewed, the team can reach out by phone or email with the next steps.",
+      "Yes. Once the details are shared, the team can reach out by phone or email with the next steps.",
   },
   {
     question: "What if I need to reschedule?",
     answer:
-      "If your plans change, just submit a new request or contact the office directly so the slot can be updated.",
+      "If your plans change, just submit the form again or contact the office directly so the slot can be updated.",
   },
 ] as const;
 
@@ -272,32 +271,9 @@ export function ContactPage() {
     setSubmitMessage("");
 
     try {
-      const response = await fetch("/api/site-visits", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          visitors: Number(form.visitors),
-        }),
-      });
-
-      const data = await parseJsonResponse<{
-        message?: string;
-        error?: string;
-        visit?: { preferredDate?: string; preferredSlot?: string };
-      }>(response);
-
-      if (!response.ok) {
-        throw new Error(data?.error ?? "We could not submit your request.");
-      }
-
       setSubmitState("success");
       setSubmitMessage(
-        data?.visit?.preferredDate && data?.visit?.preferredSlot
-          ? `Your site visit request for ${formatLongDate(data.visit.preferredDate)} during ${data.visit.preferredSlot} has been received.`
-          : data?.message ?? "Your site visit request has been received."
+        `Thanks, ${form.fullName}. Your visit details have been captured on this page and are ready to share with the team.`
       );
       setForm(formDefaults);
     } catch (error) {
@@ -390,7 +366,7 @@ export function ContactPage() {
                 Request a visit and choose your preferred slot
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
-                Share your preferred date, slot, and visitor details. The request is saved to the internal admin panel so the team can review and confirm it.
+                Share your preferred date, slot, and visitor details. We’ll help you capture the enquiry clearly so it can be shared with the team.
               </p>
             </div>
 
@@ -663,7 +639,7 @@ export function ContactPage() {
                   Ready To Schedule Your Visit?
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-                  We’ll help turn your inquiry into a confirmed site visit with a clear time slot and a simple confirmation process.
+                  We’ll help turn your inquiry into a clear visit request with a preferred time slot and simple next steps.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -720,7 +696,7 @@ function Hero() {
           Reserve a Visit Slot for Your Project
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-          Tell us when you’d like to visit, and we’ll keep the request in the admin dashboard for review and confirmation.
+          Tell us when you’d like to visit, and we’ll prepare your enquiry details for the team to review and confirm.
         </p>
       </motion.div>
     </section>
@@ -854,13 +830,4 @@ function getLocalDateString() {
   const now = new Date();
   const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
   return local.toISOString().slice(0, 10);
-}
-
-function formatLongDate(value: string) {
-  return new Intl.DateTimeFormat("en-IN", {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }).format(new Date(`${value}T00:00:00`));
 }

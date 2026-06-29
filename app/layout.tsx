@@ -4,7 +4,7 @@ import { SiteShell } from "@/components/site-shell";
 
 export const metadata: Metadata = {
   title: "Builder Website",
-  description: "A builder website with project pages, contact booking, and an internal visit dashboard.",
+  description: "A builder website with project pages, contact details, and enquiry forms.",
   icons: {
     icon: "/icon.svg",
   },
