@@ -20,6 +20,7 @@ const quickLinks = [
   { href: "/projects", label: "Projects", icon: BriefcaseIcon },
   { href: "/gallery", label: "Gallery", icon: ImageIcon },
   { href: "/contact", label: "Contact", icon: MailIcon },
+  { href: "/admin/visits", label: "Visits Admin", icon: BriefcaseIcon },
 ];
 
 export function SiteFooter() {

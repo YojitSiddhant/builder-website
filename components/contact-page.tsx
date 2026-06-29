@@ -18,6 +18,7 @@ import {
   type ChangeEventHandler,
   type FormEvent,
   type InputHTMLAttributes,
+  useMemo,
   useState,
 } from "react";
 
@@ -25,10 +26,11 @@ type FormState = {
   fullName: string;
   phoneNumber: string;
   emailAddress: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-  message: string;
+  preferredDate: string;
+  preferredSlot: string;
+  visitors: string;
+  purpose: string;
+  notes: string;
   consent: boolean;
 };
 
@@ -60,37 +62,51 @@ const contactInfo = [
   },
 ] as const;
 
+const visitPurposes = [
+  "Initial site visit",
+  "Project consultation",
+  "Design discussion",
+  "Progress review",
+];
+
+const visitSlots = [
+  "Morning - 9:00 AM to 12:00 PM",
+  "Afternoon - 12:00 PM to 3:00 PM",
+  "Evening - 3:00 PM to 6:00 PM",
+];
+
 const formDefaults: FormState = {
   fullName: "",
   phoneNumber: "",
   emailAddress: "",
-  projectType: "",
-  budget: "",
-  timeline: "",
-  message: "",
+  preferredDate: "",
+  preferredSlot: "",
+  visitors: "1",
+  purpose: "",
+  notes: "",
   consent: false,
 };
 
 const faqItems = [
   {
-    question: "How long does construction take?",
+    question: "How do I book a site visit?",
     answer:
-      "Timelines vary by scope, approvals, and project size. After consultation, we provide a clear schedule with milestones and delivery checkpoints.",
+      "Fill the form with your preferred date, time slot, and visit details. The request is saved for the team to review and confirm.",
   },
   {
-    question: "Do you provide consultation?",
+    question: "Can I bring more than one guest?",
     answer:
-      "Yes. We offer initial consultations to understand your requirements, site conditions, budget, and ideal project timeline.",
+      "Yes. You can mention the number of visitors when you submit the request so the team can prepare accordingly.",
   },
   {
-    question: "Can I customize my project?",
+    question: "Will someone confirm my visit?",
     answer:
-      "Absolutely. We work closely with clients to adapt layouts, finishes, and design details so the final space fits the vision and practical needs.",
+      "Yes. Once the request is reviewed, the team can reach out by phone or email with the next steps.",
   },
   {
-    question: "How do payments work?",
+    question: "What if I need to reschedule?",
     answer:
-      "Payments are usually structured by agreed milestones. We keep the process transparent so you know what is due at each stage of the project.",
+      "If your plans change, just submit a new request or contact the office directly so the slot can be updated.",
   },
 ] as const;
 
@@ -116,15 +132,11 @@ export function ContactPage() {
   const [form, setForm] = useState<FormState>(formDefaults);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success">("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const budgetOptions = [
-    "Under 25 Lakhs",
-    "25 - 50 Lakhs",
-    "50 Lakhs - 1 Crore",
-    "1 Crore +",
-  ];
+  const minDate = useMemo(() => getLocalDateString(), []);
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -146,8 +158,10 @@ export function ContactPage() {
         return next;
       });
     }
-    if (submitState === "success") {
+
+    if (submitState !== "idle") {
       setSubmitState("idle");
+      setSubmitMessage("");
     }
   }
 
@@ -180,22 +194,31 @@ export function ContactPage() {
         if (!emailPattern.test(text)) return "Enter a valid email address.";
         return undefined;
       }
-      case "projectType":
-        if (!value) return "Please choose a project type.";
-        return undefined;
-      case "budget":
-        if (!value) return "Please select a budget range.";
-        return undefined;
-      case "timeline": {
+      case "preferredDate": {
         const text = String(value).trim();
-        if (!text) return "Timeline is required.";
-        if (text.length < 3) return "Please share a clearer timeline.";
+        if (!text) return "Please choose a visit date.";
+        if (text < minDate) return "Visit date cannot be in the past.";
         return undefined;
       }
-      case "message": {
+      case "preferredSlot":
+        if (!value) return "Please choose a preferred slot.";
+        return undefined;
+      case "visitors": {
         const text = String(value).trim();
-        if (!text) return "Tell us a little about your project.";
-        if (text.length < 20) return "Please add a few more details.";
+        if (!text) return "Visitor count is required.";
+        const count = Number(text);
+        if (!Number.isInteger(count) || count < 1 || count > 20) {
+          return "Please enter a number between 1 and 20.";
+        }
+        return undefined;
+      }
+      case "purpose":
+        if (!value) return "Please choose the purpose of your visit.";
+        return undefined;
+      case "notes": {
+        const text = String(value).trim();
+        if (!text) return "Please share a few visit details.";
+        if (text.length < 15) return "Please add a little more detail.";
         return undefined;
       }
       case "consent":
@@ -234,7 +257,7 @@ export function ContactPage() {
     }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate(form);
     setErrors(nextErrors);
@@ -244,11 +267,44 @@ export function ContactPage() {
     }
 
     setIsSubmitting(true);
-    window.setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitState("idle");
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch("/api/site-visits", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          visitors: Number(form.visitors),
+        }),
+      });
+
+      const data = (await response.json()) as
+        | { message?: string; error?: string; visit?: { preferredDate?: string; preferredSlot?: string } }
+        | undefined;
+
+      if (!response.ok) {
+        throw new Error(data?.error ?? "We could not submit your request.");
+      }
+
       setSubmitState("success");
+      setSubmitMessage(
+        data?.visit?.preferredDate && data?.visit?.preferredSlot
+          ? `Your site visit request for ${formatLongDate(data.visit.preferredDate)} during ${data.visit.preferredSlot} has been received.`
+          : data?.message ?? "Your site visit request has been received."
+      );
       setForm(formDefaults);
-    }, 1200);
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(
+        error instanceof Error ? error.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -268,7 +324,7 @@ export function ContactPage() {
               Contact Details
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Let’s make your next project easy to start.
+              Book a convenient slot to visit our site.
             </h2>
           </div>
 
@@ -325,13 +381,13 @@ export function ContactPage() {
           >
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
-                Enquiry Form
+                Site Visit Booking
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Tell us about your requirements
+                Request a visit and choose your preferred slot
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
-                We’ll review your details and get back with a thoughtful response, tailored next steps, and a transparent process.
+                Share your preferred date, slot, and visitor details. The request is saved to the internal admin panel so the team can review and confirm it.
               </p>
             </div>
 
@@ -370,44 +426,60 @@ export function ContactPage() {
               />
 
               <div className="grid gap-5 sm:grid-cols-2">
-                <SelectField
-                  label="Project Type"
-                  name="projectType"
-                  value={form.projectType}
+                <Field
+                  label="Preferred Visit Date"
+                  name="preferredDate"
+                  value={form.preferredDate}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.projectType}
-                  options={["Residential", "Commercial", "Renovation", "Interior"]}
+                  error={errors.preferredDate}
+                  type="date"
+                  min={minDate}
                 />
-                <SelectField
-                  label="Budget"
-                  name="budget"
-                  value={form.budget}
+                <Field
+                  label="Number of Visitors"
+                  name="visitors"
+                  value={form.visitors}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.budget}
-                  options={budgetOptions}
+                  error={errors.visitors}
+                  type="number"
+                  min={1}
+                  max={20}
+                  inputMode="numeric"
+                  placeholder="1"
                 />
               </div>
 
-              <Field
-                label="Timeline"
-                name="timeline"
-                value={form.timeline}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.timeline}
-                placeholder="e.g. 6 to 9 months"
-              />
+              <div className="grid gap-5 sm:grid-cols-2">
+                <SelectField
+                  label="Preferred Slot"
+                  name="preferredSlot"
+                  value={form.preferredSlot}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.preferredSlot}
+                  options={visitSlots}
+                />
+                <SelectField
+                  label="Purpose"
+                  name="purpose"
+                  value={form.purpose}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.purpose}
+                  options={visitPurposes}
+                />
+              </div>
 
               <TextareaField
-                label="Message"
-                name="message"
-                value={form.message}
+                label="Visit Notes"
+                name="notes"
+                value={form.notes}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.message}
-                placeholder="Share your project vision, location, size, or any specific requirements."
+                error={errors.notes}
+                placeholder="Tell us what you'd like to discuss, the site area you want to review, or any special needs."
               />
 
               <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
@@ -420,7 +492,7 @@ export function ContactPage() {
                   className="mt-1 h-4 w-4 rounded border-blue-300 text-blue-600 focus:ring-blue-600"
                 />
                 <span>
-                  I agree to be contacted
+                  I agree to be contacted to confirm this visit
                   {errors.consent ? (
                     <span className="mt-1 block text-xs text-rose-600">{errors.consent}</span>
                   ) : null}
@@ -428,15 +500,20 @@ export function ContactPage() {
               </label>
 
               <AnimatePresence mode="wait">
-                {submitState === "success" ? (
+                {submitState !== "idle" ? (
                   <motion.div
-                    key="success"
+                    key={submitState}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="rounded-2xl border border-blue-100 bg-white px-4 py-3 text-sm font-medium text-blue-700"
+                    className={[
+                      "rounded-2xl border px-4 py-3 text-sm font-medium",
+                      submitState === "success"
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                        : "border-rose-200 bg-rose-50 text-rose-700",
+                    ].join(" ")}
                   >
-                    Thanks for reaching out. Our team will contact you soon.
+                    {submitMessage}
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -448,7 +525,7 @@ export function ContactPage() {
                 disabled={isSubmitting}
                 className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
-                {isSubmitting ? "Sending..." : "Send Enquiry"}
+                {isSubmitting ? "Submitting..." : "Request Site Visit"}
               </motion.button>
             </form>
           </motion.div>
@@ -580,10 +657,10 @@ export function ContactPage() {
                   Final Step
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                  Ready To Start Your Project?
+                  Ready To Schedule Your Visit?
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-                  Let us help you turn ideas into a finished space with a process that feels clear, premium, and dependable from start to finish.
+                  We’ll help turn your inquiry into a confirmed site visit with a clear time slot and a simple confirmation process.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -601,7 +678,7 @@ export function ContactPage() {
                     whileTap={{ scale: 0.99 }}
                     className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition"
                   >
-                    Book Consultation
+                    Book Visit
                   </motion.a>
                 </div>
               </div>
@@ -633,11 +710,14 @@ function Hero() {
         variants={heroVariants}
         className="relative z-10 mx-auto w-full max-w-4xl text-center text-white"
       >
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
+          Site Visit Booking
+        </p>
         <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-          Let’s Build Something Extraordinary
+          Reserve a Visit Slot for Your Project
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-          We&apos;re here to answer your questions and help bring your vision to life.
+          Tell us when you’d like to visit, and we’ll keep the request in the admin dashboard for review and confirmation.
         </p>
       </motion.div>
     </section>
@@ -655,6 +735,8 @@ function Field({
   value: string;
   placeholder?: string;
   type?: string;
+  min?: string | number;
+  max?: string | number;
   inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   onChange: ChangeEventHandler<HTMLInputElement>;
   onBlur?: ChangeEventHandler<HTMLInputElement>;
@@ -763,4 +845,19 @@ function ClockIcon({ className }: { className?: string }) {
 
 function PlusIcon({ className }: { className?: string }) {
   return <IoAddOutline className={className} />;
+}
+
+function getLocalDateString() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
+}
+
+function formatLongDate(value: string) {
+  return new Intl.DateTimeFormat("en-IN", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(`${value}T00:00:00`));
 }
