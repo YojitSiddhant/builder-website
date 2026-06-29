@@ -2,6 +2,7 @@ import { randomUUID } from "crypto";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { neon } from "@neondatabase/serverless";
 import path from "path";
+import { parseJsonResponse } from "@/lib/http";
 
 export type SiteVisitStatus = "new" | "reviewed" | "confirmed" | "completed";
 
@@ -30,6 +31,8 @@ export type SiteVisitValidationResult =
   | { ok: false; message: string };
 
 const VISIT_FILE_PATH = path.join(process.cwd(), "data", "site-visits.json");
+const VISIT_BACKEND_URL = process.env.VISIT_BACKEND_URL?.trim() ?? "";
+const VISIT_BACKEND_TOKEN = process.env.VISIT_BACKEND_TOKEN?.trim() ?? "";
 
 const VISIT_SLOT_OPTIONS = [
   "Morning - 9:00 AM to 12:00 PM",
@@ -78,6 +81,10 @@ export function getVisitPurposeOptions() {
 }
 
 export function getVisitBackendLabel() {
+  if (hasVisitBackendConfig()) {
+    return "Remote Docker backend";
+  }
+
   return hasDatabaseConfig() ? "Hosted database" : "Local development fallback";
 }
 
@@ -177,6 +184,14 @@ export function validateSiteVisitInput(input: unknown): SiteVisitValidationResul
 }
 
 export async function readSiteVisitRequests(): Promise<SiteVisitRequest[]> {
+  if (hasVisitBackendConfig()) {
+    const data = await requestVisitBackend<{ visits: SiteVisitRequest[] }>("/api/site-visits", {
+      method: "GET",
+      authRequired: true,
+    });
+    return data.visits;
+  }
+
   const client = getNeonClient();
   if (client) {
     await ensureSchema(client);
@@ -227,6 +242,14 @@ export async function appendSiteVisitRequest(
     ...input,
   };
 
+  if (hasVisitBackendConfig()) {
+    const data = await requestVisitBackend<{ visit: SiteVisitRequest }>("/api/site-visits", {
+      method: "POST",
+      body: visit,
+    });
+    return data.visit;
+  }
+
   const client = getNeonClient();
   if (client) {
     await ensureSchema(client);
@@ -275,6 +298,15 @@ export async function updateSiteVisitStatus(
   id: string,
   status: SiteVisitStatus,
 ): Promise<SiteVisitRequest | null> {
+  if (hasVisitBackendConfig()) {
+    const data = await requestVisitBackend<{ visit: SiteVisitRequest | null }>("/api/site-visits", {
+      method: "PATCH",
+      body: { id, status },
+      authRequired: true,
+    });
+    return data.visit;
+  }
+
   const client = getNeonClient();
   if (client) {
     await ensureSchema(client);
@@ -320,6 +352,10 @@ function hasDatabaseConfig() {
   return Boolean(DATABASE_URL);
 }
 
+function hasVisitBackendConfig() {
+  return Boolean(VISIT_BACKEND_URL);
+}
+
 function getNeonClient() {
   if (!hasDatabaseConfig()) {
     return null;
@@ -330,6 +366,53 @@ function getNeonClient() {
   }
 
   return neonClient;
+}
+
+async function requestVisitBackend<T>(
+  pathName: string,
+  options: {
+    method: "GET" | "POST" | "PATCH";
+    body?: unknown;
+    authRequired?: boolean;
+  },
+): Promise<T> {
+  if (!hasVisitBackendConfig()) {
+    throw new Error("Visit backend URL is not configured.");
+  }
+
+  const headers = new Headers();
+  headers.set("Accept", "application/json");
+
+  if (options.method !== "GET") {
+    headers.set("Content-Type", "application/json");
+  }
+
+  if (options.authRequired) {
+    if (!VISIT_BACKEND_TOKEN) {
+      throw new Error("Visit backend token is not configured.");
+    }
+
+    headers.set("x-backend-token", VISIT_BACKEND_TOKEN);
+  }
+
+  const response = await fetch(new URL(pathName, VISIT_BACKEND_URL), {
+    method: options.method,
+    headers,
+    body: options.body ? JSON.stringify(options.body) : undefined,
+    cache: "no-store",
+  });
+
+  const payload = await parseJsonResponse<{ error?: string } & T>(response);
+
+  if (!response.ok) {
+    throw new Error(payload?.error ?? "The visit backend request failed.");
+  }
+
+  if (!payload) {
+    throw new Error("The visit backend returned an invalid response.");
+  }
+
+  return payload;
 }
 
 async function ensureSchema(client: ReturnType<typeof neon>) {

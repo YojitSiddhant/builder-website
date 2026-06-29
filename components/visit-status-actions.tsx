@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { parseJsonResponse } from "@/lib/http";
 
 const STATUS_OPTIONS = [
   { value: "new", label: "New" },
@@ -35,7 +36,7 @@ export function VisitStatusActions({
         body: JSON.stringify({ id, status: nextStatus }),
       });
 
-      const data = (await response.json()) as { error?: string } | undefined;
+      const data = await parseJsonResponse<{ error?: string }>(response);
 
       if (!response.ok) {
         throw new Error(data?.error ?? "Unable to update status.");

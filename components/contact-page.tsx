@@ -21,6 +21,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { parseJsonResponse } from "@/lib/http";
 
 type FormState = {
   fullName: string;
@@ -282,9 +283,11 @@ export function ContactPage() {
         }),
       });
 
-      const data = (await response.json()) as
-        | { message?: string; error?: string; visit?: { preferredDate?: string; preferredSlot?: string } }
-        | undefined;
+      const data = await parseJsonResponse<{
+        message?: string;
+        error?: string;
+        visit?: { preferredDate?: string; preferredSlot?: string };
+      }>(response);
 
       if (!response.ok) {
         throw new Error(data?.error ?? "We could not submit your request.");
