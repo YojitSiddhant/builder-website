@@ -17,7 +17,15 @@ export default async function AdminVisitsPage() {
     redirect("/admin/login");
   }
 
-  const visits = await readSiteVisitRequests();
+  let visits: Awaited<ReturnType<typeof readSiteVisitRequests>> = [];
+  let loadError = "";
+
+  try {
+    visits = await readSiteVisitRequests();
+  } catch (error) {
+    loadError = error instanceof Error ? error.message : "Unable to load visit requests.";
+  }
+
   const totalVisits = visits.length;
   const newVisits = visits.filter((visit) => visit.status === "new").length;
   const confirmedVisits = visits.filter((visit) => visit.status === "confirmed").length;
@@ -83,6 +91,19 @@ export default async function AdminVisitsPage() {
               </div>
             </div>
           </div>
+
+          {loadError ? (
+            <div className="border-b border-amber-200 bg-amber-50 px-6 py-4">
+              <p className="text-sm font-semibold text-amber-900">
+                The admin list could not be loaded.
+              </p>
+              <p className="mt-1 text-sm leading-6 text-amber-800">
+                {loadError === "Visit backend token is not configured."
+                  ? "Set VISIT_BACKEND_TOKEN in Vercel so the admin panel can read requests from the Render backend."
+                  : loadError}
+              </p>
+            </div>
+          ) : null}
 
           {visits.length === 0 ? (
             <div className="px-6 py-16 text-center">
