@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Current Architecture
 
-- Frontend and admin UI stay on Vercel
-- Visit requests are stored through a Docker backend in [`backend/`](backend/README.md)
-- The frontend talks to the backend using `VISIT_BACKEND_URL` and `VISIT_BACKEND_TOKEN`
+- Frontend-only Next.js app on Vercel
+- No separate backend or admin panel
+- Contact and enquiry pages are handled entirely in the frontend
 
 ## Getting Started
 
@@ -43,8 +43,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Setup Checklist
 
-1. Copy [`.env.example`](./.env.example) to your local `.env.local` and fill in the secrets.
-2. Copy [`backend/.env.example`](backend/.env.example) to `backend/.env` and fill in the backend secrets.
-3. Run the backend locally with Docker from `backend/`.
-4. Deploy the backend container to Render, Railway, Fly.io, or a VPS.
-5. Add `VISIT_BACKEND_URL` and `VISIT_BACKEND_TOKEN` to the Vercel project, then redeploy the frontend.
+1. Copy [`.env.example`](./.env.example) to your local `.env.local` if you use one.
+2. Run `npm run dev` to start the frontend locally.
+3. Push to `main` to trigger a Vercel deployment.
