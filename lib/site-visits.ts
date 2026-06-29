@@ -183,6 +183,23 @@ export async function appendSiteVisitRequest(input: SiteVisitInput) {
   return visit;
 }
 
+export async function updateSiteVisitStatus(id: string, status: SiteVisitStatus) {
+  const visits = await readSiteVisitRequests();
+  const nextVisits = visits.map((visit) =>
+    visit.id === id ? { ...visit, status } : visit,
+  );
+  const updatedVisit = nextVisits.find((visit) => visit.id === id);
+
+  if (!updatedVisit) {
+    return null;
+  }
+
+  await mkdir(path.dirname(VISIT_FILE_PATH), { recursive: true });
+  await writeFile(VISIT_FILE_PATH, JSON.stringify(nextVisits, null, 2), "utf8");
+
+  return updatedVisit;
+}
+
 function toText(value: unknown) {
   if (typeof value !== "string") {
     return "";

@@ -4,10 +4,18 @@ import {
   getVisitSlotOptions,
   readSiteVisitRequests,
 } from "@/lib/site-visits";
+import { requireAdmin } from "@/lib/admin-auth";
+import { redirect } from "next/navigation";
+import { VisitStatusActions } from "@/components/visit-status-actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminVisitsPage() {
+  const isAdmin = await requireAdmin();
+  if (!isAdmin) {
+    redirect("/admin/login");
+  }
+
   const visits = await readSiteVisitRequests();
   const totalVisits = visits.length;
   const newVisits = visits.filter((visit) => visit.status === "new").length;
@@ -36,6 +44,14 @@ export default async function AdminVisitsPage() {
             >
               Back to Contact
             </Link>
+            <form action="/api/admin/logout" method="post" className="w-fit">
+              <button
+                type="submit"
+                className="inline-flex w-fit items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                Sign Out
+              </button>
+            </form>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
@@ -113,7 +129,7 @@ export default async function AdminVisitsPage() {
                         <p className="max-w-md leading-6">{visit.notes}</p>
                       </td>
                       <td className="px-6 py-5">
-                        <StatusBadge status={visit.status} />
+                        <VisitStatusActions id={visit.id} status={visit.status} />
                       </td>
                     </tr>
                   ))}
@@ -143,26 +159,6 @@ function StatCard({
       <p className="text-sm text-slate-300">{label}</p>
       <p className="mt-3 text-3xl font-semibold text-white">{value}</p>
     </div>
-  );
-}
-
-function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    new: "border-amber-400/20 bg-amber-400/10 text-amber-200",
-    reviewed: "border-sky-400/20 bg-sky-400/10 text-sky-200",
-    confirmed: "border-emerald-400/20 bg-emerald-400/10 text-emerald-200",
-    completed: "border-slate-400/20 bg-slate-400/10 text-slate-200",
-  };
-
-  return (
-    <span
-      className={[
-        "inline-flex rounded-full border px-3 py-1 text-xs font-semibold capitalize",
-        styles[status] ?? styles.new,
-      ].join(" ")}
-    >
-      {status}
-    </span>
   );
 }
 
