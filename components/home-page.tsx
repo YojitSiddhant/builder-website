@@ -327,7 +327,7 @@ function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(16,72,162,0.78)_0%,_rgba(37,99,235,0.4)_45%,_rgba(255,255,255,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
 
-        <div className="relative mx-auto flex min-h-[96svh] w-full max-w-7xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-10">
+        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-10">
           <div className="mx-auto max-w-3xl text-center">
             <motion.h1
               id="home-hero-title"
@@ -374,7 +374,7 @@ function HeroSection({
 
           <div className="flex items-end justify-center lg:justify-end">
             <motion.div
-              className="w-full max-w-md rounded-[2rem] border border-white/20 bg-slate-950/15 p-5 text-center text-white shadow-2xl shadow-blue-900/20 backdrop-blur-2xl sm:p-6"
+              className="w-full max-w-sm rounded-[2rem] border border-white/20 bg-slate-950/15 p-5 text-center text-white shadow-2xl shadow-blue-900/20 backdrop-blur-2xl sm:p-6"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
@@ -409,7 +409,7 @@ function HeroSection({
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <div className="ml-auto flex items-center gap-3">
             <ArrowButton
               direction="left"
@@ -424,7 +424,7 @@ function HeroSection({
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-20 z-20 mx-auto flex w-full max-w-7xl items-center justify-center gap-3 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-x-0 bottom-20 z-20 mx-auto flex w-full max-w-6xl items-center justify-center gap-3 px-4 sm:px-6 lg:px-8">
           {heroSlides.map((item, index) => (
             <button
               key={item.title}
