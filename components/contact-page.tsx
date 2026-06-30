@@ -257,9 +257,7 @@ export function ContactPage() {
 
     try {
       setSubmitState("success");
-      setSubmitMessage(
-        `Thanks, ${form.fullName}. Your enquiry details have been captured on this page and are ready to share with the team.`
-      );
+      setSubmitMessage("Form submitted");
       setForm(formDefaults);
     } catch (error) {
       setSubmitState("error");
@@ -279,15 +277,15 @@ export function ContactPage() {
         {submitState !== "idle" ? (
           <motion.div
             key={submitState}
-            initial={{ opacity: 0, y: 16, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.98 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-4 left-4 right-4 z-[100] mx-auto w-full max-w-md sm:left-auto sm:right-6 sm:bottom-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/35 px-4"
           >
             <div
               className={[
-                "flex items-start gap-3 rounded-2xl border px-5 py-4 text-sm font-medium shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-sm",
+                "relative w-full max-w-md rounded-3xl border px-6 py-5 text-center text-base font-semibold shadow-[0_24px_60px_rgba(15,23,42,0.22)] backdrop-blur-sm",
                 submitState === "success"
                   ? "border-emerald-200 bg-emerald-50/95 text-emerald-700"
                   : "border-rose-200 bg-rose-50/95 text-rose-700",
@@ -301,7 +299,7 @@ export function ContactPage() {
                   setSubmitMessage("");
                 }}
                 aria-label="Dismiss notification"
-                className="mt-0.5 rounded-full p-1 transition hover:bg-black/5"
+                className="absolute right-4 top-4 rounded-full p-1 transition hover:bg-black/5"
               >
                 <IoCloseOutline className="h-5 w-5" />
               </button>
