@@ -34,6 +34,7 @@ type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const validationNotice = "Please fill the form as per required details.";
+const indiaPhonePrefix = "+91 ";
 
 const contactInfo = [
   {
@@ -60,7 +61,7 @@ const contactInfo = [
 
 const formDefaults: FormState = {
   fullName: "",
-  phoneNumber: "",
+  phoneNumber: indiaPhonePrefix,
   emailAddress: "",
   address: "",
   notes: "",
@@ -125,6 +126,11 @@ export function ContactPage() {
     if (type === "checkbox") {
       const checked = (event.target as HTMLInputElement).checked;
       setForm((current) => ({ ...current, [fieldName]: checked } as FormState));
+    } else if (fieldName === "phoneNumber") {
+      setForm((current) => ({
+        ...current,
+        phoneNumber: formatIndianPhoneNumber(value),
+      }));
     } else {
       setForm((current) => ({ ...current, [fieldName]: value } as FormState));
     }
@@ -159,9 +165,9 @@ export function ContactPage() {
       }
       case "phoneNumber": {
         const text = String(value).trim();
-        if (!text) return "Phone number is required.";
+        if (isEmptyIndianPhoneValue(text)) return "Phone number is required.";
         if (!isValidMobileNumber(text)) {
-          return "Please enter a valid mobile number format.";
+          return "Please enter a valid Indian mobile number with +91.";
         }
         return undefined;
       }
@@ -354,12 +360,12 @@ export function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={errors.phoneNumber}
-                  placeholder="Enter your phone number"
+                  placeholder="+91 98765 43210"
                   inputMode="tel"
                   required
                   autoComplete="tel"
-                  pattern="(?:\\+91[\\s-]?)?[6-9]\\d{9}"
-                  title="Enter a valid 10-digit mobile number, optionally with +91."
+                  pattern="\\+91\\s[6-9]\\d{9}"
+                  title="Enter a valid Indian mobile number in +91 format."
                 />
               </div>
 
@@ -735,12 +741,38 @@ function PlusIcon({ className }: { className?: string }) {
   return <IoAddOutline className={className} />;
 }
 
-function isValidMobileNumber(value: string) {
-  const normalized = value.replace(/[\s()-]/g, "");
+function formatIndianPhoneNumber(value: string) {
+  const digits = value.replace(/\D/g, "");
+  let nationalDigits = digits;
 
-  if (/^\+91[6-9]\d{9}$/.test(normalized)) {
-    return true;
+  if (nationalDigits.startsWith("91") && nationalDigits.length > 10) {
+    nationalDigits = nationalDigits.slice(2);
   }
 
-  return /^[6-9]\d{9}$/.test(normalized);
+  nationalDigits = nationalDigits.slice(0, 10);
+
+  if (!nationalDigits) {
+    return indiaPhonePrefix;
+  }
+
+  return `${indiaPhonePrefix}${nationalDigits}`;
+}
+
+function isEmptyIndianPhoneValue(value: string) {
+  const digits = value.replace(/\D/g, "");
+  return digits.length <= 2;
+}
+
+function isValidMobileNumber(value: string) {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length === 12 && digits.startsWith("91")) {
+    return /^[6-9]\d{9}$/.test(digits.slice(2));
+  }
+
+  if (digits.length === 10) {
+    return /^[6-9]\d{9}$/.test(digits);
+  }
+
+  return false;
 }
