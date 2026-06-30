@@ -25,6 +25,7 @@ type FormState = {
   fullName: string;
   phoneNumber: string;
   emailAddress: string;
+  address: string;
   notes: string;
   consent: boolean;
 };
@@ -61,6 +62,7 @@ const formDefaults: FormState = {
   fullName: "",
   phoneNumber: "",
   emailAddress: "",
+  address: "",
   notes: "",
   consent: false,
 };
@@ -358,6 +360,14 @@ export function ContactPage() {
                   error={errors.emailAddress}
                   placeholder="you@example.com"
                   type="email"
+                />
+                <Field
+                  label="Address"
+                  name="address"
+                  value={form.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Your address"
                 />
               </div>
 
