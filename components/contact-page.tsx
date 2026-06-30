@@ -18,7 +18,6 @@ import {
   type ChangeEventHandler,
   type FormEvent,
   type InputHTMLAttributes,
-  useMemo,
   useState,
 } from "react";
 
@@ -26,10 +25,8 @@ type FormState = {
   fullName: string;
   phoneNumber: string;
   emailAddress: string;
-  preferredDate: string;
-  preferredSlot: string;
-  visitors: string;
-  purpose: string;
+  contactMethod: string;
+  subject: string;
   notes: string;
   consent: boolean;
 };
@@ -62,51 +59,49 @@ const contactInfo = [
   },
 ] as const;
 
-const visitPurposes = [
-  "Initial site visit",
-  "Project consultation",
-  "Design discussion",
-  "Progress review",
+const contactMethods = [
+  "Phone call",
+  "WhatsApp",
+  "Email",
 ];
 
-const visitSlots = [
-  "Morning - 9:00 AM to 12:00 PM",
-  "Afternoon - 12:00 PM to 3:00 PM",
-  "Evening - 3:00 PM to 6:00 PM",
+const enquirySubjects = [
+  "New project enquiry",
+  "Existing project support",
+  "Design consultation",
+  "Site or office visit",
 ];
 
 const formDefaults: FormState = {
   fullName: "",
   phoneNumber: "",
   emailAddress: "",
-  preferredDate: "",
-  preferredSlot: "",
-  visitors: "1",
-  purpose: "",
+  contactMethod: "",
+  subject: "",
   notes: "",
   consent: false,
 };
 
 const faqItems = [
   {
-    question: "How do I book a site visit?",
+    question: "How quickly will you respond?",
     answer:
-      "Fill the form with your preferred date, time slot, and visit details. Then share the details with the office to continue the booking process.",
+      "Once you submit the form, the team will review your enquiry and get back to you through your preferred contact method.",
   },
   {
-    question: "Can I bring more than one guest?",
+    question: "Which contact method should I choose?",
     answer:
-      "Yes. You can mention the number of visitors when you submit the request so the team can prepare accordingly.",
+      "Pick the option you prefer most, whether that is a phone call, WhatsApp message, or email reply.",
   },
   {
-    question: "Will someone confirm my visit?",
+    question: "Can I use this form for project questions?",
     answer:
-      "Yes. Once the details are shared, the team can reach out by phone or email with the next steps.",
+      "Yes. You can share project details, design questions, or general enquiries and the team will route them appropriately.",
   },
   {
-    question: "What if I need to reschedule?",
+    question: "Do I need to add all contact details?",
     answer:
-      "If your plans change, just submit the form again or contact the office directly so the slot can be updated.",
+      "Adding a phone number and email helps the team reach you faster, but the form is focused on whichever contact option you prefer.",
   },
 ] as const;
 
@@ -135,8 +130,6 @@ export function ContactPage() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  const minDate = useMemo(() => getLocalDateString(), []);
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -194,30 +187,15 @@ export function ContactPage() {
         if (!emailPattern.test(text)) return "Enter a valid email address.";
         return undefined;
       }
-      case "preferredDate": {
-        const text = String(value).trim();
-        if (!text) return "Please choose a visit date.";
-        if (text < minDate) return "Visit date cannot be in the past.";
+      case "contactMethod":
+        if (!value) return "Please choose your preferred contact method.";
         return undefined;
-      }
-      case "preferredSlot":
-        if (!value) return "Please choose a preferred slot.";
-        return undefined;
-      case "visitors": {
-        const text = String(value).trim();
-        if (!text) return "Visitor count is required.";
-        const count = Number(text);
-        if (!Number.isInteger(count) || count < 1 || count > 20) {
-          return "Please enter a number between 1 and 20.";
-        }
-        return undefined;
-      }
-      case "purpose":
-        if (!value) return "Please choose the purpose of your visit.";
+      case "subject":
+        if (!value) return "Please choose a subject for your enquiry.";
         return undefined;
       case "notes": {
         const text = String(value).trim();
-        if (!text) return "Please share a few visit details.";
+        if (!text) return "Please share a few details about your enquiry.";
         if (text.length < 15) return "Please add a little more detail.";
         return undefined;
       }
@@ -273,7 +251,7 @@ export function ContactPage() {
     try {
       setSubmitState("success");
       setSubmitMessage(
-        `Thanks, ${form.fullName}. Your visit details have been captured on this page and are ready to share with the team.`
+        `Thanks, ${form.fullName}. Your enquiry details have been captured on this page and are ready to share with the team.`
       );
       setForm(formDefaults);
     } catch (error) {
@@ -303,7 +281,7 @@ export function ContactPage() {
               Contact Details
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Book a convenient slot to visit our site.
+              Reach out through any of the details below.
             </h2>
           </div>
 
@@ -360,13 +338,13 @@ export function ContactPage() {
           >
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-600">
-                Site Visit Booking
+                Contact Form
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Request a visit and choose your preferred slot
+                Share your contact details and enquiry
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
-                Share your preferred date, slot, and visitor details. We’ll help you capture the enquiry clearly so it can be shared with the team.
+                Tell us how you would like to be contacted, what you need help with, and any extra details so the right person can follow up.
               </p>
             </div>
 
@@ -393,72 +371,48 @@ export function ContactPage() {
                 />
               </div>
 
-              <Field
-                label="Email Address"
-                name="emailAddress"
-                value={form.emailAddress}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.emailAddress}
-                placeholder="you@example.com"
-                type="email"
-              />
-
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field
-                  label="Preferred Visit Date"
-                  name="preferredDate"
-                  value={form.preferredDate}
+                  label="Email Address"
+                  name="emailAddress"
+                  value={form.emailAddress}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.preferredDate}
-                  type="date"
-                  min={minDate}
+                  error={errors.emailAddress}
+                  placeholder="you@example.com"
+                  type="email"
                 />
-                <Field
-                  label="Number of Visitors"
-                  name="visitors"
-                  value={form.visitors}
+                <SelectField
+                  label="Preferred Contact Detail"
+                  name="contactMethod"
+                  value={form.contactMethod}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.visitors}
-                  type="number"
-                  min={1}
-                  max={20}
-                  inputMode="numeric"
-                  placeholder="1"
+                  error={errors.contactMethod}
+                  options={contactMethods}
                 />
               </div>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <SelectField
-                  label="Preferred Slot"
-                  name="preferredSlot"
-                  value={form.preferredSlot}
+                  label="Subject"
+                  name="subject"
+                  value={form.subject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.preferredSlot}
-                  options={visitSlots}
-                />
-                <SelectField
-                  label="Purpose"
-                  name="purpose"
-                  value={form.purpose}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.purpose}
-                  options={visitPurposes}
+                  error={errors.subject}
+                  options={enquirySubjects}
                 />
               </div>
 
               <TextareaField
-                label="Visit Notes"
+                label="Message"
                 name="notes"
                 value={form.notes}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={errors.notes}
-                placeholder="Tell us what you'd like to discuss, the site area you want to review, or any special needs."
+                placeholder="Tell us what you'd like to discuss, your project timeline, or any specific requirements."
               />
 
               <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
@@ -471,7 +425,7 @@ export function ContactPage() {
                   className="mt-1 h-4 w-4 rounded border-blue-300 text-blue-600 focus:ring-blue-600"
                 />
                 <span>
-                  I agree to be contacted to confirm this visit
+                  I agree to be contacted about my enquiry
                   {errors.consent ? (
                     <span className="mt-1 block text-xs text-rose-600">{errors.consent}</span>
                   ) : null}
@@ -504,7 +458,7 @@ export function ContactPage() {
                 disabled={isSubmitting}
                 className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
-                {isSubmitting ? "Submitting..." : "Request Site Visit"}
+                {isSubmitting ? "Submitting..." : "Send Enquiry"}
               </motion.button>
             </form>
           </motion.div>
@@ -633,13 +587,13 @@ export function ContactPage() {
             <div className="relative flex min-h-[420px] items-center px-6 py-16 sm:px-10 lg:px-16">
               <div className="max-w-3xl text-white">
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
-                  Final Step
+                  Next Step
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                  Ready To Schedule Your Visit?
+                  Ready To Talk To The Team?
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-                  We’ll help turn your inquiry into a clear visit request with a preferred time slot and simple next steps.
+                  Share your enquiry and the best way to reach you, and we’ll help route it to the right contact person.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -657,7 +611,7 @@ export function ContactPage() {
                     whileTap={{ scale: 0.99 }}
                     className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition"
                   >
-                    Book Visit
+                    Contact Us
                   </motion.a>
                 </div>
               </div>
@@ -690,13 +644,13 @@ function Hero() {
         className="relative z-10 mx-auto w-full max-w-4xl text-center text-white"
       >
         <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
-          Site Visit Booking
+          Contact Us
         </p>
         <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-          Reserve a Visit Slot for Your Project
+          Share your enquiry and contact details
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">
-          Tell us when you’d like to visit, and we’ll prepare your enquiry details for the team to review and confirm.
+          Tell us the best way to reach you and what you need help with, and we’ll make sure the message gets to the right team member.
         </p>
       </motion.div>
     </section>
@@ -714,7 +668,6 @@ function Field({
   value: string;
   placeholder?: string;
   type?: string;
-  min?: string | number;
   max?: string | number;
   inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -824,10 +777,4 @@ function ClockIcon({ className }: { className?: string }) {
 
 function PlusIcon({ className }: { className?: string }) {
   return <IoAddOutline className={className} />;
-}
-
-function getLocalDateString() {
-  const now = new Date();
-  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 10);
 }
