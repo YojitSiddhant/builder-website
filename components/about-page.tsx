@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   IoBusinessOutline,
@@ -24,8 +24,6 @@ const heroImage =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80";
 const introImage =
   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80";
-const whyImage =
-  "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -177,11 +175,46 @@ const values = [
 ] as const;
 
 const features = [
-  "Premium Quality",
-  "Experienced Team",
-  "Transparent Pricing",
-  "Modern Architecture",
-  "Long-Term Value",
+  {
+    title: "Premium Quality",
+    image: makeHoverImage({
+      title: "Premium Quality",
+      variant: "services-why-quality",
+      theme: "construction",
+    }),
+  },
+  {
+    title: "Experienced Team",
+    image: makeHoverImage({
+      title: "Experienced Team",
+      variant: "about-who-experienced-team",
+      theme: "team",
+    }),
+  },
+  {
+    title: "Transparent Pricing",
+    image: makeHoverImage({
+      title: "Transparent Pricing",
+      variant: "services-why-transparent-process",
+      theme: "planning",
+    }),
+  },
+  {
+    title: "Modern Architecture",
+    image: makeHoverImage({
+      title: "Modern Architecture",
+      variant: "home-trust-modern-architecture",
+      theme: "design",
+    }),
+  },
+  {
+    title: "Long-Term Value",
+    image: makeHoverImage({
+      title: "Long-Term Value",
+      variant: "home-trust-customer-satisfaction",
+      theme: "trust",
+    }),
+  },
 ] as const;
 
 export function AboutPage() {
@@ -494,6 +527,9 @@ function CoreValuesSection() {
 }
 
 function WhyChooseUsSection() {
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const activeFeature = features[activeFeatureIndex] ?? features[0];
+
   return (
     <SectionWrap>
       <motion.div
@@ -511,13 +547,24 @@ function WhyChooseUsSection() {
           className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.08)]"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
-            <Image
-              src={whyImage}
-              alt="Modern premium architectural facade with clean structure"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover"
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFeature.image}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.03 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={activeFeature.image}
+                  alt={activeFeature.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-blue-950/12 via-transparent to-transparent" />
           </div>
         </motion.div>
@@ -538,16 +585,34 @@ function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.25 }}
             className="mt-8 space-y-4"
           >
-            {features.map((feature) => (
+            {features.map((feature, index) => (
               <motion.li
-                key={feature}
+                key={feature.title}
                 variants={sectionVariants}
-                className="flex items-center gap-3 rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-[0_10px_30px_rgba(37,99,235,0.04)]"
+                className="list-none"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-700 ring-1 ring-blue-100">
-                  <CheckIcon className="h-4 w-4" />
-                </span>
-                <span className="text-sm font-medium text-slate-700">{feature}</span>
+                <button
+                  type="button"
+                  onMouseEnter={() => setActiveFeatureIndex(index)}
+                  onFocus={() => setActiveFeatureIndex(index)}
+                  aria-pressed={activeFeatureIndex === index}
+                  className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-[0_10px_30px_rgba(37,99,235,0.04)] transition duration-300 ${
+                    activeFeatureIndex === index
+                      ? "border-blue-300 bg-blue-50/80"
+                      : "border-blue-100 bg-white hover:border-blue-200 hover:bg-blue-50/40"
+                  }`}
+                >
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-full ring-1 transition duration-300 ${
+                    activeFeatureIndex === index
+                      ? "bg-blue-700 text-white ring-blue-700/20"
+                      : "bg-blue-50 text-blue-700 ring-blue-100"
+                  }`}>
+                    <CheckIcon className="h-4 w-4" />
+                  </span>
+                  <span className="text-sm font-medium text-slate-700">
+                    {feature.title}
+                  </span>
+                </button>
               </motion.li>
             ))}
           </motion.ul>
