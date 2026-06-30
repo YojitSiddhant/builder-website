@@ -187,12 +187,6 @@ export function ContactPage() {
         if (!emailPattern.test(text)) return "Enter a valid email address.";
         return undefined;
       }
-      case "contactMethod":
-        if (!value) return "Please choose your preferred contact method.";
-        return undefined;
-      case "subject":
-        if (!value) return "Please choose a subject for your enquiry.";
-        return undefined;
       case "notes": {
         const text = String(value).trim();
         if (!text) return "Please share a few details about your enquiry.";
@@ -388,7 +382,6 @@ export function ContactPage() {
                   value={form.contactMethod}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.contactMethod}
                   options={contactMethods}
                 />
               </div>
@@ -400,7 +393,6 @@ export function ContactPage() {
                   value={form.subject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.subject}
                   options={enquirySubjects}
                 />
               </div>
