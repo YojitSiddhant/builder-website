@@ -172,6 +172,12 @@ export function ContactPage() {
         if (!emailPattern.test(text)) return "Enter a valid email address.";
         return undefined;
       }
+      case "address": {
+        const text = String(value).trim();
+        if (!text) return "Address is required.";
+        if (text.length < 5) return "Please enter a valid address.";
+        return undefined;
+      }
       case "notes": {
         const text = String(value).trim();
         if (!text) return "Please share a few details about your enquiry.";
@@ -367,6 +373,7 @@ export function ContactPage() {
                   value={form.address}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  error={errors.address}
                   placeholder="Your address"
                 />
               </div>
