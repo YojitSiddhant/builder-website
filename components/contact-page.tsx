@@ -10,6 +10,7 @@ import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import {
   IoAddOutline,
   IoCallOutline,
+  IoCloseOutline,
   IoMailOutline,
   IoTimeOutline,
 } from "react-icons/io5";
@@ -278,21 +279,32 @@ export function ContactPage() {
         {submitState !== "idle" ? (
           <motion.div
             key={submitState}
-            initial={{ opacity: 0, y: -16, scale: 0.98 }}
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -16, scale: 0.98 }}
+            exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed left-4 right-4 top-24 z-50 mx-auto w-full max-w-xl px-4 sm:left-auto sm:right-6 sm:top-6 sm:px-0"
+            className="fixed bottom-4 left-4 right-4 z-[100] mx-auto w-full max-w-md sm:left-auto sm:right-6 sm:bottom-6"
           >
             <div
               className={[
-                "rounded-2xl border px-5 py-4 text-sm font-medium shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-sm",
+                "flex items-start gap-3 rounded-2xl border px-5 py-4 text-sm font-medium shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-sm",
                 submitState === "success"
                   ? "border-emerald-200 bg-emerald-50/95 text-emerald-700"
                   : "border-rose-200 bg-rose-50/95 text-rose-700",
               ].join(" ")}
             >
-              {submitMessage}
+              <div className="min-w-0 flex-1">{submitMessage}</div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitState("idle");
+                  setSubmitMessage("");
+                }}
+                aria-label="Dismiss notification"
+                className="mt-0.5 rounded-full p-1 transition hover:bg-black/5"
+              >
+                <IoCloseOutline className="h-5 w-5" />
+              </button>
             </div>
           </motion.div>
         ) : null}
