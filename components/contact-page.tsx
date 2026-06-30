@@ -33,7 +33,6 @@ type FormState = {
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phonePattern = /^[+]?[\d\s()-]{8,20}$/;
 const validationNotice = "Please fill the form as per required details.";
 
 const contactInfo = [
@@ -161,8 +160,7 @@ export function ContactPage() {
       case "phoneNumber": {
         const text = String(value).trim();
         if (!text) return "Phone number is required.";
-        const digits = text.replace(/\D/g, "");
-        if (digits.length < 10 || digits.length > 15 || !phonePattern.test(text)) {
+        if (!isValidMobileNumber(text)) {
           return "Please enter a valid mobile number format.";
         }
         return undefined;
@@ -346,6 +344,8 @@ export function ContactPage() {
                   onBlur={handleBlur}
                   error={errors.fullName}
                   placeholder="Your full name"
+                  required
+                  autoComplete="name"
                 />
                 <Field
                   label="Phone Number"
@@ -356,6 +356,10 @@ export function ContactPage() {
                   error={errors.phoneNumber}
                   placeholder="Enter your phone number"
                   inputMode="tel"
+                  required
+                  autoComplete="tel"
+                  pattern="(?:\\+91[\\s-]?)?[6-9]\\d{9}"
+                  title="Enter a valid 10-digit mobile number, optionally with +91."
                 />
               </div>
 
@@ -369,6 +373,8 @@ export function ContactPage() {
                   error={errors.emailAddress}
                   placeholder="you@example.com"
                   type="email"
+                  required
+                  autoComplete="email"
                 />
                 <Field
                   label="Address"
@@ -378,6 +384,8 @@ export function ContactPage() {
                   onBlur={handleBlur}
                   error={errors.address}
                   placeholder="Your address"
+                  required
+                  autoComplete="street-address"
                 />
               </div>
 
@@ -389,6 +397,8 @@ export function ContactPage() {
                 onBlur={handleBlur}
                 error={errors.notes}
                 placeholder="Tell us what you'd like to discuss, your project timeline, or any specific requirements."
+                required
+                minLength={15}
               />
 
               <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
@@ -398,6 +408,7 @@ export function ContactPage() {
                   checked={form.consent}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  required
                   className="mt-1 h-4 w-4 rounded border-blue-300 text-blue-600 focus:ring-blue-600"
                 />
                 <span>
@@ -645,6 +656,11 @@ function Field({
   placeholder?: string;
   type?: string;
   max?: string | number;
+  minLength?: number;
+  pattern?: string;
+  required?: boolean;
+  autoComplete?: string;
+  title?: string;
   inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   onChange: ChangeEventHandler<HTMLInputElement>;
   onBlur?: ChangeEventHandler<HTMLInputElement>;
@@ -676,6 +692,8 @@ function TextareaField({
   name: string;
   value: string;
   placeholder?: string;
+  required?: boolean;
+  minLength?: number;
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   onBlur?: ChangeEventHandler<HTMLTextAreaElement>;
 }) {
@@ -715,4 +733,14 @@ function ClockIcon({ className }: { className?: string }) {
 
 function PlusIcon({ className }: { className?: string }) {
   return <IoAddOutline className={className} />;
+}
+
+function isValidMobileNumber(value: string) {
+  const normalized = value.replace(/[\s()-]/g, "");
+
+  if (/^\+91[6-9]\d{9}$/.test(normalized)) {
+    return true;
+  }
+
+  return /^[6-9]\d{9}$/.test(normalized);
 }
