@@ -25,8 +25,6 @@ type FormState = {
   fullName: string;
   phoneNumber: string;
   emailAddress: string;
-  contactMethod: string;
-  subject: string;
   notes: string;
   consent: boolean;
 };
@@ -59,25 +57,10 @@ const contactInfo = [
   },
 ] as const;
 
-const contactMethods = [
-  "Phone call",
-  "WhatsApp",
-  "Email",
-];
-
-const enquirySubjects = [
-  "New project enquiry",
-  "Existing project support",
-  "Design consultation",
-  "Site or office visit",
-];
-
 const formDefaults: FormState = {
   fullName: "",
   phoneNumber: "",
   emailAddress: "",
-  contactMethod: "",
-  subject: "",
   notes: "",
   consent: false,
 };
@@ -376,25 +359,6 @@ export function ContactPage() {
                   placeholder="you@example.com"
                   type="email"
                 />
-                <SelectField
-                  label="Preferred Contact Detail"
-                  name="contactMethod"
-                  value={form.contactMethod}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  options={contactMethods}
-                />
-              </div>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                <SelectField
-                  label="Subject"
-                  name="subject"
-                  value={form.subject}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  options={enquirySubjects}
-                />
               </div>
 
               <TextareaField
@@ -677,44 +641,6 @@ function Field({
           error ? "border-rose-300" : "border-blue-100",
         ].join(" ")}
       />
-      {error ? <span className="mt-2 block text-sm text-rose-600">{error}</span> : null}
-    </label>
-  );
-}
-
-function SelectField({
-  label,
-  error,
-  options,
-  ...props
-}: {
-  label: string;
-  error?: string;
-  name: string;
-  value: string;
-  options: string[];
-  onChange: ChangeEventHandler<HTMLSelectElement>;
-  onBlur?: ChangeEventHandler<HTMLSelectElement>;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-2 block text-sm font-medium text-slate-700">
-        {label}
-      </span>
-      <select
-        {...props}
-        className={[
-          "w-full rounded-2xl border bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100",
-          error ? "border-rose-300" : "border-blue-100",
-        ].join(" ")}
-      >
-        <option value="">Select {label.toLowerCase()}</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
       {error ? <span className="mt-2 block text-sm text-rose-600">{error}</span> : null}
     </label>
   );
