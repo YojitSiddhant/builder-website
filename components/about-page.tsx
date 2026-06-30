@@ -179,7 +179,7 @@ const features = [
     title: "Premium Quality",
     image: makeHoverImage({
       title: "Premium Quality",
-      variant: "services-why-quality",
+      variant: "about-why-premium-quality",
       theme: "construction",
     }),
   },
@@ -187,7 +187,7 @@ const features = [
     title: "Experienced Team",
     image: makeHoverImage({
       title: "Experienced Team",
-      variant: "about-who-experienced-team",
+      variant: "about-why-experienced-team",
       theme: "team",
     }),
   },
@@ -195,7 +195,7 @@ const features = [
     title: "Transparent Pricing",
     image: makeHoverImage({
       title: "Transparent Pricing",
-      variant: "services-why-transparent-process",
+      variant: "about-why-transparent-pricing",
       theme: "planning",
     }),
   },
@@ -203,7 +203,7 @@ const features = [
     title: "Modern Architecture",
     image: makeHoverImage({
       title: "Modern Architecture",
-      variant: "home-trust-modern-architecture",
+      variant: "about-why-modern-architecture",
       theme: "design",
     }),
   },
@@ -211,7 +211,7 @@ const features = [
     title: "Long-Term Value",
     image: makeHoverImage({
       title: "Long-Term Value",
-      variant: "home-trust-customer-satisfaction",
+      variant: "about-why-long-term-value",
       theme: "trust",
     }),
   },
