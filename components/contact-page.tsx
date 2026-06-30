@@ -155,7 +155,7 @@ export function ContactPage() {
       case "fullName": {
         const text = String(value).trim();
         if (!text) return "Full name is required.";
-        if (text.length < 2) return "Please enter your full name.";
+        if (text.length < 2) return "Please enter a valid full name.";
         return undefined;
       }
       case "phoneNumber": {
@@ -163,26 +163,26 @@ export function ContactPage() {
         if (!text) return "Phone number is required.";
         const digits = text.replace(/\D/g, "");
         if (digits.length < 10 || digits.length > 15 || !phonePattern.test(text)) {
-          return "Enter a valid phone number.";
+          return "Please enter a valid mobile number format.";
         }
         return undefined;
       }
       case "emailAddress": {
         const text = String(value).trim();
         if (!text) return "Email address is required.";
-        if (!emailPattern.test(text)) return "Enter a valid email address.";
+        if (!emailPattern.test(text)) return "Please enter a valid email address format.";
         return undefined;
       }
       case "address": {
         const text = String(value).trim();
         if (!text) return "Address is required.";
-        if (text.length < 5) return "Please enter a valid address.";
+        if (text.length < 5) return "Please enter a valid address format.";
         return undefined;
       }
       case "notes": {
         const text = String(value).trim();
         if (!text) return "Please share a few details about your enquiry.";
-        if (text.length < 15) return "Please add a little more detail.";
+        if (text.length < 15) return "Please enter the message in the required detail.";
         return undefined;
       }
       case "consent":
