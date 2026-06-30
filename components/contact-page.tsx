@@ -6,11 +6,10 @@ import {
   motion,
   type Variants,
 } from "framer-motion";
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { HiOutlineBuildingOffice2, HiCheckCircle } from "react-icons/hi2";
 import {
   IoAddOutline,
   IoCallOutline,
-  IoCloseOutline,
   IoMailOutline,
   IoTimeOutline,
 } from "react-icons/io5";
@@ -127,7 +126,7 @@ export function ContactPage() {
     const timer = window.setTimeout(() => {
       setSubmitState("idle");
       setSubmitMessage("");
-    }, 4000);
+    }, 2500);
 
     return () => window.clearTimeout(timer);
   }, [submitState]);
@@ -285,24 +284,21 @@ export function ContactPage() {
           >
             <div
               className={[
-                "relative w-full max-w-md rounded-3xl border px-6 py-5 text-center text-base font-semibold shadow-[0_24px_60px_rgba(15,23,42,0.22)] backdrop-blur-sm",
+                "flex w-full max-w-md items-center gap-4 rounded-3xl border px-6 py-5 text-left text-base font-semibold shadow-[0_24px_60px_rgba(15,23,42,0.22)] backdrop-blur-sm",
                 submitState === "success"
                   ? "border-emerald-200 bg-emerald-50/95 text-emerald-700"
                   : "border-rose-200 bg-rose-50/95 text-rose-700",
               ].join(" ")}
             >
-              <div className="min-w-0 flex-1">{submitMessage}</div>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubmitState("idle");
-                  setSubmitMessage("");
-                }}
-                aria-label="Dismiss notification"
-                className="absolute right-4 top-4 rounded-full p-1 transition hover:bg-black/5"
+              <div
+                className={[
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
+                  submitState === "success" ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700",
+                ].join(" ")}
               >
-                <IoCloseOutline className="h-5 w-5" />
-              </button>
+                <HiCheckCircle className="h-6 w-6" />
+              </div>
+              <div className="min-w-0 flex-1">{submitMessage}</div>
             </div>
           </motion.div>
         ) : null}
