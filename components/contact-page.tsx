@@ -34,6 +34,7 @@ type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^[+]?[\d\s()-]{8,20}$/;
+const validationNotice = "Please fill the form as per required details.";
 
 const contactInfo = [
   {
@@ -226,6 +227,8 @@ export function ContactPage() {
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
+      setSubmitState("error");
+      setSubmitMessage(validationNotice);
       return;
     }
 
