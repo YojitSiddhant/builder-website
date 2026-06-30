@@ -12,6 +12,7 @@ import {
   IoCalendarOutline,
   IoHammerOutline,
   IoEyeOutline,
+  IoCheckmarkCircleOutline,
   IoHomeOutline,
   IoLayersOutline,
   IoMedalOutline,
@@ -28,52 +29,96 @@ const heroSlides = [
   {
     title: "Luxury Building",
     eyebrow: "Residential Excellence",
+    badge: "Premium Construction • Interiors • Turnkey",
     headingTop: "BUILDING TOMORROW,",
     headingBottom: "DELIVERING TRUST",
     description: "Premium residential and commercial spaces designed for modern living.",
     cardLabel: "Live",
-    cardTitle: "Building with confidence",
-    statValue: "10+",
-    statLabel: "Years Experience",
+    cardTitle: "Why homeowners choose Builder",
+    cardDescription:
+      "Thoughtful planning, strong execution, and reliable support from start to finish.",
+    points: [
+      "Premium materials and disciplined workmanship",
+      "Clear timelines with transparent communication",
+      "After-handover support that keeps projects running smoothly",
+    ],
+    stats: [
+      { value: "10+", label: "Years" },
+      { value: "150+", label: "Projects" },
+      { value: "500+", label: "Happy Clients" },
+    ],
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Modern Apartment",
     eyebrow: "Urban Living",
+    badge: "Design • Comfort • City Ready",
     headingTop: "SMART SPACES,",
     headingBottom: "ELEVATED LIVING",
     description: "Contemporary homes with natural light, efficient layouts, and city-ready comfort.",
     cardLabel: "Live",
     cardTitle: "Designed for modern life",
-    statValue: "150+",
-    statLabel: "Homes Delivered",
+    cardDescription:
+      "Efficient layouts, natural light, and smart details for everyday comfort.",
+    points: [
+      "Space-efficient layouts for real family living",
+      "Clean lines and premium finishes throughout",
+      "A balance of style, comfort, and long-term value",
+    ],
+    stats: [
+      { value: "150+", label: "Homes" },
+      { value: "500+", label: "Residents" },
+      { value: "24/7", label: "Support" },
+    ],
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Commercial Tower",
     eyebrow: "Business Destinations",
+    badge: "Visibility • Performance • Growth",
     headingTop: "SPACES THAT GROW",
     headingBottom: "BUSINESS VALUE",
     description: "Commercial developments planned for visibility, performance, and long-term returns.",
     cardLabel: "Live",
     cardTitle: "Built for business growth",
-    statValue: "24/7",
-    statLabel: "Operational Impact",
+    cardDescription:
+      "Spaces designed for operational clarity, impact, and return on investment.",
+    points: [
+      "Layouts that support efficiency and footfall",
+      "Premium visibility for commercial presence",
+      "Planning that aligns with long-term business goals",
+    ],
+    stats: [
+      { value: "24/7", label: "Performance" },
+      { value: "150+", label: "Sites" },
+      { value: "15+", label: "Cities" },
+    ],
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
   },
   {
     title: "Interior Architecture",
     eyebrow: "Refined Details",
+    badge: "Interiors • Finishing • Warmth",
     headingTop: "INTERIORS THAT FEEL",
     headingBottom: "POLISHED AND WARM",
     description: "Beautifully detailed interiors that balance elegance, function, and comfort.",
     cardLabel: "Live",
     cardTitle: "Crafted interior detail",
-    statValue: "1:1",
-    statLabel: "Design Balance",
+    cardDescription:
+      "Curated material choices and finish quality that elevate daily living.",
+    points: [
+      "Tailored interior planning for each space",
+      "Warm, balanced finishes with visual clarity",
+      "Attention to lighting, flow, and texture",
+    ],
+    stats: [
+      { value: "1:1", label: "Detail" },
+      { value: "50+", label: "Finishes" },
+      { value: "100%", label: "Care" },
+    ],
     image:
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
   },
@@ -299,7 +344,7 @@ function HeroSection({
   return (
     <section
       aria-labelledby="home-hero-title"
-      className="relative w-full overflow-hidden bg-blue-950 text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
+      className="relative w-full overflow-hidden bg-slate-950 text-slate-900 shadow-[0_35px_90px_rgba(37,99,235,0.1)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -324,14 +369,17 @@ function HeroSection({
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(16,72,162,0.78)_0%,_rgba(37,99,235,0.4)_45%,_rgba(255,255,255,0.08)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(11,18,32,0.88)_0%,_rgba(16,72,162,0.48)_45%,_rgba(255,255,255,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.22),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(37,99,235,0.22),_transparent_30%)]" />
 
-        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-10">
-          <div className="mx-auto max-w-3xl text-center">
+        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:px-8 lg:py-10">
+          <div className="mx-auto max-w-3xl text-center lg:text-left">
+            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.38em] text-blue-50 backdrop-blur-md">
+              {slide.badge}
+            </p>
             <motion.h1
               id="home-hero-title"
-              className="mt-8 text-5xl font-semibold leading-[0.92] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-8xl"
+              className="mt-7 text-5xl font-semibold leading-[0.92] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-8xl"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -341,7 +389,7 @@ function HeroSection({
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
+              className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -350,21 +398,21 @@ function HeroSection({
             </motion.p>
 
             <motion.div
-              className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
+              className="mt-9 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
             >
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-900/15 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-slate-900 shadow-lg shadow-black/10 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-slate-100"
               >
                 <IoEyeOutline className="h-5 w-5 shrink-0" />
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/12 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/18"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/10"
               >
                 <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
@@ -374,34 +422,48 @@ function HeroSection({
 
           <div className="flex items-end justify-center lg:justify-end">
             <motion.div
-              className="w-full max-w-sm rounded-[2rem] border border-white/20 bg-slate-950/15 p-5 text-center text-white shadow-2xl shadow-blue-900/20 backdrop-blur-2xl sm:p-6"
+              className="w-full max-w-[38rem] rounded-[2.2rem] border border-white/15 bg-white p-6 text-left text-slate-900 shadow-[0_30px_90px_rgba(15,23,42,0.22)] backdrop-blur-xl sm:p-8"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-center gap-2">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
+              <div className="flex flex-col gap-2">
+                <div className="text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
                     {slide.eyebrow}
                   </p>
-                  <p className="mt-2 text-2xl font-semibold text-white">{slide.cardTitle}</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-[1.85rem]">
+                    {slide.cardTitle}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {slide.cardDescription}
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-1 gap-4">
-                {[
-                  { value: slide.statValue, label: slide.statLabel },
-                  { value: slide.title === "Commercial Tower" ? "150+" : "500+", label: slide.title === "Commercial Tower" ? "Corporate Sites" : slide.title === "Interior Architecture" ? "Design Touchpoints" : "Projects" },
-                  { value: slide.title === "Modern Apartment" ? "500+" : "24/7", label: slide.title === "Modern Apartment" ? "Happy Residents" : slide.title === "Interior Architecture" ? "Finishing Precision" : "Support" },
-                ].map((item) => (
+              <div className="mt-6 space-y-4">
+                {slide.points.map((point) => (
                   <div
-                    key={item.label}
-                    className="rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-center shadow-none backdrop-blur-md"
+                    key={point}
+                    className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3"
                   >
-                    <div className="flex flex-col items-center gap-1">
-                      <p className="text-3xl font-semibold text-white">{item.value}</p>
-                      <p className="text-sm text-blue-100">{item.label}</p>
-                    </div>
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm">
+                      <IoCheckmarkCircleOutline className="h-4 w-4" />
+                    </span>
+                    <p className="text-sm leading-7 text-slate-600">{point}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                {slide.stats.map((item) => (
+                  <div key={item.label} className="rounded-2xl bg-slate-100 px-4 py-4 text-center">
+                    <p className="text-2xl font-semibold tracking-tight text-slate-900">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-slate-500">
+                      {item.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -410,6 +472,14 @@ function HeroSection({
         </div>
 
         <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          <div className="hidden items-center gap-4 text-sm text-blue-100/90 lg:flex">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10">
+              <IoCallOutline className="h-4 w-4" />
+            </span>
+            <span>7509652869</span>
+            <span className="h-4 w-px bg-white/30" />
+            <span>Fast response within 24 hours</span>
+          </div>
           <div className="ml-auto flex items-center gap-3">
             <ArrowButton
               direction="left"
