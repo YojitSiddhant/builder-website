@@ -529,10 +529,23 @@ function CoreValuesSection() {
 function WhyChooseUsSection() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const activeFeature = features[activeFeatureIndex] ?? features[0];
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const sectionInView = useInView(sectionRef, { once: false, amount: 0.25 });
+
+  useEffect(() => {
+    if (!sectionInView) return;
+
+    const timer = window.setInterval(() => {
+      setActiveFeatureIndex((currentIndex) => (currentIndex + 1) % features.length);
+    }, 3000);
+
+    return () => window.clearInterval(timer);
+  }, [sectionInView]);
 
   return (
     <SectionWrap>
       <motion.div
+        ref={sectionRef}
         variants={sectionVariants}
         initial="hidden"
         whileInView="show"
@@ -593,8 +606,7 @@ function WhyChooseUsSection() {
               >
                 <button
                   type="button"
-                  onMouseEnter={() => setActiveFeatureIndex(index)}
-                  onFocus={() => setActiveFeatureIndex(index)}
+                  onClick={() => setActiveFeatureIndex(index)}
                   aria-pressed={activeFeatureIndex === index}
                   className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-[0_10px_30px_rgba(37,99,235,0.04)] transition duration-300 ${
                     activeFeatureIndex === index
