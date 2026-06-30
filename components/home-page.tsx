@@ -327,7 +327,7 @@ function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(16,72,162,0.78)_0%,_rgba(37,99,235,0.4)_45%,_rgba(255,255,255,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.7),_transparent_34%)]" />
 
-        <div className="relative mx-auto flex min-h-[88svh] w-full max-w-7xl flex-col justify-center gap-10 px-4 py-12 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
+        <div className="relative mx-auto flex min-h-[96svh] w-full max-w-7xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-10">
           <div className="mx-auto max-w-3xl text-center">
             <motion.h1
               id="home-hero-title"
@@ -341,7 +341,7 @@ function HeroSection({
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
+              className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-50 sm:text-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -350,7 +350,7 @@ function HeroSection({
             </motion.p>
 
             <motion.div
-              className="mt-10 flex flex-col justify-center gap-4 sm:flex-row"
+              className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
@@ -364,7 +364,7 @@ function HeroSection({
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/70 bg-white/90 px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/12 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/18"
               >
                 <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
@@ -374,21 +374,21 @@ function HeroSection({
 
           <div className="flex items-end justify-center lg:justify-end">
             <motion.div
-              className="w-full max-w-md rounded-[2rem] border border-blue-100 bg-white/95 p-6 text-center shadow-2xl shadow-blue-900/10 backdrop-blur-xl sm:p-8"
+              className="w-full max-w-md rounded-[2rem] border border-white/20 bg-slate-950/15 p-5 text-center text-white shadow-2xl shadow-blue-900/20 backdrop-blur-2xl sm:p-6"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
             >
               <div className="flex flex-col items-center gap-2">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-100">
                     {slide.eyebrow}
                   </p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900">{slide.cardTitle}</p>
+                  <p className="mt-2 text-2xl font-semibold text-white">{slide.cardTitle}</p>
                 </div>
               </div>
 
-              <div className="mt-8 grid grid-cols-1 gap-4">
+              <div className="mt-6 grid grid-cols-1 gap-4">
                 {[
                   { value: slide.statValue, label: slide.statLabel },
                   { value: slide.title === "Commercial Tower" ? "150+" : "500+", label: slide.title === "Commercial Tower" ? "Corporate Sites" : slide.title === "Interior Architecture" ? "Design Touchpoints" : "Projects" },
@@ -396,11 +396,11 @@ function HeroSection({
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-blue-100 bg-white px-5 py-4 text-center shadow-sm"
+                    className="rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-center shadow-none backdrop-blur-md"
                   >
                     <div className="flex flex-col items-center gap-1">
-                      <p className="text-3xl font-semibold text-blue-700">{item.value}</p>
-                      <p className="text-sm text-slate-500">{item.label}</p>
+                      <p className="text-3xl font-semibold text-white">{item.value}</p>
+                      <p className="text-sm text-blue-100">{item.label}</p>
                     </div>
                   </div>
                 ))}
