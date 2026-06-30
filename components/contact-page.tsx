@@ -18,6 +18,7 @@ import {
   type ChangeEventHandler,
   type FormEvent,
   type InputHTMLAttributes,
+  useEffect,
   useState,
 } from "react";
 
@@ -116,6 +117,19 @@ export function ContactPage() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  useEffect(() => {
+    if (submitState === "idle") {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setSubmitState("idle");
+      setSubmitMessage("");
+    }, 4000);
+
+    return () => window.clearTimeout(timer);
+  }, [submitState]);
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -259,6 +273,30 @@ export function ContactPage() {
   return (
     <div id="top" className="overflow-x-clip bg-white text-slate-900">
       <Hero />
+
+      <AnimatePresence>
+        {submitState !== "idle" ? (
+          <motion.div
+            key={submitState}
+            initial={{ opacity: 0, y: -16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed left-4 right-4 top-24 z-50 mx-auto w-full max-w-xl px-4 sm:left-auto sm:right-6 sm:top-6 sm:px-0"
+          >
+            <div
+              className={[
+                "rounded-2xl border px-5 py-4 text-sm font-medium shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-sm",
+                submitState === "success"
+                  ? "border-emerald-200 bg-emerald-50/95 text-emerald-700"
+                  : "border-rose-200 bg-rose-50/95 text-rose-700",
+              ].join(" ")}
+            >
+              {submitMessage}
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <motion.section
         initial="hidden"
@@ -422,25 +460,6 @@ export function ContactPage() {
                   ) : null}
                 </span>
               </label>
-
-              <AnimatePresence mode="wait">
-                {submitState !== "idle" ? (
-                  <motion.div
-                    key={submitState}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className={[
-                      "rounded-2xl border px-4 py-3 text-sm font-medium",
-                      submitState === "success"
-                        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                        : "border-rose-200 bg-rose-50 text-rose-700",
-                    ].join(" ")}
-                  >
-                    {submitMessage}
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
 
               <motion.button
                 type="submit"
