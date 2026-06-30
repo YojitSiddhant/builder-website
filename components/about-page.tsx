@@ -13,6 +13,7 @@ import {
   IoLeafOutline,
   IoLayersOutline,
   IoLocateOutline,
+  IoMailOutline,
   IoPencilOutline,
   IoPeopleOutline,
   IoTimeOutline,
@@ -291,8 +292,9 @@ function CompanyIntroSection() {
           <div className="mt-8">
             <Link
               href="/projects"
-              className="inline-flex items-center justify-center rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
             >
+              <IoCompassOutline className="h-5 w-5 shrink-0" />
               Explore Projects
             </Link>
           </div>
@@ -584,14 +586,16 @@ function CtaSection() {
             <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
               >
+                <IoCompassOutline className="h-5 w-5 shrink-0" />
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-white px-7 py-3.5 text-sm font-semibold text-blue-700 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-blue-200 bg-white px-7 py-3.5 text-sm font-semibold text-blue-700 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
               >
+                <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
               </Link>
             </div>

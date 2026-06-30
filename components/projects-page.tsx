@@ -10,6 +10,8 @@ import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
 import {
   IoArrowForwardOutline,
   IoChevronForwardOutline,
+  IoCalendarOutline,
+  IoMailOutline,
   IoSearchOutline,
 } from "react-icons/io5";
 import { makeHoverImage } from "./hover-image";
@@ -847,14 +849,16 @@ function CtaSection() {
             <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/15"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/15"
               >
+                <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-700 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-700/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-800"
               >
+                <IoCalendarOutline className="h-5 w-5 shrink-0" />
                 Book Site Visit
               </Link>
             </div>

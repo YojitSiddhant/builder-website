@@ -8,12 +8,15 @@ import {
   IoBusinessOutline,
   IoChevronBackOutline,
   IoChevronForwardOutline,
+  IoCallOutline,
+  IoCalendarOutline,
   IoHammerOutline,
   IoEyeOutline,
   IoHomeOutline,
   IoLayersOutline,
   IoMedalOutline,
   IoPencilOutline,
+  IoMailOutline,
   IoShieldCheckmarkOutline,
   IoSparklesOutline,
   IoTimeOutline,
@@ -354,14 +357,16 @@ function HeroSection({
             >
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-900/15 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-900/15 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
               >
+                <IoEyeOutline className="h-5 w-5 shrink-0" />
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/90 px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/70 bg-white/90 px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
               >
+                <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
               </Link>
             </motion.div>
@@ -725,14 +730,16 @@ function FinalCta() {
         <div className="flex flex-col gap-4 sm:flex-row">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-4 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
           >
+            <IoCalendarOutline className="h-5 w-5 shrink-0" />
             Book Consultation
           </Link>
           <a
             href="tel:+10000000000"
-            className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-white px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-blue-200 bg-white px-7 py-4 text-sm font-semibold text-blue-700 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
           >
+            <IoCallOutline className="h-5 w-5 shrink-0" />
             Call Now
           </a>
         </div>

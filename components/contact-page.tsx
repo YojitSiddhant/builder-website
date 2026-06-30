@@ -617,16 +617,18 @@ export function ContactPage() {
                     href="tel:+911234567890"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.99 }}
-                    className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-sm font-semibold text-blue-700 shadow-lg shadow-black/10 transition"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-blue-700 shadow-lg shadow-black/10 transition"
                   >
+                    <IoCallOutline className="h-5 w-5 shrink-0" />
                     Call Now
                   </motion.a>
                   <motion.a
                     href="#enquiry-form"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.99 }}
-                    className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition"
                   >
+                    <IoMailOutline className="h-5 w-5 shrink-0" />
                     Contact Us
                   </motion.a>
                 </div>
