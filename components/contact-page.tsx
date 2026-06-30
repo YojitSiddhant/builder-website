@@ -364,8 +364,6 @@ export function ContactPage() {
                   inputMode="tel"
                   required
                   autoComplete="tel"
-                  pattern="\\+91\\s[6-9]\\d{9}"
-                  title="Enter a valid Indian mobile number in +91 format."
                 />
               </div>
 
