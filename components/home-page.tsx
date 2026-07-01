@@ -372,7 +372,7 @@ function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(11,18,32,0.88)_0%,_rgba(16,72,162,0.48)_45%,_rgba(255,255,255,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.22),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(37,99,235,0.22),_transparent_30%)]" />
 
-        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-between gap-6 px-4 py-6 sm:px-6 lg:grid lg:min-h-[92svh] lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:justify-center lg:px-8 lg:py-10">
+        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-between gap-6 px-4 pb-6 pt-10 sm:px-6 sm:pt-12 lg:grid lg:min-h-[92svh] lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:justify-center lg:px-8 lg:py-10">
           <div className="mx-auto max-w-3xl text-center lg:text-left">
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.38em] text-blue-50 backdrop-blur-md">
               {slide.badge}
