@@ -23,7 +23,8 @@ export function SiteShell({
 }
 
 function WhatsAppFloatingButton() {
-  const phoneNumber = "919425080418";
+  // wa.me expects the country code and number without spaces or the leading "+".
+  const phoneNumber = "919425080418"; // +91 94250 80418
   const message = encodeURIComponent(
     "Hi Builder, I would like to enquire about your services."
   );
