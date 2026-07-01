@@ -38,9 +38,7 @@ function WhatsAppFloatingButton() {
         aria-label="Chat with us on WhatsApp"
         className="group inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_45px_rgba(37,211,102,0.32)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_22px_55px_rgba(37,211,102,0.42)] sm:h-16 sm:w-16"
       >
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#25D366] transition-transform duration-300 group-hover:scale-105 sm:h-12 sm:w-12">
-          <FaWhatsapp className="h-7 w-7" />
-        </span>
+        <FaWhatsapp className="h-7 w-7 text-white" />
       </Link>
     </div>
   );
