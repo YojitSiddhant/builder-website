@@ -445,17 +445,12 @@ function HeroSection({
                 {slide.points.map((point) => (
                   <div
                     key={point}
-                    className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3"
+                    className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-3 py-3 sm:px-4"
                   >
                     <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm">
                       <IoCheckmarkCircleOutline className="h-4 w-4" />
                     </span>
-                    <p
-                      className={[
-                        "text-sm leading-7 text-slate-600",
-                        point === slide.points[2] ? "hidden sm:block" : "block",
-                      ].join(" ")}
-                    >
+                    <p className="text-[0.95rem] leading-6 text-slate-600 sm:text-sm sm:leading-7">
                       {point}
                     </p>
                   </div>
