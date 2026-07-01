@@ -292,7 +292,7 @@ export function ProjectsPage() {
 function HeroSection() {
   return (
     <section className="overflow-hidden bg-white px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto grid min-h-[48vh] w-full max-w-7xl items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
+      <div className="mx-auto grid min-h-[42vh] w-full max-w-7xl items-center gap-8 lg:min-h-[48vh] lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -302,7 +302,7 @@ function HeroSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.45em] text-blue-700">
             Home / Projects
           </p>
-          <h1 className="mt-6 text-4xl font-semibold tracking-[0.18em] text-slate-950 sm:text-5xl lg:text-7xl">
+          <h1 className="mt-5 text-3xl font-semibold tracking-[0.12em] text-slate-950 sm:mt-6 sm:text-5xl sm:tracking-[0.16em] lg:text-7xl lg:tracking-[0.18em]">
             OUR PROJECTS
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg lg:text-xl">

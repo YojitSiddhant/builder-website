@@ -500,7 +500,7 @@ export function ContactPage() {
 
           <div className="mt-10">
             <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 shadow-[0_20px_60px_rgba(37,99,235,0.1)]">
-              <div className="relative h-[520px] w-full sm:h-[580px] lg:h-[640px]">
+              <div className="relative h-[52svh] min-h-[320px] w-full sm:h-[60svh] lg:h-[640px]">
                 <iframe
                   title="Builder office map"
                   src="https://www.google.com/maps?q=219,+E-3,+Arera+Colony,+Bhopal,+Madhya+Pradesh+462016&z=17&output=embed"
@@ -600,7 +600,7 @@ export function ContactPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/70 to-blue-700/40" />
 
-            <div className="relative flex min-h-[420px] items-center px-6 py-16 sm:px-10 lg:px-16">
+            <div className="relative flex min-h-[320px] items-center px-6 py-12 sm:min-h-[420px] sm:px-10 sm:py-16 lg:px-16">
               <div className="max-w-3xl text-white">
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
                   Next Step
@@ -643,7 +643,7 @@ export function ContactPage() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[42vh] items-center justify-center overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+    <section className="relative flex min-h-[36vh] items-center justify-center overflow-hidden px-4 py-10 sm:min-h-[42vh] sm:px-6 lg:px-8">
       <Image
         src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
         alt="Modern building background"
@@ -664,7 +664,7 @@ function Hero() {
         <p className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
           Contact Us
         </p>
-        <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:mt-5 sm:text-5xl lg:text-6xl">
           Share your enquiry and contact details
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-blue-50/90 sm:text-lg">

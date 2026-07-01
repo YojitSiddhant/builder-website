@@ -309,7 +309,7 @@ export function HomePage() {
   }, [heroPaused]);
 
   return (
-    <div className="-mt-8 overflow-x-clip bg-white text-slate-900">
+    <div className="overflow-x-clip bg-white text-slate-900">
       <HeroSection
         activeSlide={heroIndex}
         setActiveSlide={setHeroIndex}
