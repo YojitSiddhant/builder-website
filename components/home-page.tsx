@@ -348,7 +348,7 @@ function HeroSection({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative min-h-[100svh]">
+      <div className="relative min-h-[92svh] lg:min-h-[100svh]">
         <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={slide.image}
@@ -372,14 +372,14 @@ function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(11,18,32,0.88)_0%,_rgba(16,72,162,0.48)_45%,_rgba(255,255,255,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.22),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(37,99,235,0.22),_transparent_30%)]" />
 
-        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-center gap-8 px-4 py-8 sm:px-6 lg:grid lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:px-8 lg:py-10">
+        <div className="relative mx-auto flex min-h-[92svh] w-full max-w-6xl flex-col justify-between gap-6 px-4 py-6 sm:px-6 lg:grid lg:min-h-[92svh] lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:justify-center lg:px-8 lg:py-10">
           <div className="mx-auto max-w-3xl text-center lg:text-left">
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.38em] text-blue-50 backdrop-blur-md">
               {slide.badge}
             </p>
             <motion.h1
               id="home-hero-title"
-              className="mt-7 text-5xl font-semibold leading-[0.92] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-8xl"
+              className="mt-5 text-4xl font-semibold leading-[0.94] tracking-[-0.05em] text-white sm:mt-7 sm:text-6xl lg:text-7xl xl:text-8xl"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -389,7 +389,7 @@ function HeroSection({
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl lg:mx-0"
+              className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-200 sm:mt-7 sm:text-lg sm:leading-8 lg:mx-0 lg:text-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -398,21 +398,21 @@ function HeroSection({
             </motion.p>
 
             <motion.div
-              className="mt-9 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+              className="mt-7 flex flex-col justify-center gap-3 sm:mt-9 sm:flex-row lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.16, ease: "easeOut" }}
             >
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-slate-900 shadow-lg shadow-black/10 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-slate-100"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-slate-900 shadow-lg shadow-black/10 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-slate-100 sm:w-auto"
               >
                 <IoEyeOutline className="h-5 w-5 shrink-0" />
                 Explore Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
                 <IoMailOutline className="h-5 w-5 shrink-0" />
                 Contact Us
@@ -422,7 +422,7 @@ function HeroSection({
 
           <div className="flex items-end justify-center lg:justify-end">
             <motion.div
-              className="w-full max-w-[38rem] rounded-[2.2rem] border border-white/15 bg-white p-6 text-left text-slate-900 shadow-[0_30px_90px_rgba(15,23,42,0.22)] backdrop-blur-xl sm:p-8"
+              className="w-full max-w-[38rem] rounded-[1.75rem] border border-white/15 bg-white p-4 text-left text-slate-900 shadow-[0_30px_90px_rgba(15,23,42,0.22)] backdrop-blur-xl sm:rounded-[2.2rem] sm:p-8"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: "easeOut" }}
@@ -432,16 +432,16 @@ function HeroSection({
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
                     {slide.eyebrow}
                   </p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-[1.85rem]">
+                  <p className="mt-2 text-xl font-semibold text-slate-900 sm:text-[1.85rem]">
                     {slide.cardTitle}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                  <p className="mt-2 text-sm leading-6 text-slate-600 sm:mt-3 sm:leading-7">
                     {slide.cardDescription}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-5 space-y-3 sm:mt-6 sm:space-y-4">
                 {slide.points.map((point) => (
                   <div
                     key={point}
@@ -450,18 +450,25 @@ function HeroSection({
                     <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm">
                       <IoCheckmarkCircleOutline className="h-4 w-4" />
                     </span>
-                    <p className="text-sm leading-7 text-slate-600">{point}</p>
+                    <p
+                      className={[
+                        "text-sm leading-7 text-slate-600",
+                        point === slide.points[2] ? "hidden sm:block" : "block",
+                      ].join(" ")}
+                    >
+                      {point}
+                    </p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="mt-5 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
                 {slide.stats.map((item) => (
                   <div key={item.label} className="rounded-2xl bg-slate-100 px-4 py-4 text-center">
-                    <p className="text-2xl font-semibold tracking-tight text-slate-900">
+                    <p className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
                       {item.value}
                     </p>
-                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-slate-500">
+                    <p className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-slate-500 sm:text-xs">
                       {item.label}
                     </p>
                   </div>
@@ -471,7 +478,7 @@ function HeroSection({
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-20 mx-auto mt-6 flex w-full max-w-6xl flex-col items-center gap-5 px-4 pb-6 sm:px-6 lg:absolute lg:inset-x-0 lg:bottom-8 lg:mt-0 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:px-8 lg:pb-0">
           <div className="hidden items-center gap-4 text-sm text-blue-100/90 lg:flex">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10">
               <IoCallOutline className="h-4 w-4" />
@@ -480,7 +487,7 @@ function HeroSection({
             <span className="h-4 w-px bg-white/30" />
             <span>Fast response within 24 hours</span>
           </div>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <ArrowButton
               direction="left"
               onClick={() =>
@@ -492,9 +499,26 @@ function HeroSection({
               onClick={() => setActiveSlide((current) => (current + 1) % heroSlides.length)}
             />
           </div>
+          <div className="flex items-center justify-center gap-3 lg:hidden">
+            {heroSlides.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                aria-label={`Show slide ${index + 1}: ${item.title}`}
+                aria-pressed={index === activeSlide}
+                onClick={() => setActiveSlide(index)}
+                className={[
+                  "h-2.5 rounded-full transition-all duration-300",
+                  index === activeSlide
+                    ? "w-10 bg-blue-600"
+                    : "w-2.5 bg-blue-200 hover:bg-blue-400",
+                ].join(" ")}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-20 z-20 mx-auto flex w-full max-w-6xl items-center justify-center gap-3 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-x-0 bottom-20 z-20 mx-auto hidden w-full max-w-6xl items-center justify-center gap-3 px-4 sm:px-6 lg:flex lg:px-8">
           {heroSlides.map((item, index) => (
             <button
               key={item.title}
