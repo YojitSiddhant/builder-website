@@ -36,6 +36,8 @@ type FormErrors = Partial<Record<keyof FormState, string>>;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const validationNotice = "Please fill the form as per required details.";
 const indiaPhonePrefix = "+91 ";
+const web3FormsEndpoint = "https://api.web3forms.com/submit";
+const web3FormsAccessKey = "cc90fc1a-9667-4769-8ff3-73be64e1d0a6";
 
 const contactInfo = [
   {
@@ -255,8 +257,38 @@ export function ContactPage() {
     setSubmitMessage("");
 
     try {
+      if (!web3FormsAccessKey) {
+        throw new Error("Web3Forms access key is missing. Set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.");
+      }
+
+      const formData = new FormData(event.currentTarget);
+      formData.set("access_key", web3FormsAccessKey);
+      formData.set("subject", "New enquiry from Builder website");
+      formData.set("from_name", form.fullName);
+      formData.set("name", form.fullName);
+      formData.set("email", form.emailAddress);
+      formData.set("phone", form.phoneNumber);
+      formData.set("address", form.address);
+      formData.set("message", form.notes);
+      formData.set("consent", form.consent ? "Yes" : "No");
+      formData.set("site", "Builder website contact form");
+
+      const response = await fetch(web3FormsEndpoint, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "We could not submit the form. Please try again.");
+      }
+
       setSubmitState("success");
-      setSubmitMessage("Form submitted");
+      setSubmitMessage("Thanks, your enquiry was sent successfully.");
       setForm(formDefaults);
     } catch (error) {
       setSubmitState("error");
