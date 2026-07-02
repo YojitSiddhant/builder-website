@@ -501,12 +501,17 @@ export function ContactPage() {
 
               <motion.button
                 type="submit"
-                whileHover={{ y: -2, scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                className="bt inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-[12px] bg-[#0873bd] px-6 py-4 text-[18px] font-semibold text-white shadow-[2px_2px_10px_1px_#cacaca] transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70 sm:w-[155px] sm:px-0 sm:py-0 sm:leading-[60px]"
               >
-                {isSubmitting ? "Submitting..." : "Send Enquiry"}
+                <span
+                  aria-hidden="true"
+                  className="msg relative h-0 w-0 shrink-0 rounded-[2px]"
+                />
+                <span className="relative z-10">
+                  {isSubmitting ? "Sending..." : "SEND"}
+                </span>
               </motion.button>
             </form>
           </motion.div>
