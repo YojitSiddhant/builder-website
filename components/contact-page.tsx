@@ -481,7 +481,7 @@ export function ContactPage() {
                 minLength={15}
               />
 
-              <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
+              <label className="checkbox-container flex cursor-pointer items-center gap-3 rounded-2xl border border-blue-100 bg-white p-4 text-sm text-slate-700">
                 <input
                   type="checkbox"
                   name="consent"
@@ -489,9 +489,11 @@ export function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
-                  className="mt-1 h-4 w-4 rounded border-blue-300 text-blue-600 focus:ring-blue-600"
+                  className="custom-checkbox"
+                  aria-invalid={Boolean(errors.consent)}
                 />
-                <span>
+                <span className="checkmark" aria-hidden="true" />
+                <span className="pl-1">
                   I agree to be contacted about my enquiry
                   {errors.consent ? (
                     <span className="mt-1 block text-xs text-rose-600">{errors.consent}</span>
