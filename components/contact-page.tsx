@@ -503,7 +503,7 @@ export function ContactPage() {
                 type="submit"
                 whileTap={{ scale: 0.99 }}
                 disabled={isSubmitting}
-                className="bt inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-[12px] bg-[#0873bd] px-6 py-4 text-[18px] font-semibold text-white shadow-[2px_2px_10px_1px_#cacaca] transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70 sm:w-[155px] sm:px-0 sm:py-0 sm:leading-[60px]"
+                className="bt inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-[12px] bg-blue-600 px-6 py-4 text-[18px] font-semibold text-white shadow-[2px_2px_10px_1px_rgba(37,99,235,0.22)] transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70 sm:w-[155px] sm:px-0 sm:py-0 sm:leading-[60px]"
               >
                 <span
                   aria-hidden="true"
